@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Client :  localhost
--- Généré le :  Mar 12 Septembre 2023 à 20:45
+-- Généré le :  Mar 12 Septembre 2023 à 21:26
 -- Version du serveur :  5.7.11
 -- Version de PHP :  7.0.3
 
@@ -19,6 +19,27 @@ SET time_zone = "+00:00";
 --
 -- Base de données :  `smileyface`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `evenement`
+--
+
+CREATE TABLE `evenement` (
+  `id` int(11) NOT NULL,
+  `nom` varchar(255) NOT NULL,
+  `date` date NOT NULL,
+  `lien` varchar(1500) NOT NULL,
+  `departement` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf16;
+
+--
+-- Contenu de la table `evenement`
+--
+
+INSERT INTO `evenement` (`id`, `nom`, `date`, `lien`, `departement`) VALUES
+(1, 'Event test', '2023-11-05', 'https://lecampusti.ca/', 'Informatique');
 
 -- --------------------------------------------------------
 
@@ -46,6 +67,12 @@ INSERT INTO `utilisateur` (`id`, `usager`, `mot_de_passe`) VALUES
 --
 
 --
+-- Index pour la table `evenement`
+--
+ALTER TABLE `evenement`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Index pour la table `utilisateur`
 --
 ALTER TABLE `utilisateur`
@@ -55,6 +82,11 @@ ALTER TABLE `utilisateur`
 -- AUTO_INCREMENT pour les tables exportées
 --
 
+--
+-- AUTO_INCREMENT pour la table `evenement`
+--
+ALTER TABLE `evenement`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT pour la table `utilisateur`
 --
