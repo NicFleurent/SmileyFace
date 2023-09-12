@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Client :  localhost
--- Généré le :  Mar 12 Septembre 2023 à 19:47
+-- Généré le :  Mar 12 Septembre 2023 à 20:45
 -- Version du serveur :  5.7.11
 -- Version de PHP :  7.0.3
 
@@ -28,9 +28,18 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `utilisateur` (
   `id` int(11) NOT NULL,
-  `courriel` varchar(255) NOT NULL,
+  `usager` varchar(255) NOT NULL,
   `mot_de_passe` varchar(1024) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf16;
+
+--
+-- Contenu de la table `utilisateur`
+--
+
+INSERT INTO `utilisateur` (`id`, `usager`, `mot_de_passe`) VALUES
+(1, 'anick.bruneau', '71a4236acaaa09fa969570ae1368114faa96ede5'),
+(2, 'shany.carle', 'b791ab2342bfc0302af3dd566649ef5d51c95930'),
+(3, 'admin', '5e290a2a157c9779ba4c84b5aa72e114cc74d0e4');
 
 --
 -- Index pour les tables exportées
@@ -50,7 +59,7 @@ ALTER TABLE `utilisateur`
 -- AUTO_INCREMENT pour la table `utilisateur`
 --
 ALTER TABLE `utilisateur`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
