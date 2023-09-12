@@ -12,10 +12,11 @@ session_start();
     <title>Se connecter</title>
     <!-- Bootstrap-->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/connexion.css">
 </head>
 
 <body>
-    <main class="container">
+    <main >
 
         <?php
         //Variables d'erreurs vides
@@ -40,10 +41,10 @@ session_start();
 
             //Vérication champs connexion 
             if (empty($_POST['usager'])) {
-                $usagerErreur = "Veuillez entrer votre courriel";
+                $usagerErreur = "Veuillez entrer votre usager";
                 $erreur = true;
             } else
-                $email = test_input($_POST['courriel']);
+                $email = test_input($_POST['usager']);
             if (empty($_POST['mdp'])) {
                 $mdpErreur = "Veuillez entrer votre mot de passe";
                 $erreur = true;
@@ -56,7 +57,7 @@ session_start();
             $password = sha1($password, false);
 
             //Vérification si les identifiants sont dans la base de données
-            $sql = "SELECT * from utilisateur where usager ='$user' AND password='$password'";
+            $sql = "SELECT * from utilisateur where usager ='$user' AND mot_de_passe='$password'";
             echo $sql;
             $result = $conn->query($sql);
 
@@ -75,24 +76,38 @@ session_start();
 
         if ($_SERVER["REQUEST_METHOD"] != "POST" || $erreur == true) {
         ?>
-            <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="POST">
-                <h1>Se connecter</h1>
-                <!-- COURRIEL -->
-                <div class="form-outline mb-4">
-                    <input type="email" class="form-control" name="usager" placeholder="Courriel">
-                    <span class="text-danger"><?php echo $courrielErreur; ?></span>
+            <div class="container vh-100">
+                <div class="row d-flex justify-content-center align-items-center h-100">
+                    <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+                        <div class="card bg-dark text-white">
+                            <div class="card-body p-5 text-center">
+                                <div class="mb-md-5 mt-md-4 pb-5">
+                                    <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="POST">
+                                        <div class="col text-center mb-5">
+                                            <h1>Se connecter</h1>
+                                        </div>
+
+                                        <!-- Usager -->
+                                        <div class="form-outline form-white mb-4">
+                                            <input type="text" class="form-control mb-4 " name="usager" placeholder="Usager">
+                                            <span class="text-danger"><?php echo $usagerErreur; ?></span>
+                                        </div>
+
+                                        <!-- Mot de passe -->
+                                        <div class="form-outline form-white mb-4">
+                                            <input type="password" class="form-control mb-4" name="mdp" placeholder="Mot de passe">
+                                            <span class="text-danger"><?php echo $mdpErreur; ?></span>
+                                        </div>
+
+                                        <!-- Se connecter submit -->
+                                        <input class="btn btn-outline-light justify-content-center text-center mt-4 pt-1" type="submit" value="Se connecter">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-
-                <!-- Mot de passe -->
-                <div class="form-outline mb-4">
-                    <input type="password" class="form-control" name="mdp" placeholder="Mot de passe">
-                    <span class="text-danger"><?php echo $mdpErreur; ?></span>
-                </div>
-
-                <!-- Se connecter submit -->
-                <input class="btn btn-primary" type="submit" value="Se connecter">
-
-            <?php
+            </div>
+        <?php
         }
         function test_input($data)
         {
@@ -101,7 +116,7 @@ session_start();
             $data = htmlspecialchars($data);
             return $data;
         }
-            ?>
+        ?>
     </main>
 </body>
 
