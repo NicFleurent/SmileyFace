@@ -1,16 +1,19 @@
 let nom = document.getElementById("nom");
 let date = document.getElementById("date");
 let lien = document.getElementById("lien");
+let image = document.getElementById("image");
 let departement = document.getElementById("departement");
 
 let invalidNom = document.getElementById("invalidNom");
 let invalidDate = document.getElementById("invalidDate");
 let invalidLien = document.getElementById("invalidLien");
+let invalidImage = document.getElementById("invalidImage");
 let invalidDepartement = document.getElementById("invalidDepartement");
 
 let inputNom;
 let inputDate;
 let inputLien;
+let inputImage;
 let inputDepartement;
 
 const regexURL = /\b(?:(?:https?|ftp):\/\/|www\.)[-a-z0-9+&@#\/%?=~_|!:,.;]*[-a-z0-9+&@#\/%=~_|]/i;
@@ -72,5 +75,22 @@ departement.addEventListener("input", function(event){
     else{
         invalidDepartement.style.display = "none";
         departement.setAttribute("class", "form-control is-valid");
+    }
+});
+
+image.addEventListener("input", function(event){
+    inputImage = image.value;
+
+    if(inputImage === "" || inputImage === null){
+        invalidImage.style.display = "none";
+        image.setAttribute("class", "form-control");
+    }
+    else if(!(regexURL.test(inputLien))){
+        invalidImage.style.display = "block";
+        image.setAttribute("class", "form-control is-invalid");
+    }
+    else{
+        invalidImage.style.display = "none";
+        image.setAttribute("class", "form-control is-valid");
     }
 });

@@ -6,3 +6,5 @@
 4.Page résultat (2)
 5.Créer la BD
 Format Tablette : Samsung galaxy tab s6 lite -->
+
+# https://www.cegeptr.qc.ca/employes/logo/
