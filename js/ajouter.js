@@ -34,7 +34,6 @@ nom.addEventListener("input", function(event){
 
 date.addEventListener("input", function(event){
     inputDate = date.value;
-    console.log(inputDate);
 
     if(inputDate === "" || inputDate === null){
         invalidDate.style.display = "block";
@@ -50,9 +49,8 @@ lien.addEventListener("input", function(event){
     inputLien = lien.value;
 
     if(inputLien === "" || inputLien === null){
-        invalidLien.style.display = "block";
-        invalidLien.innerHTML = "Le lien de l'évènement est requis";
-        lien.setAttribute("class", "form-control is-invalid");
+        invalidLien.style.display = "none";
+        lien.setAttribute("class", "form-control");
     }
     else if(!(regexURL.test(inputLien))){
         invalidLien.style.display = "block";
@@ -65,19 +63,6 @@ lien.addEventListener("input", function(event){
     }
 });
 
-departement.addEventListener("input", function(event){
-    inputDepartement = departement.value;
-
-    if(inputDepartement === "" || inputDepartement === null){
-        invalidDepartement.style.display = "block";
-        departement.setAttribute("class", "form-control is-invalid");
-    }
-    else{
-        invalidDepartement.style.display = "none";
-        departement.setAttribute("class", "form-control is-valid");
-    }
-});
-
 image.addEventListener("input", function(event){
     inputImage = image.value;
 
@@ -85,7 +70,7 @@ image.addEventListener("input", function(event){
         invalidImage.style.display = "none";
         image.setAttribute("class", "form-control");
     }
-    else if(!(regexURL.test(inputLien))){
+    else if(!(regexURL.test(inputImage))){
         invalidImage.style.display = "block";
         image.setAttribute("class", "form-control is-invalid");
     }

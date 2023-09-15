@@ -7,18 +7,27 @@ session_start();
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Créer un évènement</title>
+    <title>Gérer l'évènement</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
 <?php
     if($_SESSION['connexion'] == true){
-        $nom = $date = $lien = $departement = $image = "";
-        $nomErreur = $dateErreur = $lienErreur = $departementErreur = $imageErreur = $erreurSQL = "";
+        $id = $nom = $date = $lien = $departement = "";
+        $idErreur = $nomErreur = $dateErreur = $lienErreur = $departementErreur = $erreurSQL = "";
         $erreur = false;
 
+        $id=7;
+
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
+
+            if (empty($_POST['id'])) {
+                $idErreur = "Vous n'avez pas d'ID<br>";
+                $erreur = true;
+            }
+            //$id = test_input($_POST["id"]);
+            $id = test_input($id);
 
             if (empty($_POST['nom'])) {
                 $nomErreur = "Le nom est requis<br>";
@@ -64,34 +73,68 @@ session_start();
             $conn = mysqli_connect($servername, $username, $password, $dbname);
 
             // Check connection
-            if (!$conn) {
-                die("Connection failed: " . mysqli_connect_error());
+            if ($conn->connect_error) {
+                die("Connection failed: " . $conn->connect_error);
             }
+                
 
             $conn->query('SET NAMES utf8');
-            $sql = "INSERT INTO evenement (nom, date, lien, departement, image) 
-            VALUES ('" . $nom . "', '" . $date . "', '" . $lien . "', '" . $departement . "', '" . $image . "')";
-            if (mysqli_query($conn, $sql)) {
-                header("Location: ./index.php?succes=ajouter");
+            $sql = "UPDATE evenement SET nom='". $nom. "', date='". $date ."', departement='". $departement . "', lien='". $lien . "', image='".$image."' WHERE id=". $id;
+            if ($conn->query($sql) === TRUE) {
+                header("Location: ./index.php?succes=modifier");
                 die();
             } else {
                 $erreurSQL = "Error: " . $sql . "<br>" . mysqli_error($conn);
                 $erreur = true;
             }
-            mysqli_close($conn);
+            $conn->close();
         }
         if ($_SERVER["REQUEST_METHOD"] != "POST" || $erreur == true) {
+            
+            if (isset($_GET['id'])) {
+                $id = $_GET['id'];
+            }
+
+            echo $idErreur;
+
+            $serveurname = "localhost";
+            $username = "root";
+            $password =  "root";
+            $db = "smileyface";
+            //Create connection
+            $conn = new mysqli($serveurname, $username, $password, $db);
+            //Check connection
+            if ($conn->connect_error) {
+                die("Connection failed: " . $conn->connect_error);
+            }
+
+            //Ça ne fais rien, c'est jsute la requête
+            $sql = "SELECT * FROM evenement WHERE id=". $id;
+
+            $conn->query('SET NAMES utf8');
+            //Effectue la requête
+            $result = $conn->query($sql);
+
+            if($result->num_rows > 0){
+                $row = $result->fetch_assoc();
+            }
+
+            $nom = $row["nom"];
+            $date = $row["date"];
+            $lien = $row["lien"];
+            $departement = $row["departement"];
+            $image = $row["image"];
     ?>
         <div class="container">
             <div class="row">
                 <div class="col text-white bg-danger">
-                    <?php echo $erreurSQL; ?>
+                    <?php echo $erreurSQL ?>
                 </div>
             </div>
         </div>
         <div class="container d-flex flex-column justify-content-center align-items-center vh-100">
             <div class="container-fluid bg-ctr-bleu radius-1rem text-white p-5">
-                <h1 class="text-center mb-5">Ajouter un évènement</h1>
+                <h1 class="text-center mb-5">Modifier les informations</h1>
                 <form id="form" class="row g-3 needs-validation" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post" novalidate>
                     <div class="row mt-3 mb-3">
                         <div class="col-sm-8">
@@ -187,7 +230,13 @@ session_start();
                         </div>
                     </div>
                     <div class="text-center">
-                        <button type="submit" class="btn btn-outline-light fw-bold fs-3 mt-4 pt-1">Ajouter</button>
+                        <button type="submit" class="btn btn-outline-light fw-bold fs-3 mt-4 pt-1">Enregistrer les modifications</button>
+                    </div>
+                </form>
+                <form action="supprimer.php" method="post" onSubmit="return confirm('Êtes-vous sûrs de vouloir supprimer cet évènement?');">
+                    <input type="hidden" name="id" value="<?php echo$id ?>">
+                    <div class="text-center mt-2">
+                        <button type="submit" class="btn btn-outline-light fw-bold fs-3 mt-4 pt-1" id="btnSupprimer">Supprimer l'évènement</button>
                     </div>
                 </form>
             </div>
@@ -234,6 +283,5 @@ session_start();
                 })
         })()
     </script>
-    <script src="js/ajouter.js"></script>
 </body>
 </html>

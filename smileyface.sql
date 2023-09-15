@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Client :  localhost
--- Généré le :  Ven 15 Septembre 2023 à 02:08
+-- Généré le :  Ven 15 Septembre 2023 à 14:52
 -- Version du serveur :  5.7.11
 -- Version de PHP :  7.0.3
 
@@ -32,17 +32,26 @@ CREATE TABLE `evenement` (
   `date` date NOT NULL,
   `lien` varchar(1500) NOT NULL,
   `departement` varchar(255) NOT NULL,
-  `image` varchar(1500) NOT NULL DEFAULT 'img/CTR_Logo_RVB.jpg'
+  `image` varchar(1500) NOT NULL DEFAULT 'img/CTR_Logo_RVB.jpg',
+  `etudiantSatisfait` int(11) NOT NULL DEFAULT '0',
+  `etudiantNeutre` int(11) NOT NULL DEFAULT '0',
+  `etudiantInsatisfait` int(11) NOT NULL DEFAULT '0',
+  `employeurSatisfait` int(11) NOT NULL DEFAULT '0',
+  `employeurNeutre` int(11) NOT NULL DEFAULT '0',
+  `employeurInsatisfait` int(11) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf16;
 
 --
 -- Contenu de la table `evenement`
 --
 
-INSERT INTO `evenement` (`id`, `nom`, `date`, `lien`, `departement`, `image`) VALUES
-(1, 'Event test', '2023-11-05', 'https://lecampusti.ca/', 'Informatique', 'img/CTR_Logo_RVB.jpg'),
-(2, 'Test #2', '2023-09-29', 'https://lecampusti.ca/', 'Technique de l\'informatique', 'img/CTR_Logo_RVB.jpg'),
-(3, 'Test #3', '2023-10-02', 'https://lecampusti.ca/', 'GÃ©nie MÃ©canique', 'https://lecampusti.ca/wp-content/uploads/2021/09/Campus_TI_Logo-Final-tagline-01-01.png');
+INSERT INTO `evenement` (`id`, `nom`, `date`, `lien`, `departement`, `image`, `etudiantSatisfait`, `etudiantNeutre`, `etudiantInsatisfait`, `employeurSatisfait`, `employeurNeutre`, `employeurInsatisfait`) VALUES
+(1, 'Event test', '2023-11-05', 'https://lecampusti.ca/', 'Informatique', 'img/CTR_Logo_RVB.jpg', 0, 0, 0, 0, 0, 0),
+(2, 'Test #2', '2023-09-29', 'https://lecampusti.ca/', 'Technique de l\'informatique', 'img/CTR_Logo_RVB.jpg', 0, 0, 0, 0, 0, 0),
+(3, 'Test #3', '2023-10-02', 'https://lecampusti.ca/', 'Génie Mécanique', 'https://lecampusti.ca/wp-content/uploads/2021/09/Campus_TI_Logo-Final-tagline-01-01.png', 0, 0, 0, 0, 0, 0),
+(4, 'Test less valid', '2023-09-22', '', '', 'img/CTR_Logo_RVB.jpg', 0, 0, 0, 0, 0, 0),
+(7, 'test final', '2023-09-18', '', '', 'img/CTR_Logo_RVB.jpg', 0, 0, 0, 0, 0, 0),
+(8, 'test final 2', '2023-09-18', '', '', 'img/CTR_Logo_RVB.jpg', 0, 0, 0, 0, 0, 0);
 
 -- --------------------------------------------------------
 
@@ -89,7 +98,7 @@ ALTER TABLE `utilisateur`
 -- AUTO_INCREMENT pour la table `evenement`
 --
 ALTER TABLE `evenement`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 --
 -- AUTO_INCREMENT pour la table `utilisateur`
 --
