@@ -1,0 +1,16 @@
+.radius-1rem {
+    border-radius: 1rem;
+}
+
+.bg-ctr-bleu {
+    background-color: #092D74;
+}
+
+.btn-outline-dark{
+    color: #092D74;
+    border-color: #092D74;
+}
+
+.btn-outline-dark:hover{
+    background-color: #092D74;
+}
