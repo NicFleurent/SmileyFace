@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Client :  localhost
--- Généré le :  Mar 12 Septembre 2023 à 21:26
+-- Généré le :  Ven 15 Septembre 2023 à 02:08
 -- Version du serveur :  5.7.11
 -- Version de PHP :  7.0.3
 
@@ -31,15 +31,18 @@ CREATE TABLE `evenement` (
   `nom` varchar(255) NOT NULL,
   `date` date NOT NULL,
   `lien` varchar(1500) NOT NULL,
-  `departement` varchar(255) NOT NULL
+  `departement` varchar(255) NOT NULL,
+  `image` varchar(1500) NOT NULL DEFAULT 'img/CTR_Logo_RVB.jpg'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf16;
 
 --
 -- Contenu de la table `evenement`
 --
 
-INSERT INTO `evenement` (`id`, `nom`, `date`, `lien`, `departement`) VALUES
-(1, 'Event test', '2023-11-05', 'https://lecampusti.ca/', 'Informatique');
+INSERT INTO `evenement` (`id`, `nom`, `date`, `lien`, `departement`, `image`) VALUES
+(1, 'Event test', '2023-11-05', 'https://lecampusti.ca/', 'Informatique', 'img/CTR_Logo_RVB.jpg'),
+(2, 'Test #2', '2023-09-29', 'https://lecampusti.ca/', 'Technique de l\'informatique', 'img/CTR_Logo_RVB.jpg'),
+(3, 'Test #3', '2023-10-02', 'https://lecampusti.ca/', 'GÃ©nie MÃ©canique', 'https://lecampusti.ca/wp-content/uploads/2021/09/Campus_TI_Logo-Final-tagline-01-01.png');
 
 -- --------------------------------------------------------
 
@@ -86,7 +89,7 @@ ALTER TABLE `utilisateur`
 -- AUTO_INCREMENT pour la table `evenement`
 --
 ALTER TABLE `evenement`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT pour la table `utilisateur`
 --
