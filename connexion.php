@@ -1,6 +1,6 @@
 <?php
 //Démarre la session
-session_start();
+//session_start();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -9,10 +9,14 @@ session_start();
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Se connecter</title>
+    <title>Se connecter</title>  
+     
     <!-- Bootstrap-->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link rel="stylesheet" href="css/connexion.css">
+    <!-- Script  -->
+    <script src="js/connexion.js"></script>
+
 </head>
 
 <body>
@@ -89,14 +93,14 @@ session_start();
 
                                         <!-- Usager -->
                                         <div class="form-outline form-white mb-4">
-                                            <input type="text" class="form-control mb-4 " name="usager" placeholder="Usager">
-                                            <span class="text-danger"><?php echo $usagerErreur; ?></span>
+                                            <input id="usager1" type="text" class="form-control mb-4 " name="usager" placeholder="Usager">
+                                            <span id="usagerVide" class="text-danger"><?php echo $usagerErreur; ?></span>
                                         </div>
 
                                         <!-- Mot de passe -->
                                         <div class="form-outline form-white mb-4">
-                                            <input type="password" class="form-control mb-4" name="mdp" placeholder="Mot de passe">
-                                            <span class="text-danger"><?php echo $mdpErreur; ?></span>
+                                            <input id="mdp1" type="password" class="form-control mb-4" name="mdp" placeholder="Mot de passe">
+                                            <span id="mdpVide" class="text-danger"><?php echo $mdpErreur; ?></span>
                                         </div>
 
                                         <!-- Se connecter submit -->
