@@ -2,7 +2,7 @@
     border-radius: 1rem;
 }
 
-.bg-ctr-bleu {
+.bg-ctr-bleu, .navbar {
     background-color: #092D74;
 }
 
@@ -14,3 +14,8 @@
 .btn-outline-dark:hover{
     background-color: #092D74;
 }
+
+/* NAVBAR */
+
+
+
