@@ -11,10 +11,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Évènements</title>
 
-    <!-- Bootstrap-->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link rel="stylesheet" href="css/styles.css">
     <link rel="stylesheet" href="css/index.css">
+    <!-- Bootstrap-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
+
 </head>
 
 <body>
@@ -47,7 +49,7 @@
         //Variables connexion
         $servername = "localhost";
         $username = "root";
-        $password = "root";
+        $password = "";
         $dbname = "smileyface";
         //Create connection
         $conn = mysqli_connect($servername, $username, $password, $dbname);
@@ -74,51 +76,55 @@
                 ?>
                     <li class="col-xl-4">
                         <div class="card h-100">
-                            <img class="w-75" src="<?php echo $row['image'] ?>" class="card-img-top" alt="Image de l'évènement">
+                            <div class="card-header">
+                                <h2 class="card-title text-center"><?php echo $row['nom'] ?></h2>
+                            </div>
                             <div class="card-body d-flex flex-column">
-                                <h2 class="card-title"><?php echo $row['nom'] ?></h2>
+                                <img class="w-75" src="<?php echo $row['image'] ?>" class="card-img-top" alt="Image de l'évènement">
+
                                 <p class="card-text"><?php echo $row['departement'] ?></p>
-                                <div class="card-footer justify-content-center">
-                                    <input id="<?php echo $row['id'] ?>" type="submit" value="Voir l'évènement">
-                                    <!-- <button id="<?php echo $row['id'] ?>" class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#evenement-offcanvas" aria-controls="offcanvasRight">Voir l'évènement</button> -->
+
+                                <div class="text-center">
+                                    <button id="<?php echo $row['id'] ?>" class="btn btn-primary mt-auto" type="button" data-bs-toggle="offcanvas" data-bs-target="#evenement-offcanvas" aria-controls="offcanvasRight">Voir l'évènement</button>
                                 </div>
                             </div>
+                        </div>
                         </div>
                     </li>
-                    <!-- OFF canvas-->
-                    <div class="offcanvas offcanvas-end" tabindex="-1" id="evenement-offcanvas" aria-labelledby="offcanvasRightLabel">
-                        <div class="offcanvas-header">
-                            <h2>Votre évenement</h2>
-                            <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-                        </div>
-                        <div class="offcanvas-body">
-                            <div class="card h-100">
-                                <img class="w-75" src="<?php echo $row['image'] ?>" class="card-img-top" alt="Image de l'évènement">
-                                <div class="card-body d-flex flex-column">
-                                    <h2 class="card-title"><?php echo $row['nom'] ?></h2>
-                                    <p class="card-text"><?php echo $row['departement'] ?></p>
-                                    <div class="card-footer justify-content-center">
-                                        <a href="#">
-                                            Débuter
-                                        </a>
-                                        <a href="#">
-                                            Statistiques
-                                        </a>
-                                        <a href="#">
-                                            Gérer
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    <?php
+
+                <?php
                 }
-                    ?>
+                ?>
             </ul>
         <?php
         }
         ?>
-
+        <!-- OFF canvas-->
+        <div class="offcanvas offcanvas-end custom-offcanvas" tabindex="-1" id="evenement-offcanvas" aria-labelledby="offcanvasRightLabel">
+            <div class="offcanvas-header">
+                <h2>Votre évenement</h2>
+                <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+            </div>
+            <div class="offcanvas-body">
+                <div class="card h-100">
+                    <img class="w-75" src="" class="card-img-top" alt="Image de l'évènement">
+                    <div class="card-body d-flex flex-column">
+                        <h2 class="card-title"></h2>
+                        <p class="card-text"></p>
+                        <div class="card-footer justify-content-center">
+                            <a href="#">
+                                Débuter
+                            </a>
+                            <a href="#">
+                                Statistiques
+                            </a>
+                            <a href="#">
+                                Gérer
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
     </main>
 </body>
 

@@ -1,3 +1,8 @@
 ul{
    list-style: none;
 }
+
+.custom-offcanvas{
+   width:550px !important;
+}
+
