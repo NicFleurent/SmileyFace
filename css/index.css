@@ -6,3 +6,14 @@ ul{
    width:550px !important;
 }
 
+h1{
+   color : #092D74 !important;
+}
+.outline {
+background-color:yellow;
+}
+.carte-event{
+   height: 290px;
+   width: 100%;
+   object-fit: contain;
+}

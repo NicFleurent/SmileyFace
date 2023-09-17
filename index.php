@@ -13,9 +13,6 @@
 
     <link rel="stylesheet" href="css/styles.css">
     <link rel="stylesheet" href="css/index.css">
-    <!-- Bootstrap-->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
 
 </head>
 
@@ -27,7 +24,7 @@
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                         <li class="nav-item">
                             <a href="index.php">
-                                <img class="w-25" src="img/CTR_Logo_BLANC.png" alt="Logo CégepTR">
+                                <img class="w-25 img-nav" src="img/CTR_Logo_BLANC.png" alt="Logo CégepTR">
                             </a>
                         </li>
                         <li class="nav-item">
@@ -74,21 +71,20 @@
                 <?php
                 while ($row = $result->fetch_assoc()) {
                 ?>
-                    <li class="col-xl-4">
-                        <div class="card h-100">
+                    <li class="col-sm-6 col-md-4 col-xl-3">
+                        <div class="card h-100 ">
                             <div class="card-header">
                                 <h2 class="card-title text-center"><?php echo $row['nom'] ?></h2>
                             </div>
-                            <div class="card-body d-flex flex-column">
-                                <img class="w-75" src="<?php echo $row['image'] ?>" class="card-img-top" alt="Image de l'évènement">
-
-                                <p class="card-text"><?php echo $row['departement'] ?></p>
-
-                                <div class="text-center">
-                                    <button id="<?php echo $row['id'] ?>" class="btn btn-primary mt-auto" type="button" data-bs-toggle="offcanvas" data-bs-target="#evenement-offcanvas" aria-controls="offcanvasRight">Voir l'évènement</button>
+                            <div class="card-body d-flex flex-column ">
+                                <img class="mb-3 card-img-top img-fluid" src="<?php echo $row['image'] ?>" alt="Image de l'évènement">
+                                <div class="mt-auto">
+                                    <p class="card-text mb-4"><?php echo $row['departement'] ?></p>
+                                    <div class="text-center">
+                                        <button id="<?php echo $row['id'] ?>" class="btn btn-outline-dark mx-auto" type="button" data-bs-toggle="offcanvas" data-bs-target="#evenement-offcanvas" aria-controls="offcanvasRight">Voir l'évènement</button>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
                         </div>
                     </li>
 
@@ -106,19 +102,23 @@
                 <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
             </div>
             <div class="offcanvas-body">
-                <div class="card h-100">
-                    <img class="w-75" src="" class="card-img-top" alt="Image de l'évènement">
+                <div class="card h-100 card-event">
+                    <div class="card-header">
+                        <h2 class="card-title text-center"></h2>
+                    </div>
                     <div class="card-body d-flex flex-column">
-                        <h2 class="card-title"></h2>
+                        <img src="" class="mb-3 card-img-top img-fluid" alt="Image de l'évènement">
                         <p class="card-text"></p>
-                        <div class="card-footer justify-content-center">
-                            <a href="#">
+                    </div>
+                    <div class="d-flex flex-column justify-content-center">
+                        <div class="card-footer ">
+                            <a class="btn" href="#">
                                 Débuter
                             </a>
-                            <a href="#">
+                            <a class="btn" href="#">
                                 Statistiques
                             </a>
-                            <a href="#">
+                            <a class="btn" href="ajouter.php">
                                 Gérer
                             </a>
                         </div>
@@ -126,6 +126,10 @@
                 </div>
             </div>
     </main>
+    <!-- Bootstrap-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
+    <script src="js/index.js"></script>
 </body>
 
 </html>
