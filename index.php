@@ -112,13 +112,13 @@
                     </div>
                     <div class="d-flex flex-column justify-content-center">
                         <div class="card-footer ">
-                            <a class="btn" href="#">
+                            <a class="btn" href="choixSondage.php">
                                 Débuter
                             </a>
                             <a class="btn" href="#">
                                 Statistiques
                             </a>
-                            <a class="btn" href="ajouter.php">
+                            <a class="btn" href="modifier.php">
                                 Gérer
                             </a>
                         </div>

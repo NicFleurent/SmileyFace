@@ -1,0 +1,30 @@
+@font-face {
+    font-family: ActionMan;
+    src: url(../font/ActionMan/Action_Man.ttf);
+}
+
+body{
+    width: 100;
+    padding: 0;
+    margin: 0;
+    background-color: #092D74;
+    display: flex;
+    flex-direction: column;
+    align-items: column;
+    justify-content: center;
+    position: relative;
+}
+
+#titre{
+    position: absolute;
+    width: 100%;
+}
+
+#titre h1{
+    font-family: ActionMan;
+    font-size: 15em;
+}
+
+#confetti-ctr{
+    width: 100%;
+}

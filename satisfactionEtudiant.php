@@ -50,7 +50,7 @@
             
             $sql = "UPDATE evenement SET $valeur='$nbrVote' WHERE id=$id";
             if ($conn->query($sql) === TRUE) {
-                header("Location: ./merci.php");
+                header("Location: ./merci.php?provenance=etudiant");
                 die();
             } else {
                 $erreurSQL = "Error: $sql<br>" . mysqli_error($conn);
@@ -59,13 +59,17 @@
             $conn->close();
         }
         if ($_SERVER["REQUEST_METHOD"] != "POST" || $erreur == true) {
-            echo "1ere fois";
             
     ?>
-    <div class="container d-flex justify-content-center align-items-center vh-100">
-        <div class="row h-100">
+    <div class="container d-flex flex-column justify-content-center align-items-center vh-100">
+        <div class="row">
+            <div class="col mb-5">
+                <h1>Êtes-vous satisfait de cet évènement?</h1>
+            </div>
+        </div>
+        <div class="row">
             <div class="col-4">
-                <form class="d-flex justify-content-center align-items-center h-100" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
+                <form class="d-flex justify-content-center align-items-center" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
                     <input type="hidden" name="id" value="<?php echo$id ?>">
                     <input type="hidden" name="valeur" value="etudiantSatisfait">
                     <button type="submit" class="btn"  id="btnSatisfait">
@@ -75,7 +79,7 @@
             </div>
 
             <div class="col-4">
-                <form class="d-flex justify-content-center align-items-center h-100" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
+                <form class="d-flex justify-content-center align-items-center" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
                     <input type="hidden" name="id" value="<?php echo$id ?>">
                     <input type="hidden" name="valeur" value="etudiantNeutre">
                     <button type="submit" class="btn"  id="btnNeutre">
@@ -85,7 +89,7 @@
             </div>
 
             <div class="col-4">
-                <form class="d-flex justify-content-center align-items-center h-100" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
+                <form class="d-flex justify-content-center align-items-center" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
                     <input type="hidden" name="id" value="<?php echo$id ?>">
                     <input type="hidden" name="valeur" value="etudiantInsatisfait">
                     <button type="submit" class="btn"  id="btnInsatisfait">

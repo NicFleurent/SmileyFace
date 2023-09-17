@@ -19,6 +19,13 @@ session_start();
         $erreur = false;
 
         $id=7;
+        /*if(isset($_GET['id'])){
+            $id=test_input($_GET['id']);
+        }
+        if(isset($_POST['id'])){
+            $id=test_input($_POST['id']);
+        }*/
+        
 
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
