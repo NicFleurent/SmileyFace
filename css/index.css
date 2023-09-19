@@ -3,17 +3,13 @@ ul{
 }
 
 .custom-offcanvas{
-   width:550px !important;
+   width:700px !important;
 }
 
 h1{
    color : #092D74 !important;
 }
-.outline {
-background-color:yellow;
-}
-.carte-event{
-   height: 290px;
-   width: 100%;
-   object-fit: contain;
+
+nav img{
+   height: 200px;
 }

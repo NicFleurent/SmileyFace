@@ -18,18 +18,18 @@
 
 <body>
     <header>
-        <nav class="navbar navbar-expand-lg bg-body-tertiary">
-            <div class="container-fluid">
-                <div class="collapse navbar-collapse">
+        <nav class="navbar navbar-expand-lg bg-body-tertiary mb-5">
+            <div class="container-fluid ">
+                <div class="collapse navbar-collapse ">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                         <li class="nav-item">
                             <a href="index.php">
-                                <img class="w-25 img-nav" src="img/CTR_Logo_BLANC.png" alt="Logo CégepTR">
+                                <img src="img/CTR_Logo_BLANC.png" alt="Logo CégepTR">
                             </a>
                         </li>
                         <li class="nav-item">
-                            <form class="d-flex">
-                                <input class="form-control me-2" type="search" placeholder="Rechercher" aria-label="Search">
+                            <form>
+                                <input id="barreRecherche "class="form-control me-2" type="search" placeholder="Rechercher" aria-label="Search">
                             </form>
                         </li>
                         <li class="nav-item ms-5">
@@ -41,12 +41,14 @@
         </nav>
     </header>
     <main class="container">
-        <h1>Vos évènements aujourd'hui</h1>
+
         <?php
+        //Variables
+        $dateAujourdhui = date("Y-m-d");
         //Variables connexion
         $servername = "localhost";
         $username = "root";
-        $password = "";
+        $password = "root";
         $dbname = "smileyface";
         //Create connection
         $conn = mysqli_connect($servername, $username, $password, $dbname);
@@ -58,7 +60,7 @@
         //$_SESSION["connexion"] = true;
 
         //string de requête
-        $sql = "SELECT * FROM evenement";
+        $sql = "SELECT * FROM evenement WHERE date=current_date()";
         $conn->query('SET NAMES utf8');
 
         //L'action la query est ici
@@ -67,6 +69,7 @@
         //  Afficher les évènements
         if ($result->num_rows > 0) {
         ?>
+            <h1>Vos évènements aujourd'hui</h1>
             <ul class="row g-3 m-0">
                 <?php
                 while ($row = $result->fetch_assoc()) {
@@ -76,10 +79,11 @@
                             <div class="card-header">
                                 <h2 class="card-title text-center"><?php echo $row['nom'] ?></h2>
                             </div>
-                            <div class="card-body d-flex flex-column ">
+                            <div class="card-body d-flex flex-column">
                                 <img class="mb-3 card-img-top img-fluid" src="<?php echo $row['image'] ?>" alt="Image de l'évènement">
                                 <div class="mt-auto">
                                     <p class="card-text mb-4"><?php echo $row['departement'] ?></p>
+                                    <span><?php echo $row['date'] ?></span>
                                     <div class="text-center">
                                         <button id="<?php echo $row['id'] ?>" class="btn btn-outline-dark mx-auto" type="button" data-bs-toggle="offcanvas" data-bs-target="#evenement-offcanvas" aria-controls="offcanvasRight">Voir l'évènement</button>
                                     </div>
@@ -87,7 +91,85 @@
                             </div>
                         </div>
                     </li>
+                <?php
 
+                }
+                ?>
+            </ul>
+        <?php
+        }
+        //string de requête
+        $sql = "SELECT * FROM evenement WHERE date>current_date() order by date";
+        $conn->query('SET NAMES utf8');
+
+        //L'action la query est ici
+        $result = $conn->query($sql);
+
+        //  Afficher les évènements
+        if ($result->num_rows > 0) {
+        ?>
+            <h1>Vos évènements à venir</h1>
+            <ul class="row g-3 m-0">
+                <?php
+                while ($row = $result->fetch_assoc()) {
+                ?>
+
+                    <li class="col-sm-6 col-md-4 col-xl-3">
+                        <div class="card h-100 ">
+                            <div class="card-header">
+                                <h2 class="card-title text-center"><?php echo $row['nom'] ?></h2>
+                            </div>
+                            <div class="card-body d-flex flex-column ">
+                                <img class="mb-3 card-img-top img-fluid" src="<?php echo $row['image'] ?>" alt="Image de l'évènement">
+                                <div class="mt-auto">
+                                    <p class="card-text mb-4"><?php echo $row['departement'] ?></p>
+                                    <span ><?php echo $row['date'] ?></span>
+                                    <div class="text-center">
+                                        <button id="<?php echo $row['id'] ?>" class="btn btn-outline-dark mx-auto" type="button" data-bs-toggle="offcanvas" data-bs-target="#evenement-offcanvas" aria-controls="offcanvasRight">Voir l'évènement</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                <?php
+                }
+                ?>
+            </ul>
+        <?php
+        }
+        //string de requête
+        $sql = "SELECT * FROM evenement WHERE date<current_date() order by date desc";
+        $conn->query('SET NAMES utf8');
+
+        //L'action la query est ici
+        $result = $conn->query($sql);
+
+        //  Afficher les évènements
+        if ($result->num_rows > 0) {
+        ?>
+            <h1>Vos évènements passés</h1>
+            <ul class="row g-3 m-0">
+                <?php
+                while ($row = $result->fetch_assoc()) {
+                ?>
+
+                    <li class="col-sm-6 col-md-4 col-xl-3">
+                        <div class="card h-100 ">
+                            <div class="card-header">
+                                <h2 class="card-title text-center"><?php echo $row['nom'] ?></h2>
+                            </div>
+                            <div class="card-body d-flex flex-column ">
+                                <img class="mb-3 card-img-top img-fluid" src="<?php echo $row['image'] ?>" alt="Image de l'évènement">
+                                <div class="mt-auto">
+                                    <p class="card-text mb-4"><?php echo $row['departement'] ?></p>
+                                    <span ><?php echo $row['date'] ?></span>
+                                    <div class="text-center">
+                                        <button id="<?php echo $row['id'] ?>" class="btn btn-outline-dark mx-auto" type="button" data-bs-toggle="offcanvas" data-bs-target="#evenement-offcanvas" aria-controls="offcanvasRight">Voir l'évènement</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
                 <?php
                 }
                 ?>
@@ -95,6 +177,7 @@
         <?php
         }
         ?>
+       
         <!-- OFF canvas-->
         <div class="offcanvas offcanvas-end custom-offcanvas" tabindex="-1" id="evenement-offcanvas" aria-labelledby="offcanvasRightLabel">
             <div class="offcanvas-header">

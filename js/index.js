@@ -19,7 +19,16 @@ document.addEventListener('DOMContentLoaded', function () {
             offcanvasTitre.textContent = nom;
             offcanvasImage.setAttribute('src', image);
             offcanvasTexte.textContent = departement;
+
+
         });
+
     });
+
+    document.getElementById('barreRecherche').addEventListener('input', (e) => {
+    let champRecherche = getElementById('barreRecherche').value
+    
+    });
+
 });
 
