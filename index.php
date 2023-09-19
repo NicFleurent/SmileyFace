@@ -46,8 +46,6 @@
     <main class="container">
 
         <?php
-        //Variables
-        $dateAujourdhui = date("Y-m-d");
         //Variables connexion
         $servername = "localhost";
         $username = "root";
@@ -59,8 +57,8 @@
         if (!$conn) {
             die("Connectionfailed:" . mysqli_connect_error());
         }
-        // Set session variables
-        //$_SESSION["connexion"] = true;
+       // Set session variables
+        $_SESSION["connexion"] = true;
 
         //string de requête
         $sql = "SELECT * FROM evenement WHERE date=current_date()";
