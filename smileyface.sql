@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Client :  localhost
--- Généré le :  Mar 19 Septembre 2023 à 19:42
+-- Généré le :  Mar 19 Septembre 2023 à 21:45
 -- Version du serveur :  5.7.11
 -- Version de PHP :  7.0.3
 
@@ -19,6 +19,61 @@ SET time_zone = "+00:00";
 --
 -- Base de données :  `smileyface`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `departement`
+--
+
+CREATE TABLE `departement` (
+  `id` int(11) NOT NULL,
+  `nom` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf16;
+
+--
+-- Contenu de la table `departement`
+--
+
+INSERT INTO `departement` (`id`, `nom`) VALUES
+(1, 'Techniques de design d\'intérieur'),
+(2, 'Techniques de la documentation'),
+(3, 'Techniques d\'hygiène dentaire'),
+(4, 'Techniques de diététique'),
+(5, 'Techniques de soins infirmiers'),
+(6, 'Techniques de soins infirmiers destiné aux infirmières auxiliaires'),
+(7, 'Techniques de travail social'),
+(8, 'Techniques d\'éducation à l\'enfance'),
+(9, 'Techniques policières'),
+(10, 'Techniques de génie mécanique'),
+(11, 'Techniques de l\'informatique'),
+(12, 'Techniques de l\'architecture'),
+(13, 'Techniques de la mécanique du bâtiment (Génie du bâtiment)'),
+(14, 'Techniques de la mécanique industrielle (maintenance)'),
+(15, 'Techniques de génie civil'),
+(16, 'Techniques de génie électrique - Automatisation et contrôle'),
+(17, 'Techniques de génie électrique : Électrique programmable'),
+(18, 'Techniques de génie industriel'),
+(19, 'Techniques de génie métallurgique'),
+(20, 'DEC-Bac en logistique'),
+(21, 'DEC-Bac en marketing'),
+(22, 'DEC-Bac en sciences comtables'),
+(23, 'Gestion de commerces'),
+(24, 'Gestion des opérations et de la chaine logistique'),
+(25, 'Technique de comptabilité et de gestion'),
+(26, 'Arts visuels'),
+(27, 'Arts, lettres et communication - Théatre et création médias'),
+(28, 'Musique'),
+(29, 'Arts, lettres et communication - Langues'),
+(30, 'Arts, lettres et communication - Littérature, arts et cinéma'),
+(31, 'Histoire et civilisation'),
+(32, 'Sciences de la nature'),
+(33, 'Sciences humaines'),
+(34, 'Sciences informatique et mathématiques'),
+(35, 'Sciences, lettres et arts'),
+(36, 'Sciences humaines avec préalables en mathématiques'),
+(37, 'Tremplin DEC'),
+(38, 'Aucun programme spécifique');
 
 -- --------------------------------------------------------
 
@@ -47,11 +102,23 @@ CREATE TABLE `evenement` (
 
 INSERT INTO `evenement` (`id`, `nom`, `date`, `lien`, `departement`, `image`, `etudiantSatisfait`, `etudiantNeutre`, `etudiantInsatisfait`, `employeurSatisfait`, `employeurNeutre`, `employeurInsatisfait`) VALUES
 (1, 'Event test', '2023-11-05', 'https://lecampusti.ca/', 'Informatique', 'img/CTR_Logo_RVB.jpg', 63, 47, 56, 10, 5, 2),
-(2, 'Test #2', '2023-09-29', 'https://lecampusti.ca/', 'Technique de l\'informatique', 'img/CTR_Logo_RVB.jpg', 0, 0, 0, 0, 0, 0),
-(3, 'Test #3', '2023-10-02', 'https://lecampusti.ca/', 'Génie Mécanique', 'https://lecampusti.ca/wp-content/uploads/2021/09/Campus_TI_Logo-Final-tagline-01-01.png', 1, 0, 0, 0, 0, 0),
+(2, 'Test #2', '2023-09-29', 'https://lecampusti.ca/', 'Technique de l\'informatique', 'img/CTR_Logo_RVB.jpg', 2, 0, 0, 0, 0, 0),
+(3, 'Test #3', '2023-10-02', 'https://lecampusti.ca/', 'Génie Mécanique', 'https://lecampusti.ca/wp-content/uploads/2021/09/Campus_TI_Logo-Final-tagline-01-01.png', 1, 0, 0, 2, 1, 1),
 (4, 'Test less valid', '2023-09-22', '', '', 'img/CTR_Logo_RVB.jpg', 0, 1, 0, 0, 0, 0),
 (7, 'test final', '2023-09-18', '', '', 'img/CTR_Logo_RVB.jpg', 0, 0, 0, 0, 0, 0),
 (8, 'test final 2', '2023-09-18', '', '', 'img/CTR_Logo_RVB.jpg', 0, 0, 0, 0, 0, 0);
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `evenement_departement`
+--
+
+CREATE TABLE `evenement_departement` (
+  `id` int(11) NOT NULL,
+  `id_evenement` int(11) NOT NULL,
+  `id_departement` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf16;
 
 -- --------------------------------------------------------
 
@@ -79,9 +146,21 @@ INSERT INTO `utilisateur` (`id`, `usager`, `mot_de_passe`) VALUES
 --
 
 --
+-- Index pour la table `departement`
+--
+ALTER TABLE `departement`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Index pour la table `evenement`
 --
 ALTER TABLE `evenement`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Index pour la table `evenement_departement`
+--
+ALTER TABLE `evenement_departement`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -95,10 +174,20 @@ ALTER TABLE `utilisateur`
 --
 
 --
+-- AUTO_INCREMENT pour la table `departement`
+--
+ALTER TABLE `departement`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
+--
 -- AUTO_INCREMENT pour la table `evenement`
 --
 ALTER TABLE `evenement`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+--
+-- AUTO_INCREMENT pour la table `evenement_departement`
+--
+ALTER TABLE `evenement_departement`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT pour la table `utilisateur`
 --

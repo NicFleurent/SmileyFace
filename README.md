@@ -8,3 +8,6 @@
 Format Tablette : Samsung galaxy tab s6 lite -->
 
 # https://www.cegeptr.qc.ca/employes/logo/
+# https://www.cegeptr.qc.ca/cours-cegep/formations-preuniversitaires/
+
+1344x800

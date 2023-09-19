@@ -135,42 +135,6 @@ session_start();
                             </div>
                         </div>
                         <div class="row mt-3 mb-3">
-                            <div class="col-sm-10">
-                                <select class="form-select" aria-label="Default select example" name="departement1">
-                                    <option selected>Aucun programme spécifique</option>
-                                    <?php
-                                        $servername = "localhost";
-                                        $username = "root";
-                                        $password = "root";
-                                        $dbname = "smileyface";
-
-                                        $conn = mysqli_connect($servername, $username, $password, $dbname);
-                                        if (!$conn) {
-                                            die("Connectionfailed:" . mysqli_connect_error());
-                                        }
-
-                                        $sql = "SELECT nom FROM departement WHERE nom!='Aucun programme spécifique'";
-
-                                        $conn->query('SET NAMES utf8');
-                                        //Effectue la requête
-                                        $result = $conn->query($sql);
-                            
-                                        while($row = $result->fetch_assoc()){
-
-                                    ?>
-                                            <option value="<?php echo $row['nom']; ?>"><?php echo $row['nom']; ?></option>
-                                    <?php
-                                        }
-                                        mysqli_close($conn);
-                                    ?>
-                                </select>
-                            </div>
-                            <div class="col-sm-2 text-end">
-                                <button class="btn btn-outline-light btn-ajouterDept fw-bold">+</button> 
-                                <button class="btn btn-outline-light btn-supprimerDept fw-bold ms-3">-</button>   
-                            </div>
-                        </div>
-                        <div class="row mt-3 mb-3">
                             <div class="col-sm-12">
                                 <input type="text" class="form-control" id="departement" name="departement" value="<?php echo $departement; ?>" placeholder="Département">
                                 <?php

@@ -15,6 +15,10 @@
     background-color: #092D74;
 }
 
+.btn-ajouterDept, .btn-supprimerDept{
+    width: 100px;
+}
+
 
 /* NAVBAR */
 
