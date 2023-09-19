@@ -16,16 +16,7 @@ session_start();
     if($_SESSION['connexion'] == true){
         $id = $nom = $date = $lien = $departement = "";
         $idErreur = $nomErreur = $dateErreur = $lienErreur = $departementErreur = $erreurSQL = "";
-        $erreur = false;
-
-        $id=7;
-        /*if(isset($_GET['id'])){
-            $id=test_input($_GET['id']);
-        }
-        if(isset($_POST['id'])){
-            $id=test_input($_POST['id']);
-        }*/
-        
+        $erreur = false;        
 
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
 

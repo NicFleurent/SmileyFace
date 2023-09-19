@@ -19,6 +19,16 @@ document.addEventListener('DOMContentLoaded', function () {
             offcanvasTitre.textContent = nom;
             offcanvasImage.setAttribute('src', image);
             offcanvasTexte.textContent = departement;
+
+            console.log(bouton);
+            let id = bouton.getAttribute("id");
+            console.log(id)
+            let btnChoixSondage = document.getElementById("btnChoixSondage");
+            btnChoixSondage.setAttribute("href", "choixSondage.php?id=" + id);
+            let btnStatistique = document.getElementById("btnStatistique");
+            btnStatistique.setAttribute("href", "statistique.php?id=" + id);
+            let btnGerer = document.getElementById("btnGerer");
+            btnGerer.setAttribute("href", "modifier.php?id=" + id);
         });
     });
 });

@@ -1,5 +1,9 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,10 +11,15 @@
     <title>Sondage | Étudiant</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 </head>
+
 <body>
-<?php
-    $id=1;
-    $erreur = false;
+    <?php
+    if ($_SESSION['connexion'] == true) {
+        $erreur = false;
+        if (isset($_GET['id'])) {
+            $id = test_input($_GET['id']);
+        }
+
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
             if (empty($_POST['id'])) {
@@ -46,11 +55,10 @@
             $row = $result->fetch_assoc();
             $nbrVote = $row["$valeur"];
             $nbrVote++;
-            
-            
+
             $sql = "UPDATE evenement SET $valeur='$nbrVote' WHERE id=$id";
             if ($conn->query($sql) === TRUE) {
-                header("Location: ./merci.php?provenance=etudiant");
+                header("Location: ./merci.php?provenance=etudiant&id=$id");
                 die();
             } else {
                 $erreurSQL = "Error: $sql<br>" . mysqli_error($conn);
@@ -59,51 +67,50 @@
             $conn->close();
         }
         if ($_SERVER["REQUEST_METHOD"] != "POST" || $erreur == true) {
-            
+
     ?>
-    <div class="container d-flex flex-column justify-content-center align-items-center vh-100">
-        <div class="row">
-            <div class="col mb-5">
-                <h1>Êtes-vous satisfait de cet évènement?</h1>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-4">
-                <form class="d-flex justify-content-center align-items-center" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
-                    <input type="hidden" name="id" value="<?php echo$id ?>">
-                    <input type="hidden" name="valeur" value="etudiantSatisfait">
-                    <button type="submit" class="btn"  id="btnSatisfait">
-                        <img class="img-fluid" src="img/voteSatisfait.png">
-                    </button>
-                </form>
-            </div>
+            <div class="container d-flex flex-column justify-content-center align-items-center vh-100">
+                <div class="row">
+                    <div class="col mb-5">
+                        <h1>Êtes-vous satisfait de cet évènement?</h1>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-4">
+                        <form class="d-flex justify-content-center align-items-center" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
+                            <input type="hidden" name="id" value="<?php echo $id ?>">
+                            <input type="hidden" name="valeur" value="etudiantSatisfait">
+                            <button type="submit" class="btn" id="btnSatisfait">
+                                <img class="img-fluid" src="img/voteSatisfait.png">
+                            </button>
+                        </form>
+                    </div>
 
-            <div class="col-4">
-                <form class="d-flex justify-content-center align-items-center" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
-                    <input type="hidden" name="id" value="<?php echo$id ?>">
-                    <input type="hidden" name="valeur" value="etudiantNeutre">
-                    <button type="submit" class="btn"  id="btnNeutre">
-                        <img class="img-fluid" src="img/voteNeutre.png">
-                    </button>
-                </form>
-            </div>
+                    <div class="col-4">
+                        <form class="d-flex justify-content-center align-items-center" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
+                            <input type="hidden" name="id" value="<?php echo $id ?>">
+                            <input type="hidden" name="valeur" value="etudiantNeutre">
+                            <button type="submit" class="btn" id="btnNeutre">
+                                <img class="img-fluid" src="img/voteNeutre.png">
+                            </button>
+                        </form>
+                    </div>
 
-            <div class="col-4">
-                <form class="d-flex justify-content-center align-items-center" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
-                    <input type="hidden" name="id" value="<?php echo$id ?>">
-                    <input type="hidden" name="valeur" value="etudiantInsatisfait">
-                    <button type="submit" class="btn"  id="btnInsatisfait">
-                        <img class="img-fluid" src="img/voteInsatisfait.png">
-                    </button>
-                </form>
+                    <div class="col-4">
+                        <form class="d-flex justify-content-center align-items-center" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
+                            <input type="hidden" name="id" value="<?php echo $id ?>">
+                            <input type="hidden" name="valeur" value="etudiantInsatisfait">
+                            <button type="submit" class="btn" id="btnInsatisfait">
+                                <img class="img-fluid" src="img/voteInsatisfait.png">
+                            </button>
+                        </form>
+                    </div>
+                </div>
             </div>
-        </div>
-    </div>
     <?php
         }
-    //}
-    else{
-        //header("Location: ./connexion.php");
+    } else {
+        header("Location: ./connexion.php");
     }
 
     function test_input($data)
@@ -117,4 +124,5 @@
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 </body>
+
 </html>
