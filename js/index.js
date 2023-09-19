@@ -35,10 +35,22 @@ document.addEventListener('DOMContentLoaded', function () {
 
     });
 
-    document.getElementById('barreRecherche').addEventListener('input', (e) => {
-    let champRecherche = getElementById('barreRecherche').value
-    
-    });
+
+    // let eventLi = document.querySelectorAll('.row li')
+    // eventLi.forEach((event) => {
+    //     document.getElementById('barreRecherche').addEventListener('input', function () {
+    //         let champRecherche = getElementById('barreRecherche').value;
+    //         let nom = card.querySelector('.card-title').textContent;
+    //         if(champRecherche.includes(nom)){
+
+    //         }
+    //     });
+    // });
+
+
+
+
+
 
 });
 
