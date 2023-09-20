@@ -16,6 +16,10 @@ let inputLien;
 let inputImage;
 let inputDepartement;
 
+let btnAjouterDept = document.getElementsByClassName("btn-ajouterDept");
+let btnSupprimerDept = document.getElementsByClassName("btn-supprimerDept");
+let containerDepartement = document.getElementById("containerDepartement");
+
 const regexURL = /\b(?:(?:https?|ftp):\/\/|www\.)[-a-z0-9+&@#\/%?=~_|!:,.;]*[-a-z0-9+&@#\/%=~_|]/i;
 
 nom.addEventListener("input", function(event){
@@ -79,3 +83,71 @@ image.addEventListener("input", function(event){
         image.setAttribute("class", "form-control is-valid");
     }
 });
+
+document.addEventListener("DOMContentLoaded", function(){
+    const boutonAjouter = document.querySelector(".btn-ajouterDept");
+    const boutonSupprimer = document.querySelector(".btn-supprimerDept");
+    const rowDepartement = document.querySelector(".original-row");
+
+
+    boutonAjouter.addEventListener("click", clonerRow);
+
+    boutonSupprimer.style.display = "none";
+
+    function clonerRow(){
+        const nouvelleRowDepartement = rowDepartement.cloneNode(true);
+
+        const nouveauBoutonAjouter = nouvelleRowDepartement.querySelector(".btn-ajouterDept");
+        nouveauBoutonAjouter.addEventListener("click", clonerRow);
+
+        const nouveauBoutonSupprimer = nouvelleRowDepartement.querySelector(".btn-supprimerDept");
+        nouveauBoutonSupprimer.style.display = "Block";
+        nouveauBoutonSupprimer.addEventListener("click", function(){
+            nouvelleRowDepartement.remove();
+        });
+
+        containerDepartement.append(nouvelleRowDepartement);
+    }
+});
+
+/*
+buttonListenerSetup();
+let ctr = 0;
+
+function buttonListenerSetup(){
+    for(let i=0;i<btnAjouterDept.length;i++){
+        if(btnAjouterDept[i].getAttribute("class") !== "btn btn-outline-light btn-ajouterDept btn-pret fw-bold"){
+            btnAjouterDept[i].addEventListener("click", function(){
+
+                let rowDepartement = document.getElementById("rowDepartement"+ctr);
+                let nouvelleRowDepartement = rowDepartement.cloneNode(true);
+                nouvelleRowDepartement.setAttribute("id", "rowDepartement"+ ++ctr);
+                btnAjouterDept[i].setAttribute("class", "btn btn-outline-light btn-ajouterDept btn-pret fw-bold");
+
+                containerDepartement.append(nouvelleRowDepartement);
+
+                buttonListenerSetup();
+            });
+        }
+        else{
+            btnAjouterDept[i].disabled = true;
+            btnSupprimerDept[i].disabled = true;
+        }
+    }
+
+    for(let i=0;i<btnSupprimerDept.length;i++){
+        if(btnSupprimerDept[i].getAttribute("class") !== "btn btn-outline-light btn-supprimerDept btn-pret fw-bold"){
+            btnSupprimerDept[i].addEventListener("click", function(){
+                btnAjouterDept[i-1].disabled = false;
+                btnSupprimerDept[i-1].disabled = false;
+
+                let rowDepartement = document.getElementById("rowDepartement"+ctr--);
+                rowDepartement.remove();
+
+                btnSupprimerDept[i].setAttribute("class", "btn btn-outline-light btn-supprimerDept btn-pret fw-bold");
+
+                containerDepartement.append(nouvelleRowDepartement);
+            });
+        }
+    }
+}*/
