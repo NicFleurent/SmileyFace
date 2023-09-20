@@ -94,8 +94,8 @@ session_start();
             <div class="container d-flex flex-column justify-content-center align-items-center vh-100">
                 <div class="container-fluid bg-ctr-bleu radius-1rem text-white p-5">
                     <h1 class="text-center mb-5">Ajouter un évènement</h1>
-                    <form id="form" class="row g-3 needs-validation" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post" novalidate>
-                        <div class="row mt-3 mb-3">
+                    <form id="form" class="g-3 needs-validation" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post" novalidate>
+                        <div class="row mb-4">
                             <div class="col-sm-8">
                                 <input type="text" class="form-control" id="nom" name="nom" value="<?php echo $nom; ?>" placeholder="Nom de l'évènement" required>
                                 <?php
@@ -134,57 +134,7 @@ session_start();
                                 ?>
                             </div>
                         </div>
-                        <div class="row mt-3 mb-3">
-                            <div class="col-sm-10">
-                                <select class="form-select" aria-label="Default select example" name="departement1">
-                                    <option selected>Aucun programme spécifique</option>
-                                    <?php
-                                        $servername = "localhost";
-                                        $username = "root";
-                                        $password = "root";
-                                        $dbname = "smileyface";
-
-                                        $conn = mysqli_connect($servername, $username, $password, $dbname);
-                                        if (!$conn) {
-                                            die("Connectionfailed:" . mysqli_connect_error());
-                                        }
-
-                                        $sql = "SELECT nom FROM departement WHERE nom!='Aucun programme spécifique'";
-
-                                        $conn->query('SET NAMES utf8');
-                                        //Effectue la requête
-                                        $result = $conn->query($sql);
-                            
-                                        while($row = $result->fetch_assoc()){
-
-                                    ?>
-                                            <option value="<?php echo $row['nom']; ?>"><?php echo $row['nom']; ?></option>
-                                    <?php
-                                        }
-                                        mysqli_close($conn);
-                                    ?>
-                                </select>
-                            </div>
-                            <div class="col-sm-2 text-end">
-                                <button class="btn btn-outline-light btn-ajouterDept fw-bold">+</button> 
-                                <button class="btn btn-outline-light btn-supprimerDept fw-bold ms-3">-</button>   
-                            </div>
-                        </div>
-                        <div class="row mt-3 mb-3">
-                            <div class="col-sm-12">
-                                <input type="text" class="form-control" id="departement" name="departement" value="<?php echo $departement; ?>" placeholder="Département">
-                                <?php
-                                if ($erreur == true) {
-                                ?>
-                                    <div class="text-danger">
-                                        <?php echo $departementErreur; ?>
-                                    </div>
-                                <?php
-                                }
-                                ?>
-                            </div>
-                        </div>
-                        <div class="row mt-3 mb-3">
+                        <div class="row mb-4">
                             <div class="col-sm-12">
                                 <input type="text" class="form-control" id="image" name="image" value="<?php echo $image; ?>" placeholder="Lien vers une image représentant l'évènement">
                                 <?php
@@ -204,7 +154,7 @@ session_start();
                                 ?>
                             </div>
                         </div>
-                        <div class="row mt-3 mb-3">
+                        <div class="row mb-4">
                             <div class="col-sm-12">
                                 <input type="text" class="form-control" id="lien" name="lien" value="<?php echo $lien; ?>" placeholder="Lien du site web de l'évènement">
                                 <?php
@@ -222,6 +172,44 @@ session_start();
                                 <?php
                                 }
                                 ?>
+                            </div>
+                        </div>
+                        <div id="containerDepartement" class="container-fluid p-0 m-0">
+                            <div class="row mb-4 original-row">
+                                <div class="col-sm-10">
+                                    <select class="form-select" aria-label="Default select example" name="departement">
+                                        <option selected>Aucun programme spécifique</option>
+                                        <?php
+                                            $servername = "localhost";
+                                            $username = "root";
+                                            $password = "root";
+                                            $dbname = "smileyface";
+
+                                            $conn = mysqli_connect($servername, $username, $password, $dbname);
+                                            if (!$conn) {
+                                                die("Connectionfailed:" . mysqli_connect_error());
+                                            }
+
+                                            $sql = "SELECT nom FROM departement WHERE nom!='Aucun programme spécifique'";
+
+                                            $conn->query('SET NAMES utf8');
+                                            //Effectue la requête
+                                            $result = $conn->query($sql);
+                                
+                                            while($row = $result->fetch_assoc()){
+
+                                        ?>
+                                                <option value="<?php echo $row['nom']; ?>"><?php echo $row['nom']; ?></option>
+                                        <?php
+                                            }
+                                            mysqli_close($conn);
+                                        ?>
+                                    </select>
+                                </div>
+                                <div class="col-sm-2 text-end d-flex justify-content-between">
+                                    <button type="button" class="btn btn-outline-light btn-ajouterDept fw-bold">+</button> 
+                                    <button type="button" class="btn btn-outline-light btn-supprimerDept fw-bold">-</button>   
+                                </div>
                             </div>
                         </div>
                         <div class="text-center">
