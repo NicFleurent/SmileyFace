@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Client :  localhost
--- Généré le :  Mar 19 Septembre 2023 à 21:45
+-- Généré le :  Mer 20 Septembre 2023 à 18:57
 -- Version du serveur :  5.7.11
 -- Version de PHP :  7.0.3
 
@@ -86,7 +86,7 @@ CREATE TABLE `evenement` (
   `nom` varchar(255) NOT NULL,
   `date` date NOT NULL,
   `lien` varchar(1500) NOT NULL,
-  `departement` varchar(255) NOT NULL,
+  `departement` varchar(255) DEFAULT NULL,
   `image` varchar(1500) NOT NULL DEFAULT 'img/CTR_Logo_RVB.jpg',
   `etudiantSatisfait` int(11) NOT NULL DEFAULT '0',
   `etudiantNeutre` int(11) NOT NULL DEFAULT '0',
@@ -106,7 +106,13 @@ INSERT INTO `evenement` (`id`, `nom`, `date`, `lien`, `departement`, `image`, `e
 (3, 'Test #3', '2023-10-02', 'https://lecampusti.ca/', 'Génie Mécanique', 'https://lecampusti.ca/wp-content/uploads/2021/09/Campus_TI_Logo-Final-tagline-01-01.png', 1, 0, 0, 2, 1, 1),
 (4, 'Test less valid', '2023-09-22', '', '', 'img/CTR_Logo_RVB.jpg', 0, 1, 0, 0, 0, 0),
 (7, 'test final', '2023-09-18', '', '', 'img/CTR_Logo_RVB.jpg', 0, 0, 0, 0, 0, 0),
-(8, 'test final 2', '2023-09-18', '', '', 'img/CTR_Logo_RVB.jpg', 0, 0, 0, 0, 0, 0);
+(8, 'test final 2', '2023-09-18', '', '', 'img/CTR_Logo_RVB.jpg', 0, 0, 0, 0, 0, 0),
+(9, 'Test DB', '2023-09-29', '', '', 'img/CTR_Logo_RVB.jpg', 0, 0, 0, 0, 0, 0),
+(10, 'test variable', '2023-09-21', '', 'Aucun programme spécifique', 'img/CTR_Logo_RVB.jpg', 0, 0, 0, 0, 0, 0),
+(12, 'Test Departement', '2023-09-21', '', NULL, 'img/CTR_Logo_RVB.jpg', 0, 0, 0, 0, 0, 0),
+(13, 'Test Departement 2', '2023-09-21', '', NULL, 'img/CTR_Logo_RVB.jpg', 0, 0, 0, 0, 0, 0),
+(44, 'Test Party noel', '2023-09-21', '', NULL, 'https://th.bing.com/th/id/OIP.R9unmoPwddPsQkMcptGOiwHaHa?pid=ImgDet&amp;rs=1', 0, 0, 0, 0, 0, 0),
+(45, 'TEst demo', '2023-09-28', '', NULL, 'img/CTR_Logo_RVB.jpg', 0, 0, 0, 0, 0, 0);
 
 -- --------------------------------------------------------
 
@@ -119,6 +125,15 @@ CREATE TABLE `evenement_departement` (
   `id_evenement` int(11) NOT NULL,
   `id_departement` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf16;
+
+--
+-- Contenu de la table `evenement_departement`
+--
+
+INSERT INTO `evenement_departement` (`id`, `id_evenement`, `id_departement`) VALUES
+(11, 44, 34),
+(12, 45, 12),
+(13, 45, 18);
 
 -- --------------------------------------------------------
 
@@ -161,7 +176,9 @@ ALTER TABLE `evenement`
 -- Index pour la table `evenement_departement`
 --
 ALTER TABLE `evenement_departement`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `fk_evenementDepartement_idEvenement` (`id_evenement`),
+  ADD KEY `fk_evenementDepartement_idDepartement` (`id_departement`);
 
 --
 -- Index pour la table `utilisateur`
@@ -182,17 +199,28 @@ ALTER TABLE `departement`
 -- AUTO_INCREMENT pour la table `evenement`
 --
 ALTER TABLE `evenement`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=46;
 --
 -- AUTO_INCREMENT pour la table `evenement_departement`
 --
 ALTER TABLE `evenement_departement`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 --
 -- AUTO_INCREMENT pour la table `utilisateur`
 --
 ALTER TABLE `utilisateur`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+--
+-- Contraintes pour les tables exportées
+--
+
+--
+-- Contraintes pour la table `evenement_departement`
+--
+ALTER TABLE `evenement_departement`
+  ADD CONSTRAINT `fk_evenementDepartement_idDepartement` FOREIGN KEY (`id_departement`) REFERENCES `departement` (`id`),
+  ADD CONSTRAINT `fk_evenementDepartement_idEvenement` FOREIGN KEY (`id_evenement`) REFERENCES `evenement` (`id`);
+
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
