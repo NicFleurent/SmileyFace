@@ -34,11 +34,6 @@ session_start();
             }
             $date = test_input($_POST["date"]);
 
-            if (empty($_POST['departement'])) {
-                $departement = null;
-            }
-            $departement = test_input($_POST["departement"]);
-
             $lien = test_input($_POST["lien"]);
             if (empty($_POST['lien'])) {
                 $lien = null;
@@ -61,25 +56,62 @@ session_start();
             $username = "root";
             $password = "root";
             $dbname = "smileyface";
-
-            // Create connection
             $conn = mysqli_connect($servername, $username, $password, $dbname);
-
-            // Check connection
             if (!$conn) {
                 die("Connection failed: " . mysqli_connect_error());
             }
-
             $conn->query('SET NAMES utf8');
-            $sql = "INSERT INTO evenement (nom, date, lien, departement, image) 
-            VALUES ('" . $nom . "', '" . $date . "', '" . $lien . "', '" . $departement . "', '" . $image . "')";
+
+            $sql = "INSERT INTO evenement (nom, date, lien, image) 
+            VALUES ('" . $nom . "', '" . $date . "', '" . $lien . "', '" . $image . "')";
             if (mysqli_query($conn, $sql)) {
-                header("Location: ./index.php?succes=ajouter");
-                die();
+                echo "Succes : Création de l'évènement dans la BD<br>";
+                //header("Location: ./index.php?succes=ajouter");
+                //die();
             } else {
                 $erreurSQL = "Error: " . $sql . "<br>" . mysqli_error($conn);
                 $erreur = true;
             }
+
+            $sql = "SELECT id FROM evenement WHERE nom='$nom' AND date='$date'";
+            $result = $conn->query($sql);
+            if ($result->num_rows > 0) {
+                $row = $result->fetch_assoc();
+            }
+            $idEvenement = $row["id"];
+
+            if(isset($_POST['departementLength'])){
+                $departementLength = test_input($_POST['departementLength']);
+
+                for($i=0 ; $i<$departementLength ; $i++){
+                    $departementTemp = "departement$i";
+                    if (isset($_POST[$departementTemp])) {
+                        $departement = test_input($_POST[$departementTemp]);
+
+                        $sql = "SELECT id FROM departement WHERE nom='$departement'";
+                        $result = $conn->query($sql);
+
+                        if ($result->num_rows > 0) {
+                            $row = $result->fetch_assoc();
+                        }
+                        $idDepartement = $row["id"];
+
+                        $sql = "INSERT INTO evenement_departement (id_evenement, id_departement) 
+                        VALUES ('" . $idEvenement . "', '" . $idDepartement ."')";
+
+                        if (mysqli_query($conn, $sql)) {
+                            echo "Succes : $idEvenement et $idDepartement<br>";
+                            //header("Location: ./index.php?succes=ajouter");
+                            //die();
+                        } else {
+                            $erreurSQL = "Error: " . $sql . "<br>" . mysqli_error($conn);
+                            $erreur = true;
+                        }
+                    }
+                }
+            }
+            header("Location: ./index.php?succes=ajouter");
+            die();
             mysqli_close($conn);
         }
         if ($_SERVER["REQUEST_METHOD"] != "POST" || $erreur == true) {
@@ -177,7 +209,7 @@ session_start();
                         <div id="containerDepartement" class="container-fluid p-0 m-0">
                             <div class="row mb-4 original-row">
                                 <div class="col-sm-10">
-                                    <select class="form-select" aria-label="Default select example" name="departement">
+                                    <select class="form-select" aria-label="Default select example" name="departement0">
                                         <option selected>Aucun programme spécifique</option>
                                         <?php
                                             $servername = "localhost";

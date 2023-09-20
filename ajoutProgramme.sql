@@ -35,4 +35,7 @@ VALUES ("Techniques de design d\'intérieur"),
         ("Sciences informatique et mathématiques"),
         ("Sciences, lettres et arts"),
         ("Sciences humaines avec préalables en mathématiques"),
-        ("Tremplin DEC")
+        ("Tremplin DEC");
+
+ALTER TABLE evenement_departement ADD CONSTRAINT fk_evenementDepartement_idEvenement FOREIGN KEY (id_evenement) REFERENCES evenement(id);
+ALTER TABLE evenement_departement ADD CONSTRAINT fk_evenementDepartement_idDepartement FOREIGN KEY (id_departement) REFERENCES departement(id);

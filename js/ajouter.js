@@ -1,3 +1,6 @@
+/***************************************************************************************************
+---------------------------------------- Validation ------------------------------------------------
+****************************************************************************************************/
 let nom = document.getElementById("nom");
 let date = document.getElementById("date");
 let lien = document.getElementById("lien");
@@ -15,10 +18,6 @@ let inputDate;
 let inputLien;
 let inputImage;
 let inputDepartement;
-
-let btnAjouterDept = document.getElementsByClassName("btn-ajouterDept");
-let btnSupprimerDept = document.getElementsByClassName("btn-supprimerDept");
-let containerDepartement = document.getElementById("containerDepartement");
 
 const regexURL = /\b(?:(?:https?|ftp):\/\/|www\.)[-a-z0-9+&@#\/%?=~_|!:,.;]*[-a-z0-9+&@#\/%=~_|]/i;
 
@@ -84,31 +83,55 @@ image.addEventListener("input", function(event){
     }
 });
 
-document.addEventListener("DOMContentLoaded", function(){
-    const boutonAjouter = document.querySelector(".btn-ajouterDept");
-    const boutonSupprimer = document.querySelector(".btn-supprimerDept");
-    const rowDepartement = document.querySelector(".original-row");
+/***************************************************************************************************
+----------------------------------- Liste des programmes -------------------------------------------
+****************************************************************************************************/
+let containerDepartement = document.getElementById("containerDepartement");
 
+const rowDepartement = document.querySelector(".original-row");
+const boutonAjouter = document.querySelector(".btn-ajouterDept");
+const boutonSupprimer = document.querySelector(".btn-supprimerDept");
+let selectDepartement = document.getElementsByTagName("select");
 
-    boutonAjouter.addEventListener("click", clonerRow);
+boutonAjouter.addEventListener("click", clonerRow);
+boutonSupprimer.style.display = "none";
 
-    boutonSupprimer.style.display = "none";
+let departementLength = document.createElement("input");
+departementLength.style.display = "none";
+departementLength.setAttribute("type", "number");
+departementLength.setAttribute("name", "departementLength");
+departementLength.setAttribute("value", selectDepartement.length);
+containerDepartement.append(departementLength);
 
-    function clonerRow(){
-        const nouvelleRowDepartement = rowDepartement.cloneNode(true);
+function clonerRow(){
+    const nouvelleRowDepartement = rowDepartement.cloneNode(true);
 
-        const nouveauBoutonAjouter = nouvelleRowDepartement.querySelector(".btn-ajouterDept");
-        nouveauBoutonAjouter.addEventListener("click", clonerRow);
+    const nouveauBoutonAjouter = nouvelleRowDepartement.querySelector(".btn-ajouterDept");
+    nouveauBoutonAjouter.addEventListener("click", clonerRow);
 
-        const nouveauBoutonSupprimer = nouvelleRowDepartement.querySelector(".btn-supprimerDept");
-        nouveauBoutonSupprimer.style.display = "Block";
-        nouveauBoutonSupprimer.addEventListener("click", function(){
-            nouvelleRowDepartement.remove();
-        });
+    const nouveauBoutonSupprimer = nouvelleRowDepartement.querySelector(".btn-supprimerDept");
+    nouveauBoutonSupprimer.style.display = "Block";
+    nouveauBoutonSupprimer.addEventListener("click", function(){
+        nouvelleRowDepartement.remove();
+        changeSelectName();
+    });
 
-        containerDepartement.append(nouvelleRowDepartement);
+    containerDepartement.append(nouvelleRowDepartement);
+    changeSelectName();
+}
+
+function changeSelectName(){
+    for(let i=0;i<selectDepartement.length;i++){
+        console.log(selectDepartement);
+        let nomTemp = "departement" + i;
+        selectDepartement[i].setAttribute("name", nomTemp);
     }
-});
+    updateDepartementLength();
+}
+
+function updateDepartementLength(){
+    departementLength.setAttribute("value", selectDepartement.length);
+}
 
 /*
 buttonListenerSetup();
