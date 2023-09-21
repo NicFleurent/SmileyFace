@@ -20,21 +20,6 @@ session_start();
         $idErreur = $nomErreur = $dateErreur = $lienErreur = $departementErreur = $erreurSQL = "";
         $erreur = false;
 
-        // Inserer dans la base de données
-        $servername = "localhost";
-        $username = "root";
-        $password = "root";
-        $dbname = "smileyface";
-
-        // Create connection
-        $conn = mysqli_connect($servername, $username, $password, $dbname);
-
-        // Check connection
-        if ($conn->connect_error) {
-            die("Connection failed: " . $conn->connect_error);
-        }
-        $conn->query('SET NAMES utf8');
-
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
             if (empty($_POST['id'])) {
@@ -78,7 +63,22 @@ session_start();
             }
 
 
+            // Inserer dans la base de données
+            $servername = "localhost";
+            $username = "root";
+            $password = "root";
+            $dbname = "smileyface";
 
+            // Create connection
+            $conn = mysqli_connect($servername, $username, $password, $dbname);
+
+            // Check connection
+            if ($conn->connect_error) {
+                die("Connection failed: " . $conn->connect_error);
+            }
+
+
+            $conn->query('SET NAMES utf8');
             $sql = "UPDATE evenement SET nom='" . $nom . "', date='" . $date . "', departement='" . $departement . "', lien='" . $lien . "', image='" . $image . "' WHERE id=" . $id;
             if ($conn->query($sql) === TRUE) {
                 header("Location: ./index.php?succes=modifier");
@@ -97,9 +97,21 @@ session_start();
 
             echo $idErreur;
 
+            $serveurname = "localhost";
+            $username = "root";
+            $password =  "root";
+            $db = "smileyface";
+            //Create connection
+            $conn = new mysqli($serveurname, $username, $password, $db);
+            //Check connection
+            if ($conn->connect_error) {
+                die("Connection failed: " . $conn->connect_error);
+            }
+
             //Ça ne fais rien, c'est jsute la requête
             $sql = "SELECT * FROM evenement WHERE id=" . $id;
 
+            $conn->query('SET NAMES utf8');
             //Effectue la requête
             $result = $conn->query($sql);
 
@@ -110,13 +122,8 @@ session_start();
             $nom = $row["nom"];
             $date = $row["date"];
             $lien = $row["lien"];
-            if($row["image"] == "img/CTR_Logo_RVB.jpg"){
-                $image = "";
-            }
-            else{
-                $image = $row["image"];
-            }
-            
+            $departement = $row["departement"];
+            $image = $row["image"];
     ?>
             <div class="container">
                 <div class="row">
@@ -128,8 +135,8 @@ session_start();
             <div class="container d-flex flex-column justify-content-center align-items-center vh-100">
                 <div class="container-fluid bg-ctr-bleu radius-1rem text-white p-5">
                     <h1 class="text-center mb-5">Modifier les informations</h1>
-                    <form id="form" class="g-3 needs-validation" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post" novalidate>
-                        <div class="row mb-4">
+                    <form id="form" class="row g-3 needs-validation" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post" novalidate>
+                        <div class="row mt-3 mb-3">
                             <div class="col-sm-8">
                                 <input type="text" class="form-control" id="nom" name="nom" value="<?php echo $nom; ?>" placeholder="Nom de l'évènement" required>
                                 <?php
@@ -168,7 +175,21 @@ session_start();
                                 ?>
                             </div>
                         </div>
-                        <div class="row mb-4">
+                        <div class="row mt-3 mb-3">
+                            <div class="col-sm-12">
+                                <input type="text" class="form-control" id="departement" name="departement" value="<?php echo $departement; ?>" placeholder="Département">
+                                <?php
+                                if ($erreur == true) {
+                                ?>
+                                    <div class="text-danger">
+                                        <?php echo $departementErreur; ?>
+                                    </div>
+                                <?php
+                                }
+                                ?>
+                            </div>
+                        </div>
+                        <div class="row mt-3 mb-3">
                             <div class="col-sm-12">
                                 <input type="text" class="form-control" id="image" name="image" value="<?php echo $image; ?>" placeholder="Lien vers une image représentant l'évènement">
                                 <?php
@@ -188,7 +209,7 @@ session_start();
                                 ?>
                             </div>
                         </div>
-                        <div class="row mb-4">
+                        <div class="row mt-3 mb-3">
                             <div class="col-sm-12">
                                 <input type="text" class="form-control" id="lien" name="lien" value="<?php echo $lien; ?>" placeholder="Lien du site web de l'évènement">
                                 <?php
@@ -208,63 +229,6 @@ session_start();
                                 ?>
                             </div>
                         </div>
-                        <?php
-                        $sql = "SELECT ed.id_departement, d.nom FROM evenement_departement ed INNER JOIN departement d ON d.id = ed.id_departement WHERE ed.id_evenement=$id";
-
-                        $result = $conn->query($sql);
-
-                        $programmeChoisis = [];
-                        $i = 0;
-                        if ($result->num_rows > 0) {
-                            while($row = $result->fetch_assoc()){
-                                $programmeChoisis[$i++] = $row['nom'];
-                            }
-                        }    
-                        mysqli_close($conn);
-
-                        foreach($programmeChoisis as $programmeChoisi){
-                        ?>
-                        <div id="containerDepartement" class="container-fluid p-0 m-0">
-                            <div class="row mb-4 original-row">
-                                <div class="col-sm-10">
-                                    <select class="form-select" aria-label="Default select example" name="departement0">
-                                        <option selected><?php echo $programmeChoisi; ?></option>
-                                        <?php
-                                            $servername = "localhost";
-                                            $username = "root";
-                                            $password = "root";
-                                            $dbname = "smileyface";
-
-                                            $conn = mysqli_connect($servername, $username, $password, $dbname);
-                                            if (!$conn) {
-                                                die("Connectionfailed:" . mysqli_connect_error());
-                                            }
-
-                                            $sql = "SELECT nom FROM departement WHERE nom!='$nomParDefaut'";
-
-                                            $conn->query('SET NAMES utf8');
-                                            //Effectue la requête
-                                            $resultProgramme = $conn->query($sql);
-                                
-                                            while($rowProgramme = $resultProgramme->fetch_assoc()){
-
-                                        ?>
-                                                <option value="<?php echo $rowProgramme['nom']; ?>"><?php echo $rowProgramme['nom']; ?></option>
-                                        <?php
-                                            }
-                                            mysqli_close($conn);
-                                        ?>
-                                    </select>
-                                </div>
-                                <div class="col-sm-2 text-end d-flex justify-content-between">
-                                    <button type="button" class="btn btn-outline-light btn-ajouterDept fw-bold">+</button> 
-                                    <button type="button" class="btn btn-outline-light btn-supprimerDept fw-bold">-</button>   
-                                </div>
-                            </div>
-                        </div>
-                        <?php 
-                        }
-                        ?>
                         <div class="text-center">
                             <button type="submit" class="btn btn-outline-light fw-bold fs-3 mt-4 pt-1">Enregistrer les modifications</button>
                         </div>
@@ -318,7 +282,6 @@ session_start();
                 })
         })()
     </script>
-    <script src="js/modifier.js"></script>
 </body>
 
 </html>
