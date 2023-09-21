@@ -85,13 +85,28 @@ image.addEventListener("input", function(event){
 ****************************************************************************************************/
 let containerDepartement = document.getElementById("containerDepartement");
 
-const rowDepartement = document.querySelector(".original-row");
-const boutonAjouter = document.querySelector(".btn-ajouterDept");
-const boutonSupprimer = document.querySelector(".btn-supprimerDept");
+const rowDepartement = document.querySelectorAll(".original-row");
+const boutonAjouter = document.querySelectorAll(".btn-ajouterDept");
+const boutonSupprimer = document.querySelectorAll(".btn-supprimerDept");
 let selectDepartement = document.getElementsByTagName("select");
 
-boutonAjouter.addEventListener("click", clonerRow);
-boutonSupprimer.style.display = "none";
+boutonAjouter.forEach(bouton => {
+    bouton.addEventListener("click", clonerRow);
+});
+
+for(let i=0;i<boutonSupprimer.length;i++){
+    console.log(boutonSupprimer[i]);
+    if(i === 0){
+        boutonSupprimer[i].style.display = "none";
+    }
+    else{
+        boutonSupprimer[i].style.display = "block";
+        boutonSupprimer[i].addEventListener("click", function(){
+            rowDepartement[i].remove();
+            changeSelectName();
+        });
+    }
+}
 
 let departementLength = document.createElement("input");
 departementLength.style.display = "none";
@@ -100,8 +115,10 @@ departementLength.setAttribute("name", "departementLength");
 departementLength.setAttribute("value", selectDepartement.length);
 containerDepartement.append(departementLength);
 
+changeSelectName();
+
 function clonerRow(){
-    const nouvelleRowDepartement = rowDepartement.cloneNode(true);
+    const nouvelleRowDepartement = rowDepartement[0].cloneNode(true);
 
     const nouveauBoutonAjouter = nouvelleRowDepartement.querySelector(".btn-ajouterDept");
     nouveauBoutonAjouter.addEventListener("click", clonerRow);

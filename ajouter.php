@@ -222,7 +222,7 @@ session_start();
                                                 die("Connectionfailed:" . mysqli_connect_error());
                                             }
 
-                                            $sql = "SELECT nom FROM departement WHERE nom!='Aucun programme spécifique'";
+                                            $sql = "SELECT nom FROM departement WHERE nom!='Aucun programme spécifique' ORDER BY nom";
 
                                             $conn->query('SET NAMES utf8');
                                             //Effectue la requête

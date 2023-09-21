@@ -17,19 +17,16 @@ session_start();
     <?php
     if ($_SESSION['connexion'] == true) {
         $id = $nom = $date = $lien = $departement = "";
-        $idErreur = $nomErreur = $dateErreur = $lienErreur = $departementErreur = $erreurSQL = "";
+        $idErreur = $nomErreur = $dateErreur = $lienErreur = $imageErreur = $erreurSQL = "";
         $erreur = false;
 
-        // Inserer dans la base de données
         $servername = "localhost";
         $username = "root";
         $password = "root";
         $dbname = "smileyface";
 
-        // Create connection
         $conn = mysqli_connect($servername, $username, $password, $dbname);
 
-        // Check connection
         if ($conn->connect_error) {
             die("Connection failed: " . $conn->connect_error);
         }
@@ -41,8 +38,8 @@ session_start();
                 $idErreur = "Vous n'avez pas d'ID<br>";
                 $erreur = true;
             }
-            //$id = test_input($_POST["id"]);
-            $id = test_input($id);
+            $id = test_input($_POST["id"]);
+            //$id = test_input($id);
 
             if (empty($_POST['nom'])) {
                 $nomErreur = "Le nom est requis<br>";
@@ -56,11 +53,6 @@ session_start();
             }
             $date = test_input($_POST["date"]);
 
-            if (empty($_POST['departement'])) {
-                $departement = null;
-            }
-            $departement = test_input($_POST["departement"]);
-
             $lien = test_input($_POST["lien"]);
             if (empty($_POST['lien'])) {
                 $lien = null;
@@ -70,24 +62,76 @@ session_start();
             }
 
             $image = test_input($_POST["image"]);
-            if (empty($_POST['image'])) {
+            if (empty($_POST['image']) && ($image == "")) {
                 $image = "img/CTR_Logo_RVB.jpg";
-            } else if (!preg_match("/\b(?:(?:https?|ftp):\/\/|www\.)[-a-z0-9+&@#\/%?=~_|!:,.;]*[-a-z0-9+&@#\/%=~_|]/i", $lien)) {
-                $lienErreur = "L'URL de l'image n'est pas valide<br>";
+            } else if ((!preg_match("/\b(?:(?:https?|ftp):\/\/|www\.)[-a-z0-9+&@#\/%?=~_|!:,.;]*[-a-z0-9+&@#\/%=~_|]/i", $lien))) {
+                $imageErreur = "L'URL de l'image n'est pas valide<br>";
                 $erreur = true;
             }
 
 
 
-            $sql = "UPDATE evenement SET nom='" . $nom . "', date='" . $date . "', departement='" . $departement . "', lien='" . $lien . "', image='" . $image . "' WHERE id=" . $id;
+            $sql = "UPDATE evenement SET nom='" . $nom . "', date='" . $date . "', lien='" . $lien . "', image='" . $image . "' WHERE id=" . $id;
             if ($conn->query($sql) === TRUE) {
-                header("Location: ./index.php?succes=modifier");
-                die();
+                echo "Succes : Modification de l'évènement dans la BD<br>";
+                //header("Location: ./index.php?succes=modifier");
+                //die();
             } else {
                 $erreurSQL = "Error: " . $sql . "<br>" . mysqli_error($conn);
                 $erreur = true;
             }
-            $conn->close();
+
+            $sql = "SELECT id FROM evenement WHERE nom='$nom' AND date='$date'";
+            $result = $conn->query($sql);
+            if ($result->num_rows > 0) {
+                $row = $result->fetch_assoc();
+            }
+            $idEvenement = $row["id"];
+
+            $sql = "DELETE FROM evenement_departement WHERE id_evenement=" . $idEvenement;
+            if ($conn->query($sql) === TRUE) {
+                echo "Succes : Supression des lignes surperflux dans la BD<br>";
+                //header("Location: ./index.php?succes=modifier");
+                //die();
+            } else {
+                $erreurSQL = "Error: " . $sql . "<br>" . mysqli_error($conn);
+                $erreur = true;
+            }
+
+
+            if(isset($_POST['departementLength'])){
+                $departementLength = test_input($_POST['departementLength']);
+
+                for($i=0 ; $i<$departementLength ; $i++){
+                    $departementTemp = "departement$i";
+                    if (isset($_POST[$departementTemp])) {
+                        $departement = test_input($_POST[$departementTemp]);
+
+                        $sql = "SELECT id FROM departement WHERE nom='$departement'";
+                        $result = $conn->query($sql);
+
+                        if ($result->num_rows > 0) {
+                            $row = $result->fetch_assoc();
+                        }
+                        $idDepartement = $row["id"];
+
+                        $sql = "INSERT INTO evenement_departement (id_evenement, id_departement) 
+                        VALUES ('" . $idEvenement . "', '" . $idDepartement ."')";
+
+                        if (mysqli_query($conn, $sql)) {
+                            echo "Succes : $idEvenement et $idDepartement<br>";
+                            //header("Location: ./index.php?succes=ajouter");
+                            //die();
+                        } else {
+                            $erreurSQL = "Error: " . $sql . "<br>" . mysqli_error($conn);
+                            $erreur = true;
+                        }
+                    }
+                }
+            }
+            header("Location: ./index.php?succes=ajouter");
+            die();
+            mysqli_close($conn);
         }
         if ($_SERVER["REQUEST_METHOD"] != "POST" || $erreur == true) {
 
@@ -98,7 +142,7 @@ session_start();
             echo $idErreur;
 
             //Ça ne fais rien, c'est jsute la requête
-            $sql = "SELECT * FROM evenement WHERE id=" . $id;
+            $sql = "SELECT * FROM evenement WHERE id=$id";
 
             //Effectue la requête
             $result = $conn->query($sql);
@@ -129,6 +173,7 @@ session_start();
                 <div class="container-fluid bg-ctr-bleu radius-1rem text-white p-5">
                     <h1 class="text-center mb-5">Modifier les informations</h1>
                     <form id="form" class="g-3 needs-validation" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post" novalidate>
+                        <input type="hidden" name="id" value="<?php echo $id ?>">
                         <div class="row mb-4">
                             <div class="col-sm-8">
                                 <input type="text" class="form-control" id="nom" name="nom" value="<?php echo $nom; ?>" placeholder="Nom de l'évènement" required>
@@ -208,6 +253,7 @@ session_start();
                                 ?>
                             </div>
                         </div>
+                        <div id="containerDepartement" class="container-fluid p-0 m-0">
                         <?php
                         $sql = "SELECT ed.id_departement, d.nom FROM evenement_departement ed INNER JOIN departement d ON d.id = ed.id_departement WHERE ed.id_evenement=$id";
 
@@ -224,7 +270,6 @@ session_start();
 
                         foreach($programmeChoisis as $programmeChoisi){
                         ?>
-                        <div id="containerDepartement" class="container-fluid p-0 m-0">
                             <div class="row mb-4 original-row">
                                 <div class="col-sm-10">
                                     <select class="form-select" aria-label="Default select example" name="departement0">
@@ -240,7 +285,7 @@ session_start();
                                                 die("Connectionfailed:" . mysqli_connect_error());
                                             }
 
-                                            $sql = "SELECT nom FROM departement WHERE nom!='$nomParDefaut'";
+                                            $sql = "SELECT nom FROM departement WHERE nom!='$nomParDefaut' ORDER BY nom";
 
                                             $conn->query('SET NAMES utf8');
                                             //Effectue la requête
@@ -261,10 +306,10 @@ session_start();
                                     <button type="button" class="btn btn-outline-light btn-supprimerDept fw-bold">-</button>   
                                 </div>
                             </div>
-                        </div>
                         <?php 
                         }
                         ?>
+                        </div>
                         <div class="text-center">
                             <button type="submit" class="btn btn-outline-light fw-bold fs-3 mt-4 pt-1">Enregistrer les modifications</button>
                         </div>
