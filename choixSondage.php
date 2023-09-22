@@ -17,8 +17,6 @@ session_start();
     if ($_SESSION['connexion'] == true) {
         if (isset($_GET['id'])) {
             $id = test_input($_GET['id']);
-        }
-
     ?>
         <div class="container d-flex flex-column justify-content-center align-items-center vh-100">
             <div class="container-fluid bg-ctr-bleu radius-1rem text-white text-center p-5">
@@ -36,6 +34,10 @@ session_start();
             </div>
         </div>
     <?php
+        }
+        else{
+            header("Location: ./index.php");
+        }
     } else {
         header("Location: ./connexion.php");
     }

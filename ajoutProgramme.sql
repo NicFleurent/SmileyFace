@@ -37,5 +37,9 @@ VALUES ("Techniques de design d\'intérieur"),
         ("Sciences humaines avec préalables en mathématiques"),
         ("Tremplin DEC");
 
+INSERT INTO evenement_departement (id_evenement, id_departement)
+VALUES (1, 38),
+        (3, 38);
+
 ALTER TABLE evenement_departement ADD CONSTRAINT fk_evenementDepartement_idEvenement FOREIGN KEY (id_evenement) REFERENCES evenement(id);
 ALTER TABLE evenement_departement ADD CONSTRAINT fk_evenementDepartement_idDepartement FOREIGN KEY (id_departement) REFERENCES departement(id);

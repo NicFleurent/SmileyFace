@@ -61,44 +61,47 @@ session_start();
 
             if (isset($_GET['id'])) {
                 $id = $_GET['id'];
-            }
-            //rajouter si pas id renvoyer sur page index
+                
+                //string de requête
+                $sql = "SELECT etudiantSatisfait,etudiantNeutre,etudiantInsatisfait FROM evenement where id=$id";
+                $conn->query('SET NAMES utf8');
 
-            //string de requête
-            $sql = "SELECT etudiantSatisfait,etudiantNeutre,etudiantInsatisfait FROM evenement where id=$id";
-            $conn->query('SET NAMES utf8');
+                //L'action la query est ici
+                $result = $conn->query($sql);
 
-            //L'action la query est ici
-            $result = $conn->query($sql);
+                if ($result->num_rows > 0) {
 
-            if ($result->num_rows > 0) {
-
-                while ($row = $result->fetch_assoc()) {
-        ?>
-                    <span id="nbEtudSatisf" class="visually-hidden"> <?php echo $row['etudiantSatisfait'] ?></span>
-                    <span id="nbEtudNeutre" class="visually-hidden"><?php echo $row['etudiantNeutre'] ?></span>
-                    <span id="nbEtudInsatisf" class="visually-hidden"><?php echo $row['etudiantInsatisfait'] ?></span>
-
-                <?php
-                }
-            }
-            $sql = "SELECT employeurSatisfait,employeurNeutre,employeurInsatisfait FROM evenement where id=$id";
-            $conn->query('SET NAMES utf8');
-
-            //L'action la query est ici
-            $result = $conn->query($sql);
-
-            if ($result->num_rows > 0) {
-
-                while ($row = $result->fetch_assoc()) {
+                    while ($row = $result->fetch_assoc()) {
                 ?>
-                    <span id="nbEntSatisf" class="visually-hidden"><?php echo $row['employeurSatisfait'] ?></span>
-                    <span id="nbEntNeutre" class="visually-hidden"><?php echo $row['employeurNeutre'] ?></span>
-                    <span id="nbEntInsatisf" class="visually-hidden"><?php echo $row['employeurInsatisfait'] ?></span>
-        <?php
+                        <span id="nbEtudSatisf" class="visually-hidden"> <?php echo $row['etudiantSatisfait'] ?></span>
+                        <span id="nbEtudNeutre" class="visually-hidden"><?php echo $row['etudiantNeutre'] ?></span>
+                        <span id="nbEtudInsatisf" class="visually-hidden"><?php echo $row['etudiantInsatisfait'] ?></span>
+
+                    <?php
+                    }
+                }
+                $sql = "SELECT employeurSatisfait,employeurNeutre,employeurInsatisfait FROM evenement where id=$id";
+                $conn->query('SET NAMES utf8');
+
+                //L'action la query est ici
+                $result = $conn->query($sql);
+
+                if ($result->num_rows > 0) {
+
+                    while ($row = $result->fetch_assoc()) {
+                    ?>
+                        <span id="nbEntSatisf" class="visually-hidden"><?php echo $row['employeurSatisfait'] ?></span>
+                        <span id="nbEntNeutre" class="visually-hidden"><?php echo $row['employeurNeutre'] ?></span>
+                        <span id="nbEntInsatisf" class="visually-hidden"><?php echo $row['employeurInsatisfait'] ?></span>
+                <?php
+                    }
                 }
             }
-        } else {
+            else{
+                header("Location: ./index.php");
+            }
+        }
+        else{
             header("Location: ./connexion.php");
         }
         ?>

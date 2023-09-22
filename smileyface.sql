@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Client :  localhost
--- Généré le :  Mer 20 Septembre 2023 à 18:57
+-- Généré le :  Ven 22 Septembre 2023 à 14:43
 -- Version du serveur :  5.7.11
 -- Version de PHP :  7.0.3
 
@@ -102,17 +102,10 @@ CREATE TABLE `evenement` (
 
 INSERT INTO `evenement` (`id`, `nom`, `date`, `lien`, `departement`, `image`, `etudiantSatisfait`, `etudiantNeutre`, `etudiantInsatisfait`, `employeurSatisfait`, `employeurNeutre`, `employeurInsatisfait`) VALUES
 (1, 'Event test', '2023-11-05', 'https://lecampusti.ca/', 'Informatique', 'img/CTR_Logo_RVB.jpg', 63, 47, 56, 10, 5, 2),
-(2, 'Test #2', '2023-09-29', 'https://lecampusti.ca/', 'Technique de l\'informatique', 'img/CTR_Logo_RVB.jpg', 2, 0, 0, 0, 0, 0),
-(3, 'Test #3', '2023-10-02', 'https://lecampusti.ca/', 'Génie Mécanique', 'https://lecampusti.ca/wp-content/uploads/2021/09/Campus_TI_Logo-Final-tagline-01-01.png', 1, 0, 0, 2, 1, 1),
-(4, 'Test less valid', '2023-09-22', '', '', 'img/CTR_Logo_RVB.jpg', 0, 1, 0, 0, 0, 0),
-(7, 'test final', '2023-09-18', '', '', 'img/CTR_Logo_RVB.jpg', 0, 0, 0, 0, 0, 0),
-(8, 'test final 2', '2023-09-18', '', '', 'img/CTR_Logo_RVB.jpg', 0, 0, 0, 0, 0, 0),
-(9, 'Test DB', '2023-09-29', '', '', 'img/CTR_Logo_RVB.jpg', 0, 0, 0, 0, 0, 0),
-(10, 'test variable', '2023-09-21', '', 'Aucun programme spécifique', 'img/CTR_Logo_RVB.jpg', 0, 0, 0, 0, 0, 0),
-(12, 'Test Departement', '2023-09-21', '', NULL, 'img/CTR_Logo_RVB.jpg', 0, 0, 0, 0, 0, 0),
-(13, 'Test Departement 2', '2023-09-21', '', NULL, 'img/CTR_Logo_RVB.jpg', 0, 0, 0, 0, 0, 0),
+(3, 'Test #3 3', '2023-10-02', 'https://lecampusti.ca/', 'Génie Mécanique', 'https://lecampusti.ca/wp-content/uploads/2021/09/Campus_TI_Logo-Final-tagline-01-01.png', 3, 1, 1, 3, 1, 1),
 (44, 'Test Party noel', '2023-09-21', '', NULL, 'https://th.bing.com/th/id/OIP.R9unmoPwddPsQkMcptGOiwHaHa?pid=ImgDet&amp;rs=1', 0, 0, 0, 0, 0, 0),
-(45, 'TEst demo', '2023-09-28', '', NULL, 'img/CTR_Logo_RVB.jpg', 0, 0, 0, 0, 0, 0);
+(45, 'TEst demo', '2023-09-28', '', NULL, 'img/CTR_Logo_RVB.jpg', 0, 0, 0, 0, 0, 0),
+(47, 'One piece Fest', '2023-09-15', '', NULL, 'https://i.pinimg.com/originals/03/7f/4b/037f4bfef599b4ffaae712f5f9709ccd.jpg', 0, 0, 0, 0, 0, 0);
 
 -- --------------------------------------------------------
 
@@ -131,9 +124,15 @@ CREATE TABLE `evenement_departement` (
 --
 
 INSERT INTO `evenement_departement` (`id`, `id_evenement`, `id_departement`) VALUES
-(11, 44, 34),
 (12, 45, 12),
-(13, 45, 18);
+(13, 45, 18),
+(14, 44, 34),
+(15, 44, 35),
+(16, 44, 8),
+(21, 1, 38),
+(59, 3, 20),
+(60, 3, 33),
+(62, 47, 38);
 
 -- --------------------------------------------------------
 
@@ -199,12 +198,12 @@ ALTER TABLE `departement`
 -- AUTO_INCREMENT pour la table `evenement`
 --
 ALTER TABLE `evenement`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=46;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=48;
 --
 -- AUTO_INCREMENT pour la table `evenement_departement`
 --
 ALTER TABLE `evenement_departement`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=63;
 --
 -- AUTO_INCREMENT pour la table `utilisateur`
 --

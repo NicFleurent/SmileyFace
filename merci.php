@@ -18,39 +18,38 @@ session_start();
 <body>
     <?php
     if ($_SESSION['connexion'] == true) {
-        if (isset($_GET['provenance'])) {
+        if (isset($_GET['provenance']) && isset($_GET['id'])) {
             $provenance = test_input($_GET['provenance']);
-        }
-
-        if (isset($_GET['id'])) {
             $id = test_input($_GET['id']);
-        }
 
-        if ($provenance == "etudiant") {
+            if ($provenance == "etudiant") {
     ?>
-            <div id="etudiant" class="d-none">satisfactionEtudiant.php?id=<?php echo $id; ?></div>
-        <?php
-        } else if ($provenance == "employeur") {
-        ?>
-            <div id="employeur" class="d-none">satisfactionEmployeur.php?id=<?php echo $id; ?></div>
-        <?php
-        } else {
-        ?>
-            <div id="erreur" class="d-none">Erreur</div>
-        <?php
-        }
-        ?>
-        <script id="confetti.js">
-            startConfetti();
-        </script>
-        <div id="titre" class="container-fluid vh-100 d-flex justify-content-center align-items-center text-center">
-            <div class="row">
-                <div class="col text-white">
-                    <h1>Merci!!!</h1>
+                <div id="etudiant" class="d-none">satisfactionEtudiant.php?id=<?php echo $id; ?></div>
+            <?php
+            } else if ($provenance == "employeur") {
+            ?>
+                <div id="employeur" class="d-none">satisfactionEmployeur.php?id=<?php echo $id; ?></div>
+            <?php
+            } else {
+            ?>
+                <div id="erreur" class="d-none">Erreur</div>
+            <?php
+            }
+            ?>
+            <script id="confetti.js">
+                startConfetti();
+            </script>
+            <div id="titre" class="container-fluid vh-100 d-flex justify-content-center align-items-center text-center">
+                <div class="row">
+                    <div class="col text-white">
+                        <h1>Merci!!!</h1>
+                    </div>
                 </div>
             </div>
-        </div>
     <?php
+        } else {
+            header("Location: ./index.php");
+        }
     } else {
         header("Location: ./connexion.php");
     }
