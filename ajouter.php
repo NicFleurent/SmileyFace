@@ -18,19 +18,29 @@ session_start();
     if ($_SESSION['connexion'] == true) {
         $nom = $date = $lien = $departement = $image = "";
         $nomErreur = $dateErreur = $lienErreur = $departementErreur = $imageErreur = $erreurSQL = "";
-        $erreur = false;
+        $erreurChant = $erreurBD = false;
+
+        $servername = "localhost";
+        $username = "root";
+        $password = "root";
+        $dbname = "smileyface";
+        $conn = mysqli_connect($servername, $username, $password, $dbname);
+        if (!$conn) {
+            die("Connection failed: " . mysqli_connect_error());
+        }
+        $conn->query('SET NAMES utf8');
 
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
             if (empty($_POST['nom'])) {
                 $nomErreur = "Le nom est requis<br>";
-                $erreur = true;
+                $erreurChant = true;
             }
             $nom = test_input($_POST["nom"]);
 
             if (empty($_POST['date'])) {
                 $dateErreur = "La date est requise<br>";
-                $erreur = true;
+                $erreurChant = true;
             }
             $date = test_input($_POST["date"]);
 
@@ -39,82 +49,68 @@ session_start();
                 $lien = null;
             } else if (!preg_match("/\b(?:(?:https?|ftp):\/\/|www\.)[-a-z0-9+&@#\/%?=~_|!:,.;]*[-a-z0-9+&@#\/%=~_|]/i", $lien)) {
                 $lienErreur = "L'URL du lien n'est pas valide<br>";
-                $erreur = true;
+                $erreurChant = true;
             }
 
             $image = test_input($_POST["image"]);
             if (empty($_POST['image'])) {
                 $image = "img/CTR_Logo_RVB.jpg";
-            } else if (!preg_match("/\b(?:(?:https?|ftp):\/\/|www\.)[-a-z0-9+&@#\/%?=~_|!:,.;]*[-a-z0-9+&@#\/%=~_|]/i", $lien)) {
-                $lienErreur = "L'URL de l'image n'est pas valide<br>";
-                $erreur = true;
+            } else if (!preg_match("/\b(?:(?:https?|ftp):\/\/|www\.)[-a-z0-9+&@#\/%?=~_|!:,.;]*[-a-z0-9+&@#\/%=~_|]/i", $image)) {
+                $imageErreur = "L'URL de l'image n'est pas valide<br>";
+                $erreurChant = true;
             }
 
+            if(!$erreurChant){
+                $sql = "INSERT INTO evenement (nom, date, lien, image) 
+                VALUES ('" . $nom . "', '" . $date . "', '" . $lien . "', '" . $image . "')";
+                if (mysqli_query($conn, $sql)) {
+                    echo "Succes : Création de l'évènement dans la BD<br>";
+                } else {
+                    $erreurSQL = "Error: " . $sql . "<br>" . mysqli_error($conn);
+                    $erreurBD = true;
+                }
 
-            // Inserer dans la base de données
-            $servername = "localhost";
-            $username = "root";
-            $password = "root";
-            $dbname = "smileyface";
-            $conn = mysqli_connect($servername, $username, $password, $dbname);
-            if (!$conn) {
-                die("Connection failed: " . mysqli_connect_error());
-            }
-            $conn->query('SET NAMES utf8');
+                $sql = "SELECT id FROM evenement WHERE nom='$nom' AND date='$date'";
+                $result = $conn->query($sql);
+                if ($result->num_rows > 0) {
+                    $row = $result->fetch_assoc();
+                }
+                $idEvenement = $row["id"];
 
-            $sql = "INSERT INTO evenement (nom, date, lien, image) 
-            VALUES ('" . $nom . "', '" . $date . "', '" . $lien . "', '" . $image . "')";
-            if (mysqli_query($conn, $sql)) {
-                echo "Succes : Création de l'évènement dans la BD<br>";
-                //header("Location: ./index.php?succes=ajouter");
-                //die();
-            } else {
-                $erreurSQL = "Error: " . $sql . "<br>" . mysqli_error($conn);
-                $erreur = true;
-            }
+                if(isset($_POST['departementLength'])){
+                    $departementLength = test_input($_POST['departementLength']);
 
-            $sql = "SELECT id FROM evenement WHERE nom='$nom' AND date='$date'";
-            $result = $conn->query($sql);
-            if ($result->num_rows > 0) {
-                $row = $result->fetch_assoc();
-            }
-            $idEvenement = $row["id"];
+                    for($i=0 ; $i<$departementLength ; $i++){
+                        $departementTemp = "departement$i";
+                        if (isset($_POST[$departementTemp])) {
+                            $departement = test_input($_POST[$departementTemp]);
 
-            if(isset($_POST['departementLength'])){
-                $departementLength = test_input($_POST['departementLength']);
+                            $sql = "SELECT id FROM departement WHERE nom='$departement'";
+                            $result = $conn->query($sql);
 
-                for($i=0 ; $i<$departementLength ; $i++){
-                    $departementTemp = "departement$i";
-                    if (isset($_POST[$departementTemp])) {
-                        $departement = test_input($_POST[$departementTemp]);
+                            if ($result->num_rows > 0) {
+                                $row = $result->fetch_assoc();
+                            }
+                            $idDepartement = $row["id"];
 
-                        $sql = "SELECT id FROM departement WHERE nom='$departement'";
-                        $result = $conn->query($sql);
+                            $sql = "INSERT INTO evenement_departement (id_evenement, id_departement) 
+                            VALUES ('" . $idEvenement . "', '" . $idDepartement ."')";
 
-                        if ($result->num_rows > 0) {
-                            $row = $result->fetch_assoc();
-                        }
-                        $idDepartement = $row["id"];
-
-                        $sql = "INSERT INTO evenement_departement (id_evenement, id_departement) 
-                        VALUES ('" . $idEvenement . "', '" . $idDepartement ."')";
-
-                        if (mysqli_query($conn, $sql)) {
-                            echo "Succes : $idEvenement et $idDepartement<br>";
-                            //header("Location: ./index.php?succes=ajouter");
-                            //die();
-                        } else {
-                            $erreurSQL = "Error: " . $sql . "<br>" . mysqli_error($conn);
-                            $erreur = true;
+                            if (mysqli_query($conn, $sql)) {
+                                echo "Succes : $idEvenement et $idDepartement<br>";
+                            } else {
+                                $erreurSQL = "Error: " . $sql . "<br>" . mysqli_error($conn);
+                                $erreurBD = true;
+                            }
                         }
                     }
                 }
+                mysqli_close($conn);
+                header("Location: ./index.php?succes=ajouter");
+                die();
             }
-            header("Location: ./index.php?succes=ajouter");
-            die();
-            mysqli_close($conn);
         }
-        if ($_SERVER["REQUEST_METHOD"] != "POST" || $erreur == true) {
+        if ($_SERVER["REQUEST_METHOD"] != "POST" || $erreurChant == true || $erreurBD == true) {
     ?>
             <div class="container">
                 <div class="row">
@@ -131,7 +127,7 @@ session_start();
                             <div class="col-sm-8">
                                 <input type="text" class="form-control" id="nom" name="nom" value="<?php echo $nom; ?>" placeholder="Nom de l'évènement" required>
                                 <?php
-                                if ($erreur == true) {
+                                if ($erreurChant == true) {
                                 ?>
                                     <div class="text-danger">
                                         <?php echo $nomErreur; ?>
@@ -150,7 +146,7 @@ session_start();
                             <div class="col-sm-3">
                                 <input type="date" class="form-control" id="date" name="date" value="<?php echo $date; ?>" required>
                                 <?php
-                                if ($erreur == true) {
+                                if ($erreurChant == true) {
                                 ?>
                                     <div class="text-danger">
                                         <?php echo $dateErreur; ?>
@@ -170,7 +166,7 @@ session_start();
                             <div class="col-sm-12">
                                 <input type="text" class="form-control" id="image" name="image" value="<?php echo $image; ?>" placeholder="Lien vers une image représentant l'évènement">
                                 <?php
-                                if ($erreur == true) {
+                                if ($erreurChant == true) {
                                 ?>
                                     <div class="text-danger">
                                         <?php echo $imageErreur; ?>
@@ -190,7 +186,7 @@ session_start();
                             <div class="col-sm-12">
                                 <input type="text" class="form-control" id="lien" name="lien" value="<?php echo $lien; ?>" placeholder="Lien du site web de l'évènement">
                                 <?php
-                                if ($erreur == true) {
+                                if ($erreurChant == true) {
                                 ?>
                                     <div class="text-danger">
                                         <?php echo $lienErreur; ?>
@@ -212,29 +208,14 @@ session_start();
                                     <select class="form-select" aria-label="Default select example" name="departement0">
                                         <option selected>Aucun programme spécifique</option>
                                         <?php
-                                            $servername = "localhost";
-                                            $username = "root";
-                                            $password = "root";
-                                            $dbname = "smileyface";
-
-                                            $conn = mysqli_connect($servername, $username, $password, $dbname);
-                                            if (!$conn) {
-                                                die("Connectionfailed:" . mysqli_connect_error());
-                                            }
-
                                             $sql = "SELECT nom FROM departement WHERE nom!='Aucun programme spécifique' ORDER BY nom";
-
-                                            $conn->query('SET NAMES utf8');
-                                            //Effectue la requête
                                             $result = $conn->query($sql);
                                 
                                             while($row = $result->fetch_assoc()){
-
                                         ?>
                                                 <option value="<?php echo $row['nom']; ?>"><?php echo $row['nom']; ?></option>
                                         <?php
                                             }
-                                            mysqli_close($conn);
                                         ?>
                                     </select>
                                 </div>

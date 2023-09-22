@@ -24,31 +24,37 @@ session_start();
             }
             $id = test_input($_POST["id"]);
 
+            if(!$erreur){
+                $servername = "localhost";
+                $username = "root";
+                $password = "root";
+                $dbname = "smileyface";
 
-            // Inserer dans la base de données
-            $servername = "localhost";
-            $username = "root";
-            $password = "root";
-            $dbname = "smileyface";
+                $conn = mysqli_connect($servername, $username, $password, $dbname);
 
-            // Create connection
-            $conn = mysqli_connect($servername, $username, $password, $dbname);
+                if ($conn->connect_error) {
+                    die("Connection failed: " . $conn->connect_error);
+                }
 
-            // Check connection
-            if ($conn->connect_error) {
-                die("Connection failed: " . $conn->connect_error);
+                $sql = "DELETE FROM evenement_departement WHERE id_evenement=". $id;
+                if ($conn->query($sql) === TRUE) {
+                    echo "Succes : Supprimer de evenement_departement<br>";
+                } else {
+                    $erreurSQL = "Error: " . $sql . "<br>" . mysqli_error($conn);
+                    $erreur = true;
+                } 
+
+                $sql = "DELETE FROM evenement WHERE id=". $id;
+                if ($conn->query($sql) === TRUE) {
+                    header("Location: ./index.php?succes=supprimer");
+                    die();
+                } else {
+                    $erreurSQL = "Error: " . $sql . "<br>" . mysqli_error($conn);
+                    $erreur = true;
+                }
+                $conn->close();
             }
-                
-
-            $sql = "DELETE FROM evenement WHERE id=". $id;
-            if ($conn->query($sql) === TRUE) {
-                header("Location: ./index.php?succes=supprimer");
-                die();
-            } else {
-                $erreurSQL = "Error: " . $sql . "<br>" . mysqli_error($conn);
-                $erreur = true;
-            }
-            $conn->close();
+            
         }
         if ($_SERVER["REQUEST_METHOD"] != "POST" || $erreur == true) {
 
