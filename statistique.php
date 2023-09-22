@@ -44,60 +44,63 @@ session_start();
     <main class="container">
 
         <?php
-        //Variables connexion
-        $servername = "localhost";
-        $username = "root";
-        $password = "root";
-        $dbname = "smileyface";
-        //Create connection
-        $conn = mysqli_connect($servername, $username, $password, $dbname);
-        //Check connection
-        if (!$conn) {
-            die("Connectionfailed:" . mysqli_connect_error());
-        }
-        // Set session variables
-        $_SESSION["connexion"] = true;
+        if ($_SESSION['connexion'] == true) {
+            //Variables connexion
+            $servername = "localhost";
+            $username = "root";
+            $password = "root";
+            $dbname = "smileyface";
+            //Create connection
+            $conn = mysqli_connect($servername, $username, $password, $dbname);
+            //Check connection
+            if (!$conn) {
+                die("Connectionfailed:" . mysqli_connect_error());
+            }
+            // Set session variables
+            $_SESSION["connexion"] = true;
 
-        if (isset($_GET['id'])) {
-            $id = $_GET['id'];
-        }
+            if (isset($_GET['id'])) {
+                $id = $_GET['id'];
+            }
 
 
-        //string de requête
-        $sql = "SELECT etudiantSatisfait,etudiantNeutre,etudiantInsatisfait FROM evenement where id=$id";
-        $conn->query('SET NAMES utf8');
+            //string de requête
+            $sql = "SELECT etudiantSatisfait,etudiantNeutre,etudiantInsatisfait FROM evenement where id=$id";
+            $conn->query('SET NAMES utf8');
 
-        //L'action la query est ici
-        $result = $conn->query($sql);
+            //L'action la query est ici
+            $result = $conn->query($sql);
 
-        if ($result->num_rows > 0) {
+            if ($result->num_rows > 0) {
 
-            while ($row = $result->fetch_assoc()) {
+                while ($row = $result->fetch_assoc()) {
         ?>
-                <span id="nbEtudSatisf" class="visually-hidden"> <?php echo $row['etudiantSatisfait'] ?></span>
-                <span id="nbEtudNeutre" class="visually-hidden"><?php echo $row['etudiantNeutre'] ?></span>
-                <span id="nbEtudInsatisf" class="visually-hidden"><?php echo $row['etudiantInsatisfait'] ?></span>
+                    <span id="nbEtudSatisf" class="visually-hidden"> <?php echo $row['etudiantSatisfait'] ?></span>
+                    <span id="nbEtudNeutre" class="visually-hidden"><?php echo $row['etudiantNeutre'] ?></span>
+                    <span id="nbEtudInsatisf" class="visually-hidden"><?php echo $row['etudiantInsatisfait'] ?></span>
 
-            <?php
+                <?php
+                }
             }
-        }
-        $sql = "SELECT employeurSatisfait,employeurNeutre,employeurInsatisfait FROM evenement where id=$id";
-        $conn->query('SET NAMES utf8');
+            $sql = "SELECT employeurSatisfait,employeurNeutre,employeurInsatisfait FROM evenement where id=$id";
+            $conn->query('SET NAMES utf8');
 
-        //L'action la query est ici
-        $result = $conn->query($sql);
+            //L'action la query est ici
+            $result = $conn->query($sql);
 
-        if ($result->num_rows > 0) {
+            if ($result->num_rows > 0) {
 
-            while ($row = $result->fetch_assoc()) {
-            ?>
-                <span id="nbEntSatisf" class="visually-hidden"><?php echo $row['employeurSatisfait'] ?></span>
-                <span id="nbEntNeutre" class="visually-hidden"><?php echo $row['employeurNeutre'] ?></span>
-                <span id="nbEntInsatisf" class="visually-hidden"><?php echo $row['employeurInsatisfait'] ?></span>
+                while ($row = $result->fetch_assoc()) {
+                ?>
+                    <span id="nbEntSatisf" class="visually-hidden"><?php echo $row['employeurSatisfait'] ?></span>
+                    <span id="nbEntNeutre" class="visually-hidden"><?php echo $row['employeurNeutre'] ?></span>
+                    <span id="nbEntInsatisf" class="visually-hidden"><?php echo $row['employeurInsatisfait'] ?></span>
         <?php
+                }
             }
+        } else {
+            header("Location: ./connexion.php");
         }
-
         ?>
         <!-- Pour avoir un bon comportement responsive, il faut ajouter les styles ci-dessous
              dans le conteneur du "canvas" -->
