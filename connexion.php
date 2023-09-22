@@ -16,7 +16,7 @@ session_start();
     <link rel="stylesheet" href="css/styles.css">
     <!-- Script  -->
     <script src="js/connexion.js"></script>
-
+    <script src="js/creerUsager.js"></script>
 </head>
 
 <body>
@@ -24,7 +24,7 @@ session_start();
 
         <?php
         $user = "";
-        $password="";
+        $password = "";
         //Variables d'erreurs vides
         $usagerErreur = "";
         $mdpErreur = "";
@@ -123,8 +123,32 @@ session_start();
                     </div>
                 </div>
             </div>
+
+            <!-- TOASTS -->
+            <!-- Contenu du toast modification -->
+            <article class="position-fixed bottom-0 start-50 translate-middle-x mb-3" style="z-index: 10">
+                <div id="toast-A" class="toast bg-primary text-white" role="alert" aria-live="assertive" aria-atomic="true">
+                    <div class="toast-header">
+                        <p class="me-auto"> Confirmation</p>
+                        <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+                    </div>
+                    <div class="toast-body">
+                        <p class="m-0">Votre utilisateur a été crée avec succès</p>
+                    </div>
+                </div>
+            </article> <!-- Fin toast -->
+
+            <?php
+            if ($_GET['action'] == "creer") {
+            ?>
+                <script>
+                    creerToastA()
+                </script>
+
         <?php
+            }
         }
+        $conn->close();
         function test_input($data)
         {
             $data = trim($data);

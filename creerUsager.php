@@ -61,13 +61,27 @@
                 $erreur = true;
             } else {
                 $confirmationMdp = test_input($_POST["confirmationMdp"]);
+                $confirmationMdp = sha1($password, false);
             }
 
+
+
             if ($erreur != true) {
-                $sql = "INSERT INTO utilisateur  (usager,mot_de_passe)VALUES ('" . $_POST['nom'] . "','" . $_POST['confirmationMdp'] . "')";
-                header("Location: connexion.php");
-            } else {
-                echo "Error:" . $sql . "<br>" . mysqli_error($conn);
+                $sql = "SELECT usager from utilisateur where usager = '$nomUsager'";
+                $result = $conn->query($sql);
+
+                //Regarder si le user est déjà dans la BD
+                if (isset($result) && $result->num_rows > 0) {
+                    $nomUsagerErreur = "Ce nom d'usager est déjà utilisé";
+                    $erreur = true;
+                } else {
+                    $sql = "INSERT INTO utilisateur  (usager,mot_de_passe)VALUES ('" . $nomUsager . "','" . $confirmationMdp . "')";
+                    if (mysqli_query($conn, $sql)) {
+                        header("Location: connexion.php?=creer");
+                    } else {
+                        echo "Error:" . $sql . "<br>" . mysqli_error($conn);
+                    }
+                }
             }
 
             mysqli_close($conn);
@@ -88,7 +102,7 @@
 
                                         <!-- Usager -->
                                         <div class="form-outline form-white mb-4">
-                                            <input id="usagerCreer" type="text" class="form-control mb-4 " name="usager" placeholder="Usager" value="">
+                                            <input id="usagerCreer" type="text" class="form-control mb-4 " name="usager" placeholder="Usager" value="<?php $nomUsager; ?>">
                                             <span id="usagerCreerVide" class="text-danger"><?php echo $nomUsagerErreur; ?></span>
                                         </div>
 
@@ -128,6 +142,8 @@
         }
         ?>
     </main>
+    <!-- Script personnalisé -->
+    <script src="js/creerUsager.js"></script>
 </body>
 
 </html>

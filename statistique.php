@@ -62,7 +62,7 @@ session_start();
             if (isset($_GET['id'])) {
                 $id = $_GET['id'];
             }
-
+            //rajouter si pas id renvoyer sur page index
 
             //string de requête
             $sql = "SELECT etudiantSatisfait,etudiantNeutre,etudiantInsatisfait FROM evenement where id=$id";
