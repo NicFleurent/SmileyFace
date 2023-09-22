@@ -26,3 +26,13 @@
     height:60px ;
 }
 
+/* TOAST */
+
+.toast-header{
+    background-color:#092D74 !important ;
+ }
+
+ .toast.body{
+    background-color: #092D74 !important;
+ }
+

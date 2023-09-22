@@ -9,7 +9,7 @@
         let optionsToast = {
             delay: 3000,
             animation: true,
-            autohide: true
+            autohide: false
         };
 
         new bootstrap.Toast(document.getElementById('toast-A'), optionsToast).show();

@@ -21,13 +21,13 @@ session_start();
         <nav class="navbar navbar-expand-lg bg-body-tertiary mb-5">
             <div class="container-fluid ">
                 <div class="collapse navbar-collapse ">
-                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0  align-items-center">
                         <li class="nav-item">
                             <a href="index.php">
                                 <img src="img/CTR_Logo_BLANC.png" alt="Logo CégepTR">
                             </a>
                         </li>
-                        <li class="nav-item">
+                        <li class="nav-item ms-5">
                             <form>
                                 <input id="barreRecherche " class="form-control me-2" type="search" placeholder="Rechercher" aria-label="Search">
                             </form>
@@ -36,8 +36,16 @@ session_start();
                             <a class="btn btn-outline-light" href="ajouter.php">Créer un évenement</a>
                         </li>
                         <li class="nav-item ms-5">
-                            <a class="btn btn-outline-light" href="deconnexion.php">Déconnexion</a>
+                            <a class="btn btn-outline-light" href="listeUsager.php">Utilisateurs</a>
                         </li>
+                        <li class="nav-item ms-5">
+                            <a class="btn btn-outline-light" href="deconnexion.php">Déconnexion <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-box-arrow-right" viewBox="0 0 16 16">
+                                <path fill-rule="evenodd" d="M10 12.5a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v2a.5.5 0 0 0 1 0v-2A1.5 1.5 0 0 0 9.5 2h-8A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-2a.5.5 0 0 0-1 0v2z" />
+                                <path fill-rule="evenodd" d="M15.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 0 0-.708.708L14.293 7.5H5.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3z" />
+                            </svg></a>
+                           
+                        </li>
+
                     </ul>
                 </div>
             </div>
@@ -50,7 +58,7 @@ session_start();
             //Variables connexion
             $servername = "localhost";
             $username = "root";
-            $password = "root";
+            $password = "";
             $dbname = "smileyface";
             //Create connection
             $conn = mysqli_connect($servername, $username, $password, $dbname);
@@ -184,7 +192,7 @@ session_start();
         ?>
 
         <!-- OFF canvas-->
-        <div class="offcanvas offcanvas-end custom-offcanvas" tabindex="-1" id="evenement-offcanvas" aria-labelledby="offcanvasRightLabel">
+        <div class="offcanvas offcanvas-end w-50" tabindex="-1" id="evenement-offcanvas" aria-labelledby="offcanvasRightLabel">
             <div class="offcanvas-header">
                 <h2>Votre évenement</h2>
                 <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
@@ -194,8 +202,8 @@ session_start();
                     <div class="card-header">
                         <h2 class="card-title text-center"></h2>
                     </div>
-                    <div class="card-body d-flex flex-column">
-                        <img src="" class="mb-3 card-img-top img-fluid" alt="Image de l'évènement">
+                    <div class="card-body d-flex justify-content-center">
+                        <img src="" class="mb-3 card-img-top object-fit img-fluid w-75 " alt="Image de l'évènement">
                         <p class="card-text"></p>
                     </div>
                     <div class="d-flex flex-column justify-content-center">

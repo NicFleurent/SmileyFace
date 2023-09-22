@@ -2,9 +2,6 @@ ul{
    list-style: none;
 }
 
-.custom-offcanvas{
-   width:700px !important;
-}
 
 h1{
    color : #092D74 !important;
@@ -14,3 +11,6 @@ nav img{
    height: 200px;
 }
 
+.object-fit{
+   object-fit: contain;
+}
