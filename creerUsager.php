@@ -30,7 +30,7 @@
         //Variables connexion
         $servername = "localhost";
         $username = "root";
-        $password = "root";
+        $password = "";
         $dbname = "smileyface";
         //Create connection
         $conn = mysqli_connect($servername, $username, $password, $dbname);
@@ -42,7 +42,7 @@
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
             //Vérification du usager
             if (empty($_POST['usager'])) {
-                $nomErreur = "Veuillez entrer votre usager";
+                $nomUsagerErreur = "Veuillez entrer votre usager";
                 $erreur = true;
             } else
                 $nomUsager = test_input($_POST['usager']);
@@ -77,7 +77,7 @@
                 } else {
                     $sql = "INSERT INTO utilisateur  (usager,mot_de_passe)VALUES ('" . $nomUsager . "','" . $confirmationMdp . "')";
                     if (mysqli_query($conn, $sql)) {
-                        header("Location: connexion.php?=creer");
+                        header("Location: connexion.php?action=creer");
                     } else {
                         echo "Error:" . $sql . "<br>" . mysqli_error($conn);
                     }
@@ -95,14 +95,14 @@
                             <div class="card-body p-5 text-center">
                                 <div class="mb-md-5 mt-md-4 pb-5">
 
-                                    <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="POST">
+                                    <form novalidate action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="POST">
                                         <div class="col text-center mb-5">
                                             <h1>Création de votre compte usager</h1>
                                         </div>
 
                                         <!-- Usager -->
                                         <div class="form-outline form-white mb-4">
-                                            <input id="usagerCreer" type="text" class="form-control mb-4 " name="usager" placeholder="Usager" value="<?php $nomUsager; ?>">
+                                            <input id="usagerCreer" type="text" class="form-control mb-4 " name="usager" placeholder="Usager" value="<?php $nomUsager; ?>" required>
                                             <span id="usagerCreerVide" class="text-danger"><?php echo $nomUsagerErreur; ?></span>
                                         </div>
 
@@ -117,12 +117,6 @@
                                             <span id="mdpCreerConfVide" class="text-danger"><?php echo $confirmationMdpErreur; ?></span>
                                         </div>
 
-                                        <!-- Message erreur mdp non identique -->
-                                        <div>
-                                            <span class="text-danger">
-
-                                            </span>
-                                        </div>
                                         <!-- Se connecter submit et Créer un usager -->
                                         <input class="btn btn-outline-light  text-center mt-4 pt-1" type="submit" value="Créer">
                                 </div>

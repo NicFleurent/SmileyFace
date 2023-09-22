@@ -11,10 +11,11 @@ session_start();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Se connecter</title>
 
-    <!-- Bootstrap-->
+    <!-- Bootstrap CSS et JS-->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link rel="stylesheet" href="css/styles.css">
-    <!-- Script  -->
+    <!-- Scripts personnalisé  -->
     <script src="js/connexion.js"></script>
     <script src="js/creerUsager.js"></script>
 </head>
@@ -38,7 +39,7 @@ session_start();
             //Variables connexion
             $servername = "localhost";
             $username = "root";
-            $password = "root";
+            $password = "";
             $dbname = "smileyface";
             //Create connection
             $conn = mysqli_connect($servername, $username, $password, $dbname);
@@ -124,31 +125,34 @@ session_start();
                 </div>
             </div>
 
-            <!-- TOASTS -->
-            <!-- Contenu du toast modification -->
-            <article class="position-fixed bottom-0 start-50 translate-middle-x mb-3" style="z-index: 10">
-                <div id="toast-A" class="toast bg-primary text-white" role="alert" aria-live="assertive" aria-atomic="true">
-                    <div class="toast-header">
-                        <p class="me-auto"> Confirmation</p>
-                        <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
-                    </div>
-                    <div class="toast-body">
-                        <p class="m-0">Votre utilisateur a été crée avec succès</p>
-                    </div>
-                </div>
-            </article> <!-- Fin toast -->
+        <?php
+        } // Fin if !=Post || erreur == true
 
-            <?php
-            if ($_GET['action'] == "creer") {
-            ?>
-                <script>
-                    creerToastA()
-                </script>
+        ?>
+        <!-- TOASTS -->
+        <!-- Contenu du toast modification -->
+        <article class="position-fixed bottom-0 start-50 translate-middle-x mb-3" style="z-index: 10">
+            <div id="toast-A" class="toast bg-primary text-white" role="alert" aria-live="assertive" aria-atomic="true">
+                <div class="toast-header">
+                    <p class="me-auto"> Confirmation</p>
+                    <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+                </div>
+                <div class="toast-body">
+                    <p class="m-0">Votre utilisateur a été crée avec succès</p>
+                </div>
+            </div>
+        </article> <!-- Fin toast -->
 
         <?php
-            }
+        if (!isset($_GET['action'])) {
+        } else if ($_GET['action'] == "creer") {
+        ?>
+            <script>
+                creerToastA()
+            </script>
+        <?php
         }
-        $conn->close();
+
         function test_input($data)
         {
             $data = trim($data);
@@ -156,6 +160,7 @@ session_start();
             $data = htmlspecialchars($data);
             return $data;
         }
+
         ?>
     </main>
 </body>
