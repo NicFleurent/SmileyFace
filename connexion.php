@@ -9,8 +9,8 @@ session_start();
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Se connecter</title>  
-     
+    <title>Se connecter</title>
+
     <!-- Bootstrap-->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link rel="stylesheet" href="css/styles.css">
@@ -20,14 +20,18 @@ session_start();
 </head>
 
 <body>
-    <main >
+    <main>
 
         <?php
+        $user = "";
+        $password="";
         //Variables d'erreurs vides
         $usagerErreur = "";
         $mdpErreur = "";
+        $mauvaisIdentifiant = "";
         //La variable qui permet de savoir s'il y a au moins une erreur dans le formulaire
         $erreur = false;
+
 
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
@@ -48,7 +52,7 @@ session_start();
                 $usagerErreur = "Veuillez entrer votre usager";
                 $erreur = true;
             } else
-                $email = test_input($_POST['usager']);
+                $user = test_input($_POST['usager']);
             if (empty($_POST['mdp'])) {
                 $mdpErreur = "Veuillez entrer votre mot de passe";
                 $erreur = true;
@@ -62,7 +66,6 @@ session_start();
 
             //Vérification si les identifiants sont dans la base de données
             $sql = "SELECT * from utilisateur where usager ='$user' AND mot_de_passe='$password'";
-            echo $sql;
             $result = $conn->query($sql);
 
             if (isset($result)) {
@@ -70,8 +73,9 @@ session_start();
                     $row = $result->fetch_assoc();
                     $_SESSION["connexion"] = true;
                     header("Location: index.php");
-                } else {
-                    echo "<p> Nom d'usager ou mot de passe invalide</p>";
+                    echo "réussi";
+                } else if ($_POST['usager'] != null && $_POST['mdp'] != null) {
+                    $mauvaisIdentifiant = "Votre usager ou votre mot de passe est incorect";
                     $erreur = true;
                 }
             }
@@ -86,6 +90,7 @@ session_start();
                         <div class="card bg-ctr-bleu radius-1rem text-white">
                             <div class="card-body p-5 text-center">
                                 <div class="mb-md-5 mt-md-4 pb-5">
+
                                     <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="POST">
                                         <div class="col text-center mb-5">
                                             <h1>Se connecter</h1>
@@ -93,7 +98,7 @@ session_start();
 
                                         <!-- Usager -->
                                         <div class="form-outline form-white mb-4">
-                                            <input id="usager1" type="text" class="form-control mb-4 " name="usager" placeholder="Usager">
+                                            <input id="usager1" type="text" class="form-control mb-4 " name="usager" placeholder="Usager" value="<?php echo $user; ?>">
                                             <span id="usagerVide" class="text-danger"><?php echo $usagerErreur; ?></span>
                                         </div>
 
@@ -103,8 +108,15 @@ session_start();
                                             <span id="mdpVide" class="text-danger"><?php echo $mdpErreur; ?></span>
                                         </div>
 
-                                        <!-- Se connecter submit -->
-                                        <input class="btn btn-outline-light justify-content-center text-center mt-4 pt-1" type="submit" value="Se connecter">
+                                        <!-- Message erreur combinaison invalide -->
+                                        <div>
+                                            <span class="text-danger">
+                                                <?php echo $mauvaisIdentifiant; ?>
+                                            </span>
+                                        </div>
+                                        <!-- Se connecter submit et Créer un usager -->
+                                        <input class="btn btn-outline-light  text-center mt-4 pt-1" type="submit" value="Se connecter">
+                                        <a href="creerUsager.php" class="btn btn-outline-light text-center ms-4 mt-4 pt-1">Créer un usager</a>
                                 </div>
                             </div>
                         </div>
