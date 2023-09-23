@@ -36,3 +36,10 @@
     background-color: #092D74 !important;
  }
 
+ td a{
+    color:white;
+ }
+
+ td:nth-child(1) {
+    width: 40%;
+}

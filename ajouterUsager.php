@@ -1,3 +1,7 @@
+<?php
+//Démarre la session
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -77,7 +81,7 @@
                 } else {
                     $sql = "INSERT INTO utilisateur  (usager,mot_de_passe)VALUES ('" . $nomUsager . "','" . $confirmationMdp . "')";
                     if (mysqli_query($conn, $sql)) {
-                        header("Location: connexion.php?action=creer");
+                        header("Location: listeUsager?action=ajouterUsager");
                     } else {
                         echo "Error:" . $sql . "<br>" . mysqli_error($conn);
                     }
@@ -97,7 +101,7 @@
 
                                     <form novalidate action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="POST">
                                         <div class="col text-center mb-5">
-                                            <h1>Création de votre compte usager</h1>
+                                            <h1>Ajouter un utilisateur</h1>
                                         </div>
 
                                         <!-- Usager -->
@@ -118,7 +122,8 @@
                                         </div>
 
                                         <!-- Se connecter submit et Créer un usager -->
-                                        <input class="btn btn-outline-light  text-center mt-4 pt-1" type="submit" value="Créer">
+                                        <input class="btn btn-outline-light  text-center mt-4 pt-1" type="submit" value="Ajouter">
+                                        <a href="listeUsager.php" class="btn btn-outline-light text-center ms-4 mt-4 pt-1">Retour aux utilisateurs</a>
                                 </div>
                             </div>
                         </div>
