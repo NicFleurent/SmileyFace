@@ -58,7 +58,7 @@ session_start();
             //Variables connexion
             $servername = "localhost";
             $username = "root";
-            $password = "";
+            $password = "root";
             $dbname = "smileyface";
             //Create connection
             $conn = mysqli_connect($servername, $username, $password, $dbname);
@@ -87,13 +87,12 @@ session_start();
                         <li class="col-sm-6 col-md-4 col-xl-3">
                             <div class="card h-100 ">
                                 <div class="card-header">
-                                    <h2 class="card-title text-center"><?php echo $row['nom'] ?></h2>
+                                    <h2 class="text-center"><?php echo $row['nom'] ?></h2>
                                 </div>
                                 <div class="card-body d-flex flex-column">
                                     <img class="mb-3 card-img-top img-fluid" src="<?php echo $row['image'] ?>" alt="Image de l'évènement">
                                     <div class="mt-auto">
-                                        <p class="card-text mb-4"><?php echo $row['departement'] ?></p>
-                                        <span><?php echo $row['date'] ?></span>
+                                        <span class="card-text mb-4"><?php echo $row['date'] ?></span>
                                         <div class="text-center">
                                             <button id="<?php echo $row['id'] ?>" class="btn btn-outline-dark mx-auto" type="button" data-bs-toggle="offcanvas" data-bs-target="#evenement-offcanvas" aria-controls="offcanvasRight">Voir l'évènement</button>
                                         </div>
@@ -127,13 +126,12 @@ session_start();
                         <li class="col-sm-6 col-md-4 col-xl-3">
                             <div class="card h-100 ">
                                 <div class="card-header">
-                                    <h2 class="card-title text-center"><?php echo $row['nom'] ?></h2>
+                                    <h2 class="text-center"><?php echo $row['nom'] ?></h2>
                                 </div>
-                                <div class="card-body d-flex flex-column ">
+                                <div class="card-body d-flex flex-column">
                                     <img class="mb-3 card-img-top img-fluid" src="<?php echo $row['image'] ?>" alt="Image de l'évènement">
                                     <div class="mt-auto">
-                                        <p class="card-text mb-4"><?php echo $row['departement'] ?></p>
-                                        <span><?php echo $row['date'] ?></span>
+                                        <span class="card-text mb-4"><?php echo $row['date'] ?></span>
                                         <div class="text-center">
                                             <button id="<?php echo $row['id'] ?>" class="btn btn-outline-dark mx-auto" type="button" data-bs-toggle="offcanvas" data-bs-target="#evenement-offcanvas" aria-controls="offcanvasRight">Voir l'évènement</button>
                                         </div>
@@ -165,14 +163,13 @@ session_start();
 
                         <li class="col-sm-6 col-md-4 col-xl-3">
                             <div class="card h-100 ">
-                                <div class="card-header">
-                                    <h2 class="card-title text-center"><?php echo $row['nom'] ?></h2>
+                                <div class="card-header text-center">
+                                    <h2 class="text-center"><?php echo $row['nom'] ?></h2>
+                                    <span class="text-center fs-5"><?php echo $row['date'] ?></span>
                                 </div>
-                                <div class="card-body d-flex flex-column ">
+                                <div class="card-body d-flex flex-column">
                                     <img class="mb-3 card-img-top img-fluid" src="<?php echo $row['image'] ?>" alt="Image de l'évènement">
                                     <div class="mt-auto">
-                                        <p class="card-text mb-4"><?php echo $row['departement'] ?></p>
-                                        <span><?php echo $row['date'] ?></span>
                                         <div class="text-center">
                                             <button id="<?php echo $row['id'] ?>" class="btn btn-outline-dark mx-auto" type="button" data-bs-toggle="offcanvas" data-bs-target="#evenement-offcanvas" aria-controls="offcanvasRight">Voir l'évènement</button>
                                         </div>
@@ -200,11 +197,11 @@ session_start();
             <div class="offcanvas-body">
                 <div class="card h-100 card-event">
                     <div class="card-header">
-                        <h2 class="card-title text-center"></h2>
+                        <h2 class="m-3 text-center"></h2>
                     </div>
-                    <div class="card-body d-flex justify-content-center">
+                    <div class="card-body d-flex flex-column justify-content-center">
                         <img src="" class="mb-3 card-img-top object-fit img-fluid w-75 " alt="Image de l'évènement">
-                        <p class="card-text"></p>
+                        <p class="card-text text-center mb-5 fs-3"></p>
                     </div>
                     <div class="d-flex flex-column justify-content-center">
                         <div class="card-footer ">

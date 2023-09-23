@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Client :  localhost
--- Généré le :  Ven 22 Septembre 2023 à 14:43
+-- Généré le :  Ven 22 Septembre 2023 à 18:57
 -- Version du serveur :  5.7.11
 -- Version de PHP :  7.0.3
 
@@ -86,7 +86,6 @@ CREATE TABLE `evenement` (
   `nom` varchar(255) NOT NULL,
   `date` date NOT NULL,
   `lien` varchar(1500) NOT NULL,
-  `departement` varchar(255) DEFAULT NULL,
   `image` varchar(1500) NOT NULL DEFAULT 'img/CTR_Logo_RVB.jpg',
   `etudiantSatisfait` int(11) NOT NULL DEFAULT '0',
   `etudiantNeutre` int(11) NOT NULL DEFAULT '0',
@@ -100,12 +99,12 @@ CREATE TABLE `evenement` (
 -- Contenu de la table `evenement`
 --
 
-INSERT INTO `evenement` (`id`, `nom`, `date`, `lien`, `departement`, `image`, `etudiantSatisfait`, `etudiantNeutre`, `etudiantInsatisfait`, `employeurSatisfait`, `employeurNeutre`, `employeurInsatisfait`) VALUES
-(1, 'Event test', '2023-11-05', 'https://lecampusti.ca/', 'Informatique', 'img/CTR_Logo_RVB.jpg', 63, 47, 56, 10, 5, 2),
-(3, 'Test #3 3', '2023-10-02', 'https://lecampusti.ca/', 'Génie Mécanique', 'https://lecampusti.ca/wp-content/uploads/2021/09/Campus_TI_Logo-Final-tagline-01-01.png', 3, 1, 1, 3, 1, 1),
-(44, 'Test Party noel', '2023-09-21', '', NULL, 'https://th.bing.com/th/id/OIP.R9unmoPwddPsQkMcptGOiwHaHa?pid=ImgDet&amp;rs=1', 0, 0, 0, 0, 0, 0),
-(45, 'TEst demo', '2023-09-28', '', NULL, 'img/CTR_Logo_RVB.jpg', 0, 0, 0, 0, 0, 0),
-(47, 'One piece Fest', '2023-09-15', '', NULL, 'https://i.pinimg.com/originals/03/7f/4b/037f4bfef599b4ffaae712f5f9709ccd.jpg', 0, 0, 0, 0, 0, 0);
+INSERT INTO `evenement` (`id`, `nom`, `date`, `lien`, `image`, `etudiantSatisfait`, `etudiantNeutre`, `etudiantInsatisfait`, `employeurSatisfait`, `employeurNeutre`, `employeurInsatisfait`) VALUES
+(1, 'Event test', '2023-11-05', 'https://lecampusti.ca/', 'img/CTR_Logo_RVB.jpg', 63, 47, 56, 10, 5, 2),
+(3, 'Test #3 3', '2023-10-02', 'https://lecampusti.ca/', 'https://lecampusti.ca/wp-content/uploads/2021/09/Campus_TI_Logo-Final-tagline-01-01.png', 5, 1, 1, 3, 1, 1),
+(44, 'Test Party noel', '2023-09-21', '', 'https://th.bing.com/th/id/OIP.R9unmoPwddPsQkMcptGOiwHaHa?pid=ImgDet&amp;rs=1', 0, 0, 0, 0, 0, 0),
+(45, 'TEst demo', '2023-09-28', '', 'img/CTR_Logo_RVB.jpg', 0, 0, 0, 0, 0, 0),
+(47, 'One piece Fest', '2023-09-15', '', 'https://i.pinimg.com/originals/03/7f/4b/037f4bfef599b4ffaae712f5f9709ccd.jpg', 1, 1, 1, 1, 1, 1);
 
 -- --------------------------------------------------------
 
@@ -153,7 +152,8 @@ CREATE TABLE `utilisateur` (
 INSERT INTO `utilisateur` (`id`, `usager`, `mot_de_passe`) VALUES
 (1, 'anick.bruneau', '71a4236acaaa09fa969570ae1368114faa96ede5'),
 (2, 'shany.carle', 'b791ab2342bfc0302af3dd566649ef5d51c95930'),
-(3, 'admin', '5e290a2a157c9779ba4c84b5aa72e114cc74d0e4');
+(3, 'admin', '5e290a2a157c9779ba4c84b5aa72e114cc74d0e4'),
+(4, 'Nico', 'dc76e9f0c0006e8f919e0c515c66dbba3982f785');
 
 --
 -- Index pour les tables exportées
@@ -208,7 +208,7 @@ ALTER TABLE `evenement_departement`
 -- AUTO_INCREMENT pour la table `utilisateur`
 --
 ALTER TABLE `utilisateur`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
 -- Contraintes pour les tables exportées
 --
