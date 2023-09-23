@@ -48,7 +48,7 @@ session_start();
             //Variables connexion
             $servername = "localhost";
             $username = "root";
-            $password = "";
+            $password = "root";
             $dbname = "smileyface";
             //Create connection
             $conn = mysqli_connect($servername, $username, $password, $dbname);

@@ -34,7 +34,7 @@ session_start();
         //Variables connexion
         $servername = "localhost";
         $username = "root";
-        $password = "";
+        $password = "root";
         $dbname = "smileyface";
         //Create connection
         $conn = mysqli_connect($servername, $username, $password, $dbname);
@@ -81,7 +81,7 @@ session_start();
                 } else {
                     $sql = "INSERT INTO utilisateur  (usager,mot_de_passe)VALUES ('" . $nomUsager . "','" . $confirmationMdp . "')";
                     if (mysqli_query($conn, $sql)) {
-                        header("Location: listeUsager?action=ajouterUsager");
+                        header("Location: listeUsager.php?action=ajouterUsager");
                     } else {
                         echo "Error:" . $sql . "<br>" . mysqli_error($conn);
                     }
