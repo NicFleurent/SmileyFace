@@ -111,7 +111,6 @@ function controlSubmit(){
         btnEnvoyer.disabled = true;
     }
     else{
-        console.log("faux");
         btnEnvoyer.disabled = false;
     }
 }

@@ -2,12 +2,12 @@ ul{
    list-style: none;
 }
 
-nav img{
-   height: 105px;
-}
-
 .object-fit{
    object-fit: contain;
+}
+
+h1 {
+    color: #092D74;
 }
 
 

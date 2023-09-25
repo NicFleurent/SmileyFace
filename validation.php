@@ -82,7 +82,7 @@ session_start();
                                     <!-- NIP -->
                                     <div class="form-outline form-white mb-4">
                                         <input id="nip" type="text" class="form-control text-center mb-4" name="nip" maxlength="4">
-                                        <span id="usagerVide" class="text-danger"><?php echo $nipVide; ?></span>
+                                        <span id="nipVide" class="text-danger"><?php echo $nipVide; ?></span>
                                         <input id="destination" type="hidden" class="form-control" name="destination" value="<?php echo $destination ?>">
                                         <input id="id" type="hidden" class="form-control" name="id" value="<?php echo $id ?>">
                                     </div>
@@ -94,7 +94,7 @@ session_start();
                                         </span>
                                     </div>
                                     <!-- Se connecter submit et Créer un usager -->
-                                    <input class="btn btn-outline-light text-center mt-4 pt-1" type="submit" value="Valider">
+                                    <input id="btnValide" class="btn btn-outline-light text-center mt-4 pt-1" type="submit" value="Valider">
                                 </form>
                             </div>
                         </div>
@@ -113,5 +113,6 @@ session_start();
         ?>
 
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+        <script src="js/validation.js"></script>
 </body>
 </html>

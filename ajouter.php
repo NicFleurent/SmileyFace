@@ -112,6 +112,40 @@ session_start();
         }
         if ($_SERVER["REQUEST_METHOD"] != "POST" || $erreurChant == true || $erreurBD == true) {
     ?>
+            <header>
+                <nav class="navbar navbar-expand-lg bg-body-tertiary mb-5">
+                    <div class="container-fluid ">
+                        <div class="collapse navbar-collapse">
+                            <ul class="navbar-nav mb-2 mb-lg-0  align-items-center w-100 justify-content-between px-5">
+                                <li class="nav-item">
+                                    <a href="index.php">
+                                        <img src="img/CTR_Logo_BLANC.png" alt="Logo CégepTR">
+                                    </a>
+                                </li>
+                                <li class="nav-item ms-5">
+                                    <form>
+                                        <input id="barreRecherche " class="form-control me-2" type="search" placeholder="Rechercher" aria-label="Search">
+                                    </form>
+                                </li>
+                                <li class="nav-item ms-5">
+                                    <a class="btn btn-outline-light" href="ajouter.php">Créer un évènement</a>
+                                </li>
+                                <li class="nav-item ms-5">
+                                    <a class="btn btn-outline-light" href="validation.php?destination=listeUsager">Utilisateurs</a>
+                                </li>
+                                <li class="nav-item ms-5">
+                                    <a class="btn btn-outline-light" href="deconnexion.php">Déconnexion <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-box-arrow-right" viewBox="0 0 16 16">
+                                        <path fill-rule="evenodd" d="M10 12.5a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v2a.5.5 0 0 0 1 0v-2A1.5 1.5 0 0 0 9.5 2h-8A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-2a.5.5 0 0 0-1 0v2z" />
+                                        <path fill-rule="evenodd" d="M15.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 0 0-.708.708L14.293 7.5H5.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3z" />
+                                    </svg></a>
+                                
+                                </li>
+
+                            </ul>
+                        </div>
+                    </div>
+                </nav>
+            </header>
             <div class="container">
                 <div class="row">
                     <div class="col text-white bg-danger">
@@ -119,7 +153,7 @@ session_start();
                     </div>
                 </div>
             </div>
-            <div class="container d-flex flex-column justify-content-center align-items-center vh-100">
+            <div class="container d-flex flex-column justify-content-center align-items-center">
                 <div class="container-fluid bg-ctr-bleu radius-1rem text-white p-5">
                     <h1 class="text-center mb-5">Ajouter un évènement</h1>
                     <form id="form" class="g-3 needs-validation" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post" novalidate>
@@ -229,9 +263,6 @@ session_start();
                             <button type="submit" class="btn btn-outline-light fw-bold fs-3 mt-4 pt-1">Ajouter</button>
                         </div>
                     </form>
-                </div>
-                <div class="text-center">
-                    <a class="btn btn-outline-dark fw-bold fs-3 mt-2" href="./index.php" role="button">Retourner à la page d'accueil</a>
                 </div>
             </div>
     <?php
