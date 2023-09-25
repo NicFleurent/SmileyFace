@@ -33,10 +33,16 @@ li .card .card-body .card-img-bottom{
    color: white;
 }
 
-.card-footer .btn:hover{
+.card-footer .btn:hover, .text-departement{
    background-color: white;
    color: #092D74;
    border-color: #092D74;
+}
+
+.text-departement{
+   color: #092D74;
+   border: solid 2px #092D74;
+   font-weight: 500;
 }
 
 #btnChoixSondage{
@@ -45,14 +51,19 @@ li .card .card-body .card-img-bottom{
    border-top-right-radius: 0;
 }
 
-#btnStatistique{
+#btnStatistique, #btnGerer{
    border-radius: 0;
 }
 
-#btnGerer{
+#btnWeb{
    border-bottom-left-radius: 0;
    border-top-left-radius: 0;
    border-top-right-radius: 0;
+}
+
+#btnWebDisable{
+   text-decoration-line: none;
+   color: darkgray;
 }
 
 /* Hardcoder un peu dégueux */
