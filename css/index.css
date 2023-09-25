@@ -61,6 +61,11 @@ li .card .card-body .card-img-bottom{
    border-top-right-radius: 0;
 }
 
+#btnWebDisable{
+   text-decoration-line: none;
+   color: darkgray;
+}
+
 /* Hardcoder un peu dégueux */
 .offcanvas-body .card .card-body{
    max-height: 83%;
