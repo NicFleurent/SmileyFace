@@ -3,16 +3,14 @@ ul{
 }
 
 nav img{
-   height: 200px;
+   height: 105px;
 }
 
 .object-fit{
    object-fit: contain;
 }
 
-h1{
-    color: #092D74;
-}
+
 
 .card-header{
    background-color: #092D74 !important;

@@ -30,7 +30,7 @@
                             </form>
                         </li>
                         <li class="nav-item ms-5">
-                            <a class="btn btn-outline-light" href="ajouter.php">Créer un évenement</a>
+                            <a class="btn btn-outline-light" href="ajouter.php">Créer un évènement</a>
                         </li>
                         <li class="nav-item ms-5">
                             <a class="btn btn-outline-light" href="listeUsager.php">Utilisateurs</a>
@@ -115,8 +115,6 @@
                 $confirmationMdp = sha1($password, false);
             }
 
-
-
             if ($erreur != true) {
                 $sql = "UPDATE utilisateur SET usager='$nomUsager', mot_de_passe='$confirmationMdp'";
                 $result = $conn->query($sql);
@@ -139,13 +137,12 @@
         }
         if ($_SERVER["REQUEST_METHOD"] != "POST" || $erreur == true) {
         ?>
-            <div class="container vh-100">
+            <div class="container">
                 <div class="row d-flex justify-content-center align-items-center h-100">
                     <div class="col-12 col-md-8 col-lg-6 col-xl-5">
                         <div class="card bg-ctr-bleu radius-1rem text-white">
                             <div class="card-body p-5 text-center">
-                                <div class="mb-md-5 mt-md-4 pb-5">
-
+                                <div class="md-5 mt-md-4 ">
                                     <form novalidate action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="POST">
                                         <div class="col text-center mb-5">
                                             <h1>Modification de l'usager</h1>
@@ -167,10 +164,8 @@
                                             <input id="mdpCreerConf" type="password" class="form-control mb-4" name="confirmationMdp" placeholder="Confirmation du mot de passe">
                                             <span id="mdpCreerConfVide" class="text-danger"><?php echo $confirmationMdpErreur; ?></span>
                                         </div>
-
-                                        <!-- Se connecter submit et Créer un usager -->
+                                        <!-- Modifer-->
                                         <input class="btn btn-outline-light  text-center mt-4 pt-1" type="submit" value="Modifier">
-                                        <a href="listeUsager.php" class="btn btn-outline-light text-center ms-4 mt-4 pt-1">Retour aux utilisateurs</a>
                                 </div>
                             </div>
                         </div>

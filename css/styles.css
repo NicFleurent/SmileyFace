@@ -2,20 +2,22 @@
     border-radius: 1rem;
 }
 
-.bg-ctr-bleu, .navbar {
+.bg-ctr-bleu,
+.navbar {
     background-color: #092D74;
 }
 
-.btn-outline-dark{
+.btn-outline-dark {
     color: #092D74;
     border-color: #092D74;
 }
 
-.btn-outline-dark:hover{
+.btn-outline-dark:hover {
     background-color: #092D74;
 }
 
-.btn-ajouterDept, .btn-supprimerDept{
+.btn-ajouterDept,
+.btn-supprimerDept {
     width: 40%;
 }
 
@@ -25,18 +27,11 @@
 
 /* TOAST */
 
-.toast-header{
-    background-color:#092D74 !important ;
- }
-
- .toast.body{
+.toast-header {
     background-color: #092D74 !important;
- }
-
- td a{
-    color:white;
- }
-
- td:nth-child(1) {
-    width: 40%;
 }
+
+.toast.body {
+    background-color: #092D74 !important;
+}
+

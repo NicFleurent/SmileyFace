@@ -91,7 +91,7 @@ session_start();
                     <div class="col-12 col-md-8 col-lg-6 col-xl-5">
                         <div class="card bg-ctr-bleu radius-1rem text-white">
                             <div class="card-body p-5 text-center">
-                                <div class="mb-md-5 mt-md-4 pb-5">
+                                <div class="md-5 mt-md-4 mb-3">
 
                                     <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="POST">
                                         <div class="col text-center mb-5">
@@ -118,7 +118,6 @@ session_start();
                                         </div>
                                         <!-- Se connecter submit et Créer un usager -->
                                         <input class="btn btn-outline-light  text-center mt-4 pt-1" type="submit" value="Se connecter">
-                                        <a href="creerUsager.php" class="btn btn-outline-light text-center ms-4 mt-4 pt-1">Créer un usager</a>
                                     </form>
                                 </div>
                             </div>
