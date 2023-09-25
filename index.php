@@ -33,7 +33,7 @@ session_start();
                             </form>
                         </li>
                         <li class="nav-item ms-5">
-                            <a class="btn btn-outline-light" href="validation.php?destination=ajouter">Créer un évenement</a>
+                            <a class="btn btn-outline-light" href="validation.php?destination=ajouter">Créer un évènement</a>
                         </li>
                         <li class="nav-item ms-5">
                             <a class="btn btn-outline-light" href="validation.php?destination=listeUsager">Utilisateurs</a>

@@ -121,7 +121,7 @@ session_start();
                                             <span id="mdpCreerConfVide" class="text-danger"><?php echo $confirmationMdpErreur; ?></span>
                                         </div>
 
-                                        <!-- Se connecter submit et Créer un usager -->
+                                        <!--Retour à la liste des utilisateurs -->
                                         <input class="btn btn-outline-light  text-center mt-4 pt-1" type="submit" value="Ajouter">
                                         <a href="listeUsager.php" class="btn btn-outline-light text-center ms-4 mt-4 pt-1">Retour aux utilisateurs</a>
                                 </div>

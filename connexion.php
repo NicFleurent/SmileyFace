@@ -118,7 +118,6 @@ session_start();
                                         </div>
                                         <!-- Se connecter submit et Créer un usager -->
                                         <input class="btn btn-outline-light  text-center mt-4 pt-1" type="submit" value="Se connecter">
-                                        <a href="creerUsager.php" class="btn btn-outline-light text-center ms-4 mt-4 pt-1">Créer un usager</a>
                                     </form>
                                 </div>
                             </div>
