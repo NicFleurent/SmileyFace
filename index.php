@@ -92,10 +92,12 @@ session_start();
                     $evenementsLien[$i] = $row['lien'];
                     $i++;
                 }
-            }
         ?>
                 <h1>Vos évènements aujourd'hui</h1>
-                <ul class="row g-3 m-0">
+                <?php
+            }
+                ?>
+                <ul class="row g-3 m-0 w-100 justify-content-center">
                 <?php
                     for($i=0 ; $i<count($evenementsId) ; $i++){
 
@@ -151,10 +153,12 @@ session_start();
                     $evenementsLien[$i] = $row['lien'];
                     $i++;
                 }
+                ?>
+                <h1>Vos évènements à venir</h1>
+            <?php
             }
             ?>
-                <h1>Vos évènements à venir</h1>
-                <ul class="row g-3 m-0">
+                <ul class="row g-3 m-0 w-100 justify-content-center">
                 <?php
                     for($i=0 ; $i<count($evenementsId) ; $i++){
 
@@ -211,10 +215,12 @@ session_start();
                     $evenementsLien[$i] = $row['lien'];
                     $i++;
                 }
-            }
             ?>
                 <h1>Vos évènements passés</h1>
-                <ul class="row g-3 m-0">
+            <?php
+            }
+            ?>
+                <ul class="row g-3 m-0 w-100 justify-content-center">
                     <?php
                     for($i=0 ; $i<count($evenementsId) ; $i++){
 
