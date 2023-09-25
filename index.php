@@ -10,18 +10,16 @@ session_start();
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Évènements</title>
-
     <link rel="stylesheet" href="css/styles.css">
     <link rel="stylesheet" href="css/index.css">
-
 </head>
 
 <body>
     <header>
         <nav class="navbar navbar-expand-lg bg-body-tertiary mb-5">
             <div class="container-fluid ">
-                <div class="collapse navbar-collapse ">
-                    <ul class="navbar-nav me-auto mb-2 mb-lg-0  align-items-center">
+                <div class="collapse navbar-collapse">
+                    <ul class="navbar-nav mb-2 mb-lg-0  align-items-center w-100 justify-content-between px-5">
                         <li class="nav-item">
                             <a href="index.php">
                                 <img src="img/CTR_Logo_BLANC.png" alt="Logo CégepTR">
