@@ -14,11 +14,12 @@ document.addEventListener('DOMContentLoaded', function () {
             let departements = card.querySelectorAll('.card-departement');
             let lien = card.querySelector('.card-lien').innerHTML;
 
+            let offcanvasCarte = document.querySelector('.offcanvas .card-event');
             let offcanvasTitre = document.querySelector('.offcanvas .card-header h2');
             let offcanvasImage = document.querySelector('.offcanvas img');
             let offcanvasDate = document.querySelector('.offcanvas .card-text');
             let offcanvasDepartement = document.querySelector('.offcanvas .card-departement');
-
+            
             offcanvasTitre.textContent = nom;
             offcanvasImage.setAttribute('src', image);
             offcanvasDate.textContent = date;
@@ -26,14 +27,60 @@ document.addEventListener('DOMContentLoaded', function () {
             offcanvasDepartement.innerHTML = "";
             for(let i=0 ; i<departements.length ; i++){
                 let departement = document.createElement("span");
-                departement.setAttribute("class", "rounded text-departement p-2 m-2");
+                departement.setAttribute("class", "rounded text-departement text-center p-2 m-2");
                 departement.innerHTML = departements[i].innerHTML;
                 offcanvasDepartement.append(departement);
             }
 
-            console.log(bouton);
+            if(window.innerHeight >= 1330){
+                if(offcanvasDepartement.offsetHeight > 960){
+                    offcanvasImage.style.display="none";
+                    offcanvasCarte.setAttribute("class","card card-event");
+                }
+                else if(offcanvasDepartement.offsetHeight > 790){
+                    offcanvasImage.style.display="none";
+                    offcanvasCarte.setAttribute("class","card h-100 card-event");
+                }
+                else{
+                    offcanvasImage.style.display="block";
+                    offcanvasCarte.setAttribute("class","card h-100 card-event");
+                }
+            }
+            else if(window.innerHeight >= 960){
+                if(offcanvasDepartement.offsetHeight > 600){
+                    offcanvasImage.style.display="none";
+                    offcanvasCarte.setAttribute("class","card card-event");
+                }
+                else if(offcanvasDepartement.offsetHeight > 300){
+                    offcanvasImage.style.display="none";
+                    offcanvasCarte.setAttribute("class","card h-100 card-event");
+                }
+                else{
+                    offcanvasImage.style.display="block";
+                    offcanvasCarte.setAttribute("class","card h-100 card-event");
+                }
+            }
+            else if(window.innerHeight >= 800){
+                if(offcanvasDepartement.offsetHeight > 420){
+                    offcanvasImage.style.display="none";
+                    offcanvasCarte.setAttribute("class","card card-event");
+                }
+                else if(offcanvasDepartement.offsetHeight > 180){
+                    offcanvasImage.style.display="none";
+                    offcanvasCarte.setAttribute("class","card h-100 card-event");
+                }
+                else{
+                    offcanvasImage.style.display="block";
+                    offcanvasCarte.setAttribute("class","card h-100 card-event");
+                }
+            }
+            else{
+                offcanvasImage.style.display="none";
+                offcanvasCarte.setAttribute("class","card card-event");
+            }
+            
+
             let id = bouton.getAttribute("id");
-            console.log(id)
             let btnChoixSondage = document.getElementById("btnChoixSondage");
             btnChoixSondage.setAttribute("href", "validation.php?destination=choixSondage&id=" + id);
             let btnStatistique = document.getElementById("btnStatistique");

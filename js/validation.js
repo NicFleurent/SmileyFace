@@ -27,19 +27,11 @@ document.addEventListener('DOMContentLoaded', function () {
             controlSubmit();
         }
         else {
-            if(nip.value == '1234'){
-                nipErreur.textContent = '';
-                nip.classList.remove('is-invalid');
-                nip.classList.add('is-valid');
-                nipErreurValidation = false;
-                controlSubmit();
-            }
-            else{
-                nipErreur.textContent = 'NIP invalide';
-                nip.classList.add('is-invalid');
-                nipErreurValidation = true;
-                controlSubmit();
-            }
+            nipErreur.textContent = '';
+            nip.classList.remove('is-invalid');
+            nip.classList.add('is-valid');
+            nipErreurValidation = false;
+            controlSubmit();
         }
 
         function controlSubmit(){
