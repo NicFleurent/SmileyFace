@@ -122,7 +122,7 @@ session_start();
         <div class="d-flex justify-content-center ">
             <div class="me-5">
                 <h1 id="titre-etu"></h1>
-                <div class="position-relative">
+                <div class="position-relative ">
                     <canvas id="canvas-diagramme"></canvas>
                 </div>
             </div>

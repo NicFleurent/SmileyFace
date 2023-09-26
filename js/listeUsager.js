@@ -29,16 +29,16 @@ function creerToastM() {
 }
 
 //Fait apparaître un avis de suppression
-document.getElementById('confirmSupp').addEventListener('click', function (event) {
+// document.getElementById('confirmSupp').addEventListener('click', function (event) {
 
-    let options = {
-       backdrop: true,
-       keyboard: true,
-       show: true
-    };
+//     let options = {
+//        backdrop: true,
+//        keyboard: true,
+//        show: true
+//     };
 
-    new bootstrap.Modal(document.getElementById('modalSupp'), options).show();
-});
+//     new bootstrap.Modal(document.getElementById('modalSupp'), options).show();
+// });
 
 
 

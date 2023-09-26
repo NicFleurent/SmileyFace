@@ -61,9 +61,6 @@ session_start();
             } else
                 $password = test_input($_POST['mdp']);
 
-            $user = $_POST['usager'];
-            $password = $_POST['mdp'];
-
             $password = sha1($password, false);
 
             //Vérification si les identifiants sont dans la base de données

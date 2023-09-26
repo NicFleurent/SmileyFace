@@ -65,7 +65,7 @@
          * Permet d'afficher un message d'erreur si le champ mdp confirm est vide
          */
         function validationConfirmVideMdp() {
-            if (mdpConfirm.value == '' || mdp.value == null) {
+            if (mdpConfirm.value == '' || mdpConfirm.value == null) {
                 mdpConfirmErreur.textContent = 'Veuillez entrer votre mot de passe';
                 mdpConfirm.classList.add('is-invalid');
             }
@@ -90,7 +90,7 @@
                 mdpConfirm.classList.remove('is-invalid');
             }
             if (regexPassword.test(mdp.value)) {
-                mdpErreur.textContent = 'Le mot de passe doit contenir au moins 8 caractères, 1 lettre majuscule, 1 chiffre et 1 caratère spécial';
+                mdpErreur.textContent = 'Le mot de passe doit contenir au moins 8 caractères, 1 lettre majuscule, 1 chiffre et 1 caractère spécial';
                 mdp.classList.add('is-invalid');
                 console.log(mdp.value.test(regexPassword));
             }

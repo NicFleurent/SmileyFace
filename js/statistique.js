@@ -15,19 +15,17 @@ document.addEventListener('DOMContentLoaded', function () {
     //Obtention du pourcentage
     let totalVotes = (nbEtudSatisf + nbEtudNeutre + nbEtudInsatisf)
     let pourcentageEtudSatisf = Math.round((nbEtudSatisf * 100) / totalVotes);
-    let pourcentageEtudNeutre = Math.round((nbEtudNeutre)*100/totalVotes);
-    let pourcentageEtudInsatisf = Math.round((nbEtudInsatisf*100)/totalVotes)
+    let pourcentageEtudNeutre = Math.round((nbEtudNeutre) * 100 / totalVotes);
+    let pourcentageEtudInsatisf = Math.round((nbEtudInsatisf * 100) / totalVotes)
     //Création de tableaux pour les données
     let tabStatsEt = [nbEtudSatisf, nbEtudNeutre, nbEtudInsatisf];
-    let tabLabelEt = ['Étudiants satisfaits' + '(' + pourcentageEtudSatisf + '%' + ')', 
-    'Étudiants neutres'+ '(' + pourcentageEtudNeutre + '%' + ')', 
+    let tabLabelEt = ['Étudiants satisfaits' + '(' + pourcentageEtudSatisf + '%' + ')',
+    'Étudiants neutres' + '(' + pourcentageEtudNeutre + '%' + ')',
     'Étudiants insatisfaits' + '(' + pourcentageEtudInsatisf + '%' + ')'];
     let titreGraphEt = document.getElementById('titre-etu');
 
 
-
-
-    if (tabStatsEt.includes(0, 0) && tabStatsEt.includes(0, 1) && tabStatsEt.includes(0, 2)) {
+    if (tabStatsEt[0] === 0 && tabStatsEt[1] === 0 && tabStatsEt[2]===0) {
         titreGraphEt.textContent = 'Aucune donnée n\'a été enregistré pour les étudiants';
     }
     else {
@@ -50,7 +48,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
         // Les options du diagramme.
         const optionsChartJs = {
-            
+
         };
 
         // eslint-disable-next-line no-unused-vars  
@@ -70,15 +68,15 @@ document.addEventListener('DOMContentLoaded', function () {
     //Obtention en pourcentage
     let totalVotesEnt = (nbEntreSatisf + nbEntreNeutre + nbEntreInsatisf)
     let pourcentageEntreSatisf = Math.round((nbEntreSatisf * 100) / totalVotesEnt);
-    let pourcentageEntreNeutre = Math.round((nbEntreNeutre)*100/totalVotesEnt);
-    let pourcentageEntreInsatisf = Math.round((nbEntreInsatisf*100)/totalVotesEnt)
+    let pourcentageEntreNeutre = Math.round((nbEntreNeutre) * 100 / totalVotesEnt);
+    let pourcentageEntreInsatisf = Math.round((nbEntreInsatisf * 100) / totalVotesEnt)
     let tabStatsEn = [nbEntreSatisf, nbEntreNeutre, nbEntreInsatisf];
     let tabLabelEn = ['Entreprises satisfaites' + '(' + pourcentageEntreSatisf + '%' + ')',
-     'Entreprises neutres' + '(' + pourcentageEntreNeutre + '%' + ')', 
-     'Entreprises insatisfaites'+ '(' + pourcentageEntreInsatisf + '%' + ')'];
+    'Entreprises neutres' + '(' + pourcentageEntreNeutre + '%' + ')',
+    'Entreprises insatisfaites' + '(' + pourcentageEntreInsatisf + '%' + ')'];
     let titreGraphEn = document.getElementById('titre-ent');
 
-    if (tabStatsEt.includes(0, 0) && tabStatsEt.includes(0, 1) && tabStatsEt.includes(0, 2)) {
+    if (tabStatsEn[0] === 0 && tabStatsEn[1] === 0 && tabStatsEn[2]===0) {
         titreGraphEn.textContent = 'Aucune donnée n\'a été enregistré pour les entreprises';
     }
     else {

@@ -6,12 +6,6 @@ ul{
    object-fit: contain;
 }
 
-h1 {
-    color: #092D74;
-}
-
-
-
 .card-header{
    background-color: #092D74 !important;
    color: white !important;
