@@ -266,12 +266,12 @@ session_start();
                 <div class="card h-100 card-event">
                     <div class="card-header">
                         <h2 class="m-3 text-center"></h2>
-                    </div>
-                    <div class="card-body d-flex flex-column justify-content-center align-items-center">
-                        <img src="" class="mb-3 card-img-top object-fit img-fluid w-75 " alt="Image de l'évènement">
                         <p class="card-text text-center fs-3"></p>
-                        <h3 class="text-start">Les programmes invités :</h3>
+                    </div>
+                    <div class="card-body d-flex flex-column justify-content-start align-items-center p-0">
+                        <h3 class="text-center bg-white w-100 py-2">Les programmes invités :</h3>
                         <div class="card-departement d-flex flex-row w-100 flex-wrap justify-content-center"></div>
+                        <img src="" class="card-img-bottom object-fit img-fluid" alt="Image de l'évènement">
                     </div>
                     <div class="card-footer d-flex flex-row justify-content-center p-0">
                         <a id="btnChoixSondage" class="btn radius-0 w-100 p-3 border-end" href="choixSondage.php">
@@ -289,6 +289,7 @@ session_start();
                     </div>
                 </div>
             </div>
+        </div>   
     </main>
 
     <!-- Bootstrap-->

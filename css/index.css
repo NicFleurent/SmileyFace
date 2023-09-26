@@ -1,9 +1,20 @@
+body, html{
+   height: 100%;
+}
+
 ul{
    list-style: none;
 }
 
 .object-fit{
    object-fit: contain;
+}
+
+h1 {
+    color: #092D74;
+}
+.offcanvas-body .card .card-body .card-img-bottom{
+   max-height: 253px;
 }
 
 .card-header{
@@ -58,12 +69,12 @@ li .card .card-body .card-img-bottom{
    color: darkgray;
 }
 
-/* Hardcoder un peu dégueux */
+/* Hardcoder un peu dégueux 
 .offcanvas-body .card .card-body{
    max-height: 83%;
-}
+}*/
 
-/* Hardcoder un peu dégueux */
+/* Hardcoder un peu dégueux
 .offcanvas-body .card .card-body img{
    max-height: 80%;
-}
+} */
