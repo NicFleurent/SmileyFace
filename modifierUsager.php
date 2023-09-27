@@ -59,7 +59,7 @@
         $mdpErreur = "";
 
         //La variable s'il y a une erreur
-        $erreur = false;
+        $erreur = $erreurBD = false;
     
         //Variables connexion
         $servername = "localhost";
@@ -111,15 +111,21 @@
                 //Regarder si le user est déjà dans la BD
                 if (isset($result) && $result->num_rows > 0) {
                     $nomUsagerErreur = "Ce nom d'usager est déjà utilisé";
+                    $erreurBD = true;
                     $erreur = true;
-                } else {
-                    $sql = "UPDATE utilisateur SET usager='$nomUsager' where id=$id AND mot_de_passe='$mdp'";
-                    $result2 = $conn->query($sql);
-                    if (isset($result2) && $result2->num_rows > 0) {
+                }
+
+                if(!$erreurBD){
+                    $sql = "SELECT * from utilisateur where id=$id AND mot_de_passe='$mdp'";
+                    $result = $conn->query($sql);
+
+                    if (isset($result) && $result->num_rows > 0) {
+                        $sql = "UPDATE utilisateur SET usager='$nomUsager' where id=$id AND mot_de_passe='$mdp'";
+                        $conn->query($sql);
                         header("Location: listeUsager.php?action=modifierUsager");
                     } else {
-                        echo "0 ligne";
-                        echo "Error:" . $sql . "<br>" . mysqli_error($conn);
+                        $erreur = true;
+                        $mdpErreur = "Le mot de passe ne correspond pas";
                     }
                 }
             }

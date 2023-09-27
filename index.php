@@ -274,17 +274,27 @@ session_start();
                         <img src="" class="card-img-bottom object-fit img-fluid" alt="Image de l'évènement">
                     </div>
                     <div class="card-footer d-flex flex-row justify-content-center p-0">
-                        <a id="btnChoixSondage" class="btn radius-0 w-100 p-3 border-end" href="choixSondage.php">
+                        <a id="btnChoixSondage" class="btn btn-ctr-bleu w-100 p-3 border-end" href="choixSondage.php">
                             Débuter
                         </a>
-                        <a id="btnStatistique" class="btn radius-0 w-100 p-3 border-end" href="#">
+                        <a id="btnStatistique" class="btn btn-ctr-bleu rounded-0 w-100 p-3 border-end" href="#">
                             Statistiques
                         </a>
-                        <a id="btnGerer" class="btn radius-0 w-100 p-3 border-end" href="modifier.php">
+                        <a id="btnGerer" class="btn btn-ctr-bleu rounded-0 w-100 p-3 border-end" href="modifier.php">
                             Gérer
                         </a>
-                        <a id="btnWeb" class="btn radius-0 w-100 p-3" href="#">
+                        <a id="btnWeb" class="btn btn-ctr-bleu rounded-0 w-100 p-3" href="#">
                             Site Web
+                        </a>
+                        <a id="btnSupp" class="w-100" href="modifier.php">
+                            <form action="supprimer.php" class="h-100" method="post" onSubmit="return confirm('Êtes-vous sûrs de vouloir supprimer cet évènement?', 'Entrer le nip');">
+                                <input id="inputId" type="hidden" name="id" value="">
+                                <button id="confirmSupp" type="submit" class="btn btn-danger w-100 h-100">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash3 radius-0" viewBox="0 0 16 16">
+                                        <path d="M6.5 1h3a.5.5 0 0 1 .5.5v1H6v-1a.5.5 0 0 1 .5-.5ZM11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3A1.5 1.5 0 0 0 5 1.5v1H2.506a.58.58 0 0 0-.01 0H1.5a.5.5 0 0 0 0 1h.538l.853 10.66A2 2 0 0 0 4.885 16h6.23a2 2 0 0 0 1.994-1.84l.853-10.66h.538a.5.5 0 0 0 0-1h-.995a.59.59 0 0 0-.01 0H11Zm1.958 1-.846 10.58a1 1 0 0 1-.997.92h-6.23a1 1 0 0 1-.997-.92L3.042 3.5h9.916Zm-7.487 1a.5.5 0 0 1 .528.47l.5 8.5a.5.5 0 0 1-.998.06L5 5.03a.5.5 0 0 1 .47-.53Zm5.058 0a.5.5 0 0 1 .47.53l-.5 8.5a.5.5 0 1 1-.998-.06l.5-8.5a.5.5 0 0 1 .528-.47ZM8 4.5a.5.5 0 0 1 .5.5v8.5a.5.5 0 0 1-1 0V5a.5.5 0 0 1 .5-.5Z" />
+                                    </svg>
+                                </button>
+                            </form>
                         </a>
                     </div>
                 </div>

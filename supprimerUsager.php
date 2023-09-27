@@ -7,7 +7,7 @@ session_start();
 //Variables connexion
 $servername = "localhost";
 $username = "root";
-$password = "";
+$password = "root";
 $dbname = "smileyface";
 
 //Récupère l'id

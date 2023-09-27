@@ -103,8 +103,7 @@ session_start();
                 $confirmationMdpErreur = "Les mots de passe ne sont pas identiques";
                 $erreur = true;
             } else {
-                $confirmationMdp = test_input($_POST["confirmationMdp"]);
-                $confirmationMdp = sha1($password, false);
+                $confirmationMdp = sha1($mdp, false);
             }
 
             if ($erreur != true) {

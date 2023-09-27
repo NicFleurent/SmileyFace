@@ -88,6 +88,9 @@ document.addEventListener('DOMContentLoaded', function () {
             let btnGerer = document.getElementById("btnGerer");
             btnGerer.setAttribute("href", "validation.php?destination=modifier&id=" + id);
 
+            let inputId = document.getElementById("inputId");
+            inputId.setAttribute("value", id);
+
             let btnWeb;
             if(document.getElementById("btnWeb") !== null){
                 btnWeb = document.getElementById("btnWeb");
@@ -100,6 +103,7 @@ document.addEventListener('DOMContentLoaded', function () {
             if(lien == ""){
                 btnWeb.classList.remove("radius-0");
                 btnWeb.classList.remove("btn");
+                btnWeb.classList.remove("btn-ctr-bleu");
                 btnWeb.classList.add("text-center");
                 btnWeb.setAttribute("id", 'btnWebDisable');
                 btnWeb.removeAttribute("href");
@@ -107,6 +111,7 @@ document.addEventListener('DOMContentLoaded', function () {
             else{
                 btnWeb.classList.add("radius-0");
                 btnWeb.classList.add("btn");
+                btnWeb.classList.add("btn-ctr-bleu");
                 btnWeb.classList.remove("text-center");
                 btnWeb.setAttribute("id", 'btnWeb');
                 btnWeb.setAttribute("href", lien);

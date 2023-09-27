@@ -31,12 +31,12 @@ li .card .card-body .card-img-bottom{
    max-height: 253px;
 }
 
-.card-footer .btn{
+.card-footer .btn-ctr-bleu{
    background-color: #092D74;
    color: white;
 }
 
-.card-footer .btn:hover, .text-departement{
+.card-footer .btn-ctr-bleu:hover, .text-departement{
    background-color: white;
    color: #092D74;
    border-color: #092D74;
@@ -54,27 +54,14 @@ li .card .card-body .card-img-bottom{
    border-top-right-radius: 0;
 }
 
-#btnStatistique, #btnGerer{
-   border-radius: 0;
-}
-
-#btnWeb{
-   border-bottom-left-radius: 0;
-   border-top-left-radius: 0;
-   border-top-right-radius: 0;
-}
-
 #btnWebDisable{
    text-decoration-line: none;
    color: darkgray;
 }
 
-/* Hardcoder un peu dégueux 
-.offcanvas-body .card .card-body{
-   max-height: 83%;
-}*/
+#confirmSupp{
+   border-bottom-left-radius: 0;
+   border-top-left-radius: 0;
+   border-top-right-radius: 0;
 
-/* Hardcoder un peu dégueux
-.offcanvas-body .card .card-body img{
-   max-height: 80%;
-} */
+}
