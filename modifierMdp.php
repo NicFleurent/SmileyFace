@@ -108,7 +108,7 @@ session_start();
                     $sql = "UPDATE utilisateur SET mot_de_passe='$confirmationMdp' where id=$id";
                     if (mysqli_query($conn, $sql)) {
                         mysqli_close($conn);
-                        header("Location: listeUsager.php?action=modifierUsager");
+                        header("Location: listeUsager.php?action=modifierMdp");
                     } else {
                         echo "Error:" . $sql . "<br>" . mysqli_error($conn);
                     }

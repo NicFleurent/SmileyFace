@@ -23,17 +23,11 @@
 
 
 /* NAVBAR */
-nav img{
+nav img {
     height: 105px;
- }
+}
 
 /* TOAST */
 
-.toast-header {
-    background-color: #092D74 !important;
-}
 
-.toast.body {
-    background-color: #092D74 !important;
-}
-
+    

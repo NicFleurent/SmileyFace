@@ -93,8 +93,8 @@ session_start();
                                     <a class="btn btn-outline-dark" href="modifierMdp.php?id=<?php echo $row['id'] ?>">Mot de passe</a>
                                 </td>
                                 <td><button id="confirmSupp_<?php echo $row['id'] ?>" type="button" class="btn btn-danger btn-supprimer"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash3" viewBox="0 0 16 16">
-                                                <path d="M6.5 1h3a.5.5 0 0 1 .5.5v1H6v-1a.5.5 0 0 1 .5-.5ZM11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3A1.5 1.5 0 0 0 5 1.5v1H2.506a.58.58 0 0 0-.01 0H1.5a.5.5 0 0 0 0 1h.538l.853 10.66A2 2 0 0 0 4.885 16h6.23a2 2 0 0 0 1.994-1.84l.853-10.66h.538a.5.5 0 0 0 0-1h-.995a.59.59 0 0 0-.01 0H11Zm1.958 1-.846 10.58a1 1 0 0 1-.997.92h-6.23a1 1 0 0 1-.997-.92L3.042 3.5h9.916Zm-7.487 1a.5.5 0 0 1 .528.47l.5 8.5a.5.5 0 0 1-.998.06L5 5.03a.5.5 0 0 1 .47-.53Zm5.058 0a.5.5 0 0 1 .47.53l-.5 8.5a.5.5 0 1 1-.998-.06l.5-8.5a.5.5 0 0 1 .528-.47ZM8 4.5a.5.5 0 0 1 .5.5v8.5a.5.5 0 0 1-1 0V5a.5.5 0 0 1 .5-.5Z" />
-                                            </svg></button></td>    
+                                            <path d="M6.5 1h3a.5.5 0 0 1 .5.5v1H6v-1a.5.5 0 0 1 .5-.5ZM11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3A1.5 1.5 0 0 0 5 1.5v1H2.506a.58.58 0 0 0-.01 0H1.5a.5.5 0 0 0 0 1h.538l.853 10.66A2 2 0 0 0 4.885 16h6.23a2 2 0 0 0 1.994-1.84l.853-10.66h.538a.5.5 0 0 0 0-1h-.995a.59.59 0 0 0-.01 0H11Zm1.958 1-.846 10.58a1 1 0 0 1-.997.92h-6.23a1 1 0 0 1-.997-.92L3.042 3.5h9.916Zm-7.487 1a.5.5 0 0 1 .528.47l.5 8.5a.5.5 0 0 1-.998.06L5 5.03a.5.5 0 0 1 .47-.53Zm5.058 0a.5.5 0 0 1 .47.53l-.5 8.5a.5.5 0 1 1-.998-.06l.5-8.5a.5.5 0 0 1 .528-.47ZM8 4.5a.5.5 0 0 1 .5.5v8.5a.5.5 0 0 1-1 0V5a.5.5 0 0 1 .5-.5Z" />
+                                        </svg></button></td>
                             </tr>
                         <?php
                         }
@@ -113,29 +113,34 @@ session_start();
             ?>
 
             <!-- TOASTS -->
-            <!-- Contenu du toast groupe ajouté -->
-            <article class="position-fixed bottom-0 start-50 translate-middle-x mb-3" style="z-index: 10">
+            <!-- Contenu du toast ajouté -->
+            <article class="position-fixed top-50 start-50 translate-middle-x mb-3" style="z-index: 10">
                 <div id="toast-A" class="toast bg-primary text-white" role="alert" aria-live="assertive" aria-atomic="true">
-                    <div class="toast-header">
-                        <p class="me-auto"> Confirmation</p>
-                        <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
-                    </div>
-                    <div class="toast-body">
-                        <p class="m-0">L'utilisateur a été ajouté</p>
+                <div class="toast-body d-flex flex-row justify-content-between">
+                        <span class="m-0">L'utilisateur a été ajouté</span>                      
+                        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="toast" aria-label="Close"></button>
                     </div>
                 </div>
             </article><!-- Fin toast -->
 
             <!-- TOASTS -->
             <!-- Contenu du toast utilisateur modifié -->
-            <article class="position-fixed bottom-0 start-50 translate-middle-x mb-3" style="z-index: 10">
-                <div id="toast-M" class="toast bg-primary text-white" role="alert" aria-live="assertive" aria-atomic="true">
-                    <div class="toast-header">
-                        <p class="me-auto"> Confirmation</p>
-                        <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+            <article class="position-fixed top-50 start-50 translate-middle-x mb-3" style="z-index: 10">
+                <div id="toast-M" class="toast bg-success fs-5 text-white" role="alert" aria-live="assertive" aria-atomic="true">
+                    <div class="toast-body d-flex flex-row justify-content-between">
+                        <span class="m-0">L'utilisateur a été modifié</span>                      
+                        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="toast" aria-label="Close"></button>
                     </div>
-                    <div class="toast-body">
-                        <p class="m-0">L'utilisateur a été modifié</p>
+                </div>
+            </article>
+
+             <!-- TOASTS -->
+            <!-- Contenu du toast mdp modifié -->
+            <article class="position-fixed top-50 start-50 translate-middle-x mb-3" style="z-index: 10">
+                <div id="toast-Mdp" class="toast bg-success fs-5 text-white" role="alert" aria-live="assertive" aria-atomic="true">
+                    <div class="toast-body d-flex flex-row justify-content-between">
+                        <span class="m-0">Le mot de passe a été modifié</span>                      
+                        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="toast" aria-label="Close"></button>
                     </div>
                 </div>
             </article>
@@ -159,6 +164,14 @@ session_start();
 
             <?php
             }
+            elseif ($_GET['action'] == "modifierMdp") {
+                ?>
+                    <script>
+                        creerToastMdp()
+                    </script>
+    
+                <?php
+                }
             ?>
 
             <!-- MODAL avertissement avant suppression -->
