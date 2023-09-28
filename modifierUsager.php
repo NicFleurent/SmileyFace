@@ -1,3 +1,7 @@
+<?php
+//Démarre la session
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -10,8 +14,8 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="css/styles.css">
-      <!-- Script personnalisé -->
-      <script src="js/modificationUsager.js"></script>
+    <!-- Script personnalisé -->
+    <script src="js/modificationUsager.js"></script>
 </head>
 
 <body>
@@ -51,118 +55,123 @@
     </header>
     <main class="container">
         <?php
-        //Variables du formulaire vide
-        $nomUsager = "";
-        $mdp = "";
-        //Variables d'erreurs vides
-        $nomUsagerErreur = "";
-        $mdpErreur = "";
+        if (isset($_SESSION['connexion'])) {
+            //Variables du formulaire vide
+            $nomUsager = "";
+            $mdp = "";
+            //Variables d'erreurs vides
+            $nomUsagerErreur = "";
+            $mdpErreur = "";
 
-        //La variable s'il y a une erreur
-        $erreur = $erreurBD = false;
-    
-        //Variables connexion
-        $servername = "localhost";
-        $username = "root";
-        $password = "root";
-        $dbname = "smileyface";
-        //Creer connexion
-        $conn = mysqli_connect($servername, $username, $password, $dbname);
-        //Check connexion
-        if (!$conn) {
-            die("Connectionfailed:" . mysqli_connect_error());
-        }
+            //La variable s'il y a une erreur
+            $erreur = $erreurBD = false;
 
-        if (isset($_GET['id'])) {
-            $id = $_GET['id'];
-            $sql = "SELECT * from utilisateur WHERE id=$id";
-            $result = $conn->query($sql);
-            $row = $result->fetch_assoc();
-            $nomUsager =  $row['usager'];
-        } else if (isset($_POST['id'])) {
-            $id = $_POST['id'];
-            $sql = "SELECT * from utilisateur WHERE id=$id";
-            $result = $conn->query($sql);
-            $row = $result->fetch_assoc();
-            $nomUsager =  $row['usager'];
-            $mdp = $row['mot_de_passe'];
-        }
-      
-        if ($_SERVER["REQUEST_METHOD"] == "POST") {
-            //Vérification du usager
-            if (empty($_POST['usager'])) {
-                $nomUsagerErreur = "Veuillez entrer votre usager";
-                $erreur = true;
-            } else
-                $nomUsager = test_input($_POST['usager']);
-            //Vérification si mdp vide 
-            if (empty($_POST['mdp'])) {
-                $mdpErreur = "Veuillez entrer votre mot de passe";
-                $erreur = true;
-            } else {
-                $mdp = test_input($_POST['mdp']);
-                $mdp = sha1($mdp, false);
+            //Variables connexion
+            $servername = "localhost";
+            $username = "root";
+            $password = "root";
+            $dbname = "smileyface";
+            //Creer connexion
+            $conn = mysqli_connect($servername, $username, $password, $dbname);
+            //Check connexion
+            if (!$conn) {
+                die("Connectionfailed:" . mysqli_connect_error());
             }
 
-            if (!$erreur) {
-                $sql = "SELECT usager from utilisateur where usager = '$nomUsager'";
+            if (isset($_GET['id'])) {
+                $id = $_GET['id'];
+                $sql = "SELECT * from utilisateur WHERE id=$id";
                 $result = $conn->query($sql);
+                $row = $result->fetch_assoc();
+                $nomUsager =  $row['usager'];
+            } else if (isset($_POST['id'])) {
+                $id = $_POST['id'];
+                $sql = "SELECT * from utilisateur WHERE id=$id";
+                $result = $conn->query($sql);
+                $row = $result->fetch_assoc();
+                $nomUsager =  $row['usager'];
+                $mdp = $row['mot_de_passe'];
+            }
 
-                //Regarder si le user est déjà dans la BD
-                if (isset($result) && $result->num_rows > 0) {
-                    $nomUsagerErreur = "Ce nom d'usager est déjà utilisé";
-                    $erreurBD = true;
+            if ($_SERVER["REQUEST_METHOD"] == "POST") {
+                //Vérification du usager
+                if (empty($_POST['usager'])) {
+                    $nomUsagerErreur = "Veuillez entrer votre usager";
                     $erreur = true;
+                } else
+                    $nomUsager = test_input($_POST['usager']);
+                //Vérification si mdp vide 
+                if (empty($_POST['mdp'])) {
+                    $mdpErreur = "Veuillez entrer votre mot de passe";
+                    $erreur = true;
+                } else {
+                    $mdp = test_input($_POST['mdp']);
+                    $mdp = sha1($mdp, false);
                 }
 
-                if(!$erreurBD){
-                    $sql = "SELECT * from utilisateur where id=$id AND mot_de_passe='$mdp'";
+                if (!$erreur) {
+                    $sql = "SELECT usager from utilisateur where usager = '$nomUsager'";
                     $result = $conn->query($sql);
 
+                    //Regarder si le user est déjà dans la BD
                     if (isset($result) && $result->num_rows > 0) {
-                        $sql = "UPDATE utilisateur SET usager='$nomUsager' where id=$id AND mot_de_passe='$mdp'";
-                        $conn->query($sql);
-                        header("Location: listeUsager.php?action=modifierUsager");
-                    } else {
+                        $nomUsagerErreur = "Ce nom d'usager est déjà utilisé";
+                        $erreurBD = true;
                         $erreur = true;
-                        $mdpErreur = "Le mot de passe ne correspond pas";
+                    }
+
+                    if (!$erreurBD) {
+                        $sql = "SELECT * from utilisateur where id=$id AND mot_de_passe='$mdp'";
+                        $result = $conn->query($sql);
+
+                        if (isset($result) && $result->num_rows > 0) {
+                            $sql = "UPDATE utilisateur SET usager='$nomUsager' where id=$id AND mot_de_passe='$mdp'";
+                            $conn->query($sql);
+                            mysqli_close($conn);
+                            header("Location: listeUsager.php?action=modifierUsager");
+                        } else {
+                            $erreur = true;
+                            $mdpErreur = "Le mot de passe ne correspond pas";
+                        }
                     }
                 }
             }
-        }
-        if ($_SERVER["REQUEST_METHOD"] != "POST" || $erreur == true) {
+            if ($_SERVER["REQUEST_METHOD"] != "POST" || $erreur == true) {
         ?>
-            <div class="container">
-                <div class="row d-flex justify-content-center align-items-center h-100">
-                    <div class="col-12 col-md-8 col-lg-6 col-xl-5">
-                        <div class="card bg-ctr-bleu radius-1rem text-white">
-                            <div class="card-body p-5 text-center">
-                                <div class="md-5 mt-md-4 ">
-                                    <form novalidate action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="POST">
-                                        <div class="col text-center mb-5">
-                                            <h1>Modification de l'usager</h1>
-                                        </div>
-                                        <input type="hidden" name="id" value="<?php echo $id; ?>">
-                                        <!-- Usager -->
-                                        <div class="form-outline form-white mb-4">
-                                            <input id="usagerCreer" type="text" class="form-control mb-4 " name="usager" placeholder="Usager" required>
-                                            <span id="usagerCreerVide" class="text-danger"><?php echo $nomUsagerErreur; ?></span>
-                                        </div>
+                <div class="container">
+                    <div class="row d-flex justify-content-center align-items-center h-100">
+                        <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+                            <div class="card bg-ctr-bleu radius-1rem text-white">
+                                <div class="card-body p-5 text-center">
+                                    <div class="md-5 mt-md-4 ">
+                                        <form novalidate action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="POST">
+                                            <div class="col text-center mb-5">
+                                                <h1>Modification de l'usager</h1>
+                                            </div>
+                                            <input type="hidden" name="id" value="<?php echo $id; ?>">
+                                            <!-- Usager -->
+                                            <div class="form-outline form-white mb-4">
+                                                <input id="usagerCreer" type="text" class="form-control mb-4 " name="usager" placeholder="Usager" required>
+                                                <span id="usagerCreerVide" class="text-danger"><?php echo $nomUsagerErreur; ?></span>
+                                            </div>
 
-                                        <!-- mdp -->
-                                        <div class="form-outline form-white mb-4">
-                                            <input id="mdpCreer" type="password" class="form-control mb-4" name="mdp" placeholder="Mot de passe">
-                                            <span id="mdpCreerVide" class="text-danger"><?php echo $mdpErreur; ?></span>
-                                        </div>
-                                        <!-- Modifer-->
-                                        <input class="btn btn-outline-light  text-center mt-4 pt-1" type="submit" value="Modifier">
+                                            <!-- mdp -->
+                                            <div class="form-outline form-white mb-4">
+                                                <input id="mdpCreer" type="password" class="form-control mb-4" name="mdp" placeholder="Mot de passe">
+                                                <span id="mdpCreerVide" class="text-danger"><?php echo $mdpErreur; ?></span>
+                                            </div>
+                                            <!-- Modifer-->
+                                            <input class="btn btn-outline-light  text-center mt-4 pt-1" type="submit" value="Modifier">
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
         <?php
+            }
+        } else {
+            header("Location: ./connexion.php");
         }
         function test_input($data)
         {
@@ -173,7 +182,7 @@
         }
         ?>
     </main>
-   
+
 </body>
 
 </html>

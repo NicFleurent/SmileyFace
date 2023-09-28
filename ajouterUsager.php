@@ -57,6 +57,7 @@ session_start();
     </header>
     <main class="container">
         <?php
+          if (isset($_SESSION['connexion'])) {
         //Variables du formulaire vide
         $nomUsager = "";
         $mdp = "";
@@ -166,6 +167,10 @@ session_start();
             </div>
         <?php
         }
+    }
+    else{
+        header("Location: ./connexion.php");
+    }
         function test_input($data)
         {
             $data = trim($data);
