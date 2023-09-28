@@ -118,8 +118,6 @@ document.addEventListener('DOMContentLoaded', function () {
                 btnWeb.setAttribute("target", "_blank");
             }
             
-
-
         });
 
     });

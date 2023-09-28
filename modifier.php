@@ -328,12 +328,6 @@ session_start();
                                 <button id="btnEnvoyer" type="submit" class="btn btn-outline-light fw-bold fs-3 mt-4 pt-1">Enregistrer les modifications</button>
                             </div>
                         </form>
-                        <form action="supprimer.php" method="post" onSubmit="return confirm('Êtes-vous sûrs de vouloir supprimer cet évènement?');">
-                            <input type="hidden" name="id" value="<?php echo $id ?>">
-                            <div class="text-center mt-2">
-                                <button type="submit" class="btn btn-outline-light fw-bold fs-3 mt-4 pt-1" id="btnSupprimer">Supprimer l'évènement</button>
-                            </div>
-                        </form>
                     </div>
                 </div>
         <?php
