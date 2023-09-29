@@ -1,9 +1,8 @@
 <?php
 session_start();
-if($_SESSION['serveur']){
+if ($_SESSION['serveur']) {
     require("connexionServeur.php");
-}
-else{
+} else {
     require("connexionLocal.php");
 }
 ?>
@@ -133,7 +132,7 @@ else{
         if ($_SERVER["REQUEST_METHOD"] != "POST" || $erreurChant == true || $erreurDB == true) {
 
             if (isset($_GET['id'])) {
-                $id = $_GET['id'];
+                $id = test_input($_GET['id']);
             }
 
             if ($id != "") {

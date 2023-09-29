@@ -67,7 +67,7 @@ else{
             }
 
             if (isset($_GET['id'])) {
-                $id = $_GET['id'];
+                $id = test_input($_GET['id']);
 
                 //string de requête
                 $sql = "SELECT nom,etudiantSatisfait,etudiantNeutre,etudiantInsatisfait FROM evenement where id=$id";
