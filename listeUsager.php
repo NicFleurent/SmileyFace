@@ -135,7 +135,7 @@ session_start();
             <?php
 
             } else {
-                echo "0 results";
+                echo "Il n'y aucun utilisateur d'enregistré";
             }
             mysqli_close($conn);
 
@@ -164,6 +164,7 @@ session_start();
             </div>
         <?php
         } else {
+            mysqli_close($conn);
             header("Location: ./connexion.php");
         }
         ?>

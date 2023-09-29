@@ -171,6 +171,7 @@ session_start();
         <?php
             }
         } else {
+            $conn->close();
             header("Location: ./connexion.php");
         }
         function test_input($data)

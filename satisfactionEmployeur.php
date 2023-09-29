@@ -67,8 +67,8 @@ session_start();
             $conn->close();
         }
         if ($_SERVER["REQUEST_METHOD"] != "POST" || $erreur == true) {
-            if($id != ""){
-        ?>
+            if ($id != "") {
+    ?>
                 <div class="container d-flex flex-column justify-content-center align-items-center vh-100">
                     <div class="row">
                         <div class="col text-white mb-5">
@@ -107,13 +107,14 @@ session_start();
                         </div>
                     </div>
                 </div>
-        <?php
-            }
-            else{
+    <?php
+            } else {
+                $conn->close();
                 header("Location: ./index.php");
             }
         }
     } else {
+        $conn->close();
         header("Location: ./connexion.php");
     }
 

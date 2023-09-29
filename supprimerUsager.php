@@ -33,6 +33,7 @@ if (isset($_SESSION['connexion'])) {
         }
     }
 } else {
+    $conn->close();
     header("Location: ./connexion.php");
 }
 ?>

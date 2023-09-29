@@ -70,6 +70,7 @@ session_start();
 
                 $sql = "DELETE FROM evenement WHERE id=" . $id;
                 if ($conn->query($sql) === TRUE) {
+                    $conn->close();
                     header("Location: ./index.php?succes=supprimer");
                     die();
                 } else {
@@ -92,6 +93,7 @@ session_start();
             }
         }
     } else {
+        $conn->close();
         header("Location: ./connexion.php");
     }
 

@@ -64,8 +64,6 @@ session_start();
             if (!$conn) {
                 die("Connectionfailed:" . mysqli_connect_error());
             }
-            // Set session variables
-            $_SESSION["connexion"] = true;
 
             if (isset($_GET['id'])) {
                 $id = $_GET['id'];
@@ -106,10 +104,9 @@ session_start();
         <?php
                     }
                 }
-            } else {
-                header("Location: ./index.php");
             }
         } else {
+            mysqli_close($conn);
             header("Location: ./connexion.php");
         }
         ?>
@@ -124,7 +121,7 @@ session_start();
                 <div class="position-relative">
                     <canvas id="canvas-diagramme"></canvas>
                 </div>
-                <span  class="fs-4" id="totalVotesEt"></span>
+                <span class="fs-4" id="totalVotesEt"></span>
             </div>
             <div class="ms-5 text-center">
                 <h2 id="titre-ent"></h2>
@@ -151,7 +148,7 @@ session_start();
     <!-- Chart.js -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
-    
+
     <link rel="stylesheet" href="css/styles.css">
     <link rel="stylesheet" href="css/index.css">
     <script src="js/statistique.js"></script>

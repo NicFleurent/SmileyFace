@@ -67,53 +67,54 @@ session_start();
             $conn->close();
         }
         if ($_SERVER["REQUEST_METHOD"] != "POST" || $erreur == true) {
-            if($id != ""){
+            if ($id != "") {
     ?>
-            <div class="container d-flex flex-column justify-content-center align-items-center vh-100">
-                <div class="row">
-                    <div class="col mb-5">
-                        <h1>Êtes-vous satisfait de cet évènement?</h1>
+                <div class="container d-flex flex-column justify-content-center align-items-center vh-100">
+                    <div class="row">
+                        <div class="col mb-5">
+                            <h1>Êtes-vous satisfait de cet évènement?</h1>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-4">
+                            <form class="d-flex justify-content-center align-items-center" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
+                                <input type="hidden" name="id" value="<?php echo $id ?>">
+                                <input type="hidden" name="valeur" value="etudiantSatisfait">
+                                <button type="submit" class="btn" id="btnSatisfait">
+                                    <img class="img-fluid" src="img/voteSatisfait.png">
+                                </button>
+                            </form>
+                        </div>
+
+                        <div class="col-4">
+                            <form class="d-flex justify-content-center align-items-center" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
+                                <input type="hidden" name="id" value="<?php echo $id ?>">
+                                <input type="hidden" name="valeur" value="etudiantNeutre">
+                                <button type="submit" class="btn" id="btnNeutre">
+                                    <img class="img-fluid" src="img/voteNeutre.png">
+                                </button>
+                            </form>
+                        </div>
+
+                        <div class="col-4">
+                            <form class="d-flex justify-content-center align-items-center" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
+                                <input type="hidden" name="id" value="<?php echo $id ?>">
+                                <input type="hidden" name="valeur" value="etudiantInsatisfait">
+                                <button type="submit" class="btn" id="btnInsatisfait">
+                                    <img class="img-fluid" src="img/voteInsatisfait.png">
+                                </button>
+                            </form>
+                        </div>
                     </div>
                 </div>
-                <div class="row">
-                    <div class="col-4">
-                        <form class="d-flex justify-content-center align-items-center" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
-                            <input type="hidden" name="id" value="<?php echo $id ?>">
-                            <input type="hidden" name="valeur" value="etudiantSatisfait">
-                            <button type="submit" class="btn" id="btnSatisfait">
-                                <img class="img-fluid" src="img/voteSatisfait.png">
-                            </button>
-                        </form>
-                    </div>
-
-                    <div class="col-4">
-                        <form class="d-flex justify-content-center align-items-center" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
-                            <input type="hidden" name="id" value="<?php echo $id ?>">
-                            <input type="hidden" name="valeur" value="etudiantNeutre">
-                            <button type="submit" class="btn" id="btnNeutre">
-                                <img class="img-fluid" src="img/voteNeutre.png">
-                            </button>
-                        </form>
-                    </div>
-
-                    <div class="col-4">
-                        <form class="d-flex justify-content-center align-items-center" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
-                            <input type="hidden" name="id" value="<?php echo $id ?>">
-                            <input type="hidden" name="valeur" value="etudiantInsatisfait">
-                            <button type="submit" class="btn" id="btnInsatisfait">
-                                <img class="img-fluid" src="img/voteInsatisfait.png">
-                            </button>
-                        </form>
-                    </div>
-                </div>
-            </div>
     <?php
-            }
-            else{
+            } else {
+                $conn->close();
                 header("Location: ./index.php");
             }
         }
     } else {
+        $conn->close();
         header("Location: ./connexion.php");
     }
 

@@ -78,7 +78,7 @@ session_start();
                     $erreur = true;
                 }
             }
-            $conn->close();
+            mysqli_close($conn);
         }
 
         if ($_SERVER["REQUEST_METHOD"] != "POST" || $erreur == true) {
@@ -142,15 +142,7 @@ session_start();
         </article> <!-- Fin toast -->
 
         <?php
-        if (!isset($_GET['action'])) {
-        } else if ($_GET['action'] == "creer") {
-        ?>
-            <script>
-                creerToastA()
-            </script>
-        <?php
-        }
-
+       
         function test_input($data)
         {
             $data = trim($data);
@@ -161,6 +153,7 @@ session_start();
 
         ?>
     </main>
+
 </body>
 
 </html>
