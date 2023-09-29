@@ -8,7 +8,7 @@ session_start();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Liste utilisateurs</title>
-  
+    <link rel="icon" href="img_cegep_tr_logo.ico">
 </head>
 
 <body>
@@ -210,8 +210,6 @@ session_start();
     <link rel="stylesheet" href="css/styles.css">
     <link rel="stylesheet" href="css/index.css">
     <script src="js/listeUsager.js"></script>
-
- 
 </body>
 
 </html>

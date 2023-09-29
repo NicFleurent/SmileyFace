@@ -9,8 +9,7 @@ session_start();
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gérer l'évènement</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <link rel="stylesheet" href="css/styles.css">
+    <link rel="icon" href="img_cegep_tr_logo.ico">
 </head>
 
 <body>
@@ -69,7 +68,7 @@ session_start();
             }
 
 
-            if(!$erreurChant){
+            if (!$erreurChant) {
                 $sql = "UPDATE evenement SET nom='" . $nom . "', date='" . $date . "', lien='" . $lien . "', image='" . $image . "' WHERE id=" . $id;
                 if ($conn->query($sql) === TRUE) {
                     echo "Succes : Modification de l'évènement dans la BD<br>";
@@ -93,10 +92,10 @@ session_start();
                     $erreurBD = true;
                 }
 
-                if(isset($_POST['departementLength'])){
+                if (isset($_POST['departementLength'])) {
                     $departementLength = test_input($_POST['departementLength']);
 
-                    for($i=0 ; $i<$departementLength ; $i++){
+                    for ($i = 0; $i < $departementLength; $i++) {
                         $departementTemp = "departement$i";
                         if (isset($_POST[$departementTemp])) {
                             $departement = test_input($_POST[$departementTemp]);
@@ -110,7 +109,7 @@ session_start();
                             $idDepartement = $row["id"];
 
                             $sql = "INSERT INTO evenement_departement (id_evenement, id_departement) 
-                            VALUES ('" . $idEvenement . "', '" . $idDepartement ."')";
+                            VALUES ('" . $idEvenement . "', '" . $idDepartement . "')";
 
                             if (mysqli_query($conn, $sql)) {
                                 echo "Succes : $idEvenement et $idDepartement<br>";
@@ -122,14 +121,12 @@ session_start();
                     }
                 }
 
-                if(!$erreurBD){
+                if (!$erreurBD) {
                     mysqli_close($conn);
                     header("Location: ./index.php?succes=modifier");
                     die();
                 }
-                
             }
-            
         }
         if ($_SERVER["REQUEST_METHOD"] != "POST" || $erreurChant == true || $erreurDB == true) {
 
@@ -137,7 +134,7 @@ session_start();
                 $id = $_GET['id'];
             }
 
-            if($id != ""){
+            if ($id != "") {
                 echo $idErreur;
 
                 $sql = "SELECT * FROM evenement WHERE id=$id";
@@ -150,14 +147,13 @@ session_start();
                 $nom = $row["nom"];
                 $date = $row["date"];
                 $lien = $row["lien"];
-                if($row["image"] == "img/CTR_Logo_RVB.jpg"){
+                if ($row["image"] == "img/CTR_Logo_RVB.jpg") {
                     $image = "";
-                }
-                else{
+                } else {
                     $image = $row["image"];
                 }
-                
-        ?>
+
+    ?>
                 <header>
                     <nav class="navbar navbar-expand-lg bg-body-tertiary mb-5">
                         <div class="container-fluid ">
@@ -181,10 +177,10 @@ session_start();
                                     </li>
                                     <li class="nav-item ms-5">
                                         <a class="btn btn-outline-light" href="deconnexion.php">Déconnexion <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-box-arrow-right" viewBox="0 0 16 16">
-                                            <path fill-rule="evenodd" d="M10 12.5a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v2a.5.5 0 0 0 1 0v-2A1.5 1.5 0 0 0 9.5 2h-8A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-2a.5.5 0 0 0-1 0v2z" />
-                                            <path fill-rule="evenodd" d="M15.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 0 0-.708.708L14.293 7.5H5.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3z" />
-                                        </svg></a>
-                                    
+                                                <path fill-rule="evenodd" d="M10 12.5a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v2a.5.5 0 0 0 1 0v-2A1.5 1.5 0 0 0 9.5 2h-8A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-2a.5.5 0 0 0-1 0v2z" />
+                                                <path fill-rule="evenodd" d="M15.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 0 0-.708.708L14.293 7.5H5.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3z" />
+                                            </svg></a>
+
                                     </li>
 
                                 </ul>
@@ -284,45 +280,45 @@ session_start();
                                 </div>
                             </div>
                             <div id="containerDepartement" class="container-fluid p-0 m-0">
-                            <?php
-                            $sql = "SELECT ed.id_departement, d.nom FROM evenement_departement ed INNER JOIN departement d ON d.id = ed.id_departement WHERE ed.id_evenement=$id";
+                                <?php
+                                $sql = "SELECT ed.id_departement, d.nom FROM evenement_departement ed INNER JOIN departement d ON d.id = ed.id_departement WHERE ed.id_evenement=$id";
 
-                            $result = $conn->query($sql);
+                                $result = $conn->query($sql);
 
-                            $programmeChoisis = [];
-                            $i = 0;
-                            if ($result->num_rows > 0) {
-                                while($row = $result->fetch_assoc()){
-                                    $programmeChoisis[$i++] = $row['nom'];
+                                $programmeChoisis = [];
+                                $i = 0;
+                                if ($result->num_rows > 0) {
+                                    while ($row = $result->fetch_assoc()) {
+                                        $programmeChoisis[$i++] = $row['nom'];
+                                    }
                                 }
-                            }    
 
-                            foreach($programmeChoisis as $programmeChoisi){
-                            ?>
-                                <div class="row mb-4 original-row">
-                                    <div class="col-sm-10">
-                                        <select class="form-select" aria-label="Default select example" name="departement0">
-                                            <option selected><?php echo $programmeChoisi; ?></option>
-                                            <?php
+                                foreach ($programmeChoisis as $programmeChoisi) {
+                                ?>
+                                    <div class="row mb-4 original-row">
+                                        <div class="col-sm-10">
+                                            <select class="form-select" aria-label="Default select example" name="departement0">
+                                                <option selected><?php echo $programmeChoisi; ?></option>
+                                                <?php
                                                 $sql = "SELECT nom FROM departement WHERE nom!='$nomParDefaut' ORDER BY nom";
                                                 $resultProgramme = $conn->query($sql);
-                                    
-                                                while($rowProgramme = $resultProgramme->fetch_assoc()){
-                                            ?>
+
+                                                while ($rowProgramme = $resultProgramme->fetch_assoc()) {
+                                                ?>
                                                     <option value="<?php echo $rowProgramme['nom']; ?>"><?php echo $rowProgramme['nom']; ?></option>
-                                            <?php
+                                                <?php
                                                 }
-                                            ?>
-                                        </select>
+                                                ?>
+                                            </select>
+                                        </div>
+                                        <div class="col-sm-2 text-end d-flex justify-content-between">
+                                            <button type="button" class="btn btn-outline-light btn-ajouterDept fw-bold">+</button>
+                                            <button type="button" class="btn btn-outline-light btn-supprimerDept fw-bold">-</button>
+                                        </div>
                                     </div>
-                                    <div class="col-sm-2 text-end d-flex justify-content-between">
-                                        <button type="button" class="btn btn-outline-light btn-ajouterDept fw-bold">+</button> 
-                                        <button type="button" class="btn btn-outline-light btn-supprimerDept fw-bold">-</button>   
-                                    </div>
-                                </div>
-                            <?php 
-                            }
-                            ?>
+                                <?php
+                                }
+                                ?>
                             </div>
                             <div class="text-center">
                                 <button id="btnEnvoyer" type="submit" class="btn btn-outline-light fw-bold fs-3 mt-4 pt-1">Enregistrer les modifications</button>
@@ -330,9 +326,8 @@ session_start();
                         </form>
                     </div>
                 </div>
-        <?php
-            }
-            else{
+    <?php
+            } else {
                 header("Location: ./index.php");
             }
         }
@@ -348,7 +343,7 @@ session_start();
         return $data;
     }
     ?>
-
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
     <script>
         // Example starter JavaScript for disabling form submissions if there are invalid fields
@@ -372,6 +367,7 @@ session_start();
                 })
         })()
     </script>
+    <link rel="stylesheet" href="css/styles.css">
     <script src="js/modifier.js"></script>
 </body>
 

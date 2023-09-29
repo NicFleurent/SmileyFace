@@ -9,12 +9,7 @@ session_start();
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Création usager</title>
-    <!-- Bootstrap CSS et JS-->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="css/styles.css">
-    <!-- Script personnalisé -->
-    <script src="js/modificationMdp.js"></script>
+    <link rel="icon" href="img_cegep_tr_logo.ico">
 </head>
 
 <body>
@@ -104,7 +99,6 @@ session_start();
                     $confirmationMdp = sha1($password, false);
                 }
 
-
                 if ($erreur != true) {
 
                     $sql = "UPDATE utilisateur SET mot_de_passe='$confirmationMdp' where id=$id";
@@ -163,7 +157,12 @@ session_start();
         }
         ?>
     </main>
-
+    <!-- Bootstrap CSS et JS-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="css/styles.css">
+    <!-- Script personnalisé -->
+    <script src="js/modificationMdp.js"></script>
 </body>
 
 </html>
