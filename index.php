@@ -91,6 +91,17 @@ if ($_SESSION['serveur']) {
                     </div>
                 <?php
                 }
+                else if ($_GET['succes'] === "supprimer") {
+                    ?>
+                        <div class="alert alert-success alert-dismissible fade show m-5 mt-2" role="alert">
+                            <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Success:">
+                                <use xlink:href="#check-circle-fill" />
+                            </svg>
+                            L'évènement' a bien été <strong>supprimé!</strong>
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>
+                    <?php
+                    }
             }
             //  Afficher les évènements
             $evenementsId = [];
@@ -325,7 +336,7 @@ if ($_SESSION['serveur']) {
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fermer"></button>
                         </div>
                         <div class="modal-body">
-                            <input id="inputId" type="hidden" name="id" value="">
+                            <input id="inputId" type="hidden" name="id"  value="">
                             <input id="destination" type="hidden" name="destination" value="supprimer">
                             <p>Voulez-vous vraiment supprimer l'utilisateur ?</p>
                         </div>

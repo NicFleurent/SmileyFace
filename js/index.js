@@ -115,29 +115,25 @@ document.addEventListener('DOMContentLoaded', function () {
                 btnWeb.setAttribute("href", lien);
                 btnWeb.setAttribute("target", "_blank");
             }
+            //Fait apparaître un avis de suppression+
+            let btnSupp = document.querySelectorAll('.btn-supprimer');
+            let modalIdInput = document.getElementById('inputId');
+            btnSupp.forEach(btn => {
+                btn.addEventListener('click', function () {
+                    modalIdInput.value = id;
+                    let options = {
+                        backdrop: true,
+                        keyboard: true,
+                        show: true
+                    };
 
-        });
+                    new bootstrap.Modal(document.getElementById('modalSupp'), options).show();
 
-        //Fait apparaître un avis de suppression
-
-        let btnSupp = document.querySelectorAll('.btn-supprimer');
-        let modalIdInput = document.getElementById('inputId');
-        btnSupp.forEach(btn => {
-            btn.addEventListener('click', function () {
-                let id = btn.getAttribute("id");
-                modalIdInput.value = id.textContent;
-                let options = {
-                    backdrop: true,
-                    keyboard: true,
-                    show: true
-                };
-
-                new bootstrap.Modal(document.getElementById('modalSupp'), options).show();
-
+                });
             });
         });
-    });
 
+    });
 
 });
 
