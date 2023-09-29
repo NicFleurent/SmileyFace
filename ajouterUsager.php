@@ -22,7 +22,7 @@ if ($_SESSION['serveur']) {
     <header>
         <nav class="navbar navbar-expand bg-body-tertiary mb-5">
             <div class="container-fluid ">
-                <a href="index.php">
+                <a class="ms-5" href="index.php">
                     <img src="img/CTR_Logo_BLANC.png" alt="Logo CégepTR">
                 </a>
                 <ul class="navbar-nav mb-2 mb-lg-0 align-items-center justify-content-end me-5">
@@ -38,7 +38,6 @@ if ($_SESSION['serveur']) {
                                 <path fill-rule="evenodd" d="M15.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 0 0-.708.708L14.293 7.5H5.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3z" />
                             </svg></a>
                     </li>
-
                 </ul>
             </div>
         </nav>

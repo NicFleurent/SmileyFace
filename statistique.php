@@ -22,7 +22,7 @@ if ($_SESSION['serveur']) {
     <header>
     <nav class="navbar navbar-expand bg-body-tertiary mb-5 fixed-top">
             <div class="container-fluid ">
-                <a href="index.php">
+                <a class="ms-5" href="index.php">
                     <img src="img/CTR_Logo_BLANC.png" alt="Logo CégepTR">
                 </a>
                 <ul class="navbar-nav mb-2 mb-lg-0 align-items-center justify-content-end me-5">

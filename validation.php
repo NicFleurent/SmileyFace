@@ -16,7 +16,7 @@ session_start();
     <header>
         <nav class="navbar navbar-expand bg-body-tertiary mb-5">
             <div class="container-fluid ">
-                <a href="index.php">
+                <a  class="ms-5" href="index.php">
                     <img src="img/CTR_Logo_BLANC.png" alt="Logo CégepTR">
                 </a>
                 <ul class="navbar-nav mb-2 mb-lg-0 align-items-center justify-content-end me-5">
@@ -87,7 +87,7 @@ session_start();
             if ($_SERVER["REQUEST_METHOD"] != "POST" || $erreur == true) {
                 if ($destination != "") {
         ?>
-                    <div class="container-fluid vh-100 m-0 p-0">
+                    <div class="container-fluid  m-0 p-0">
                         <div class="container h-75">
                             <div class="row d-flex justify-content-center align-items-center h-100">
                                 <div class="col-12 col-md-8 col-lg-6 col-xl-5">
