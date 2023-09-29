@@ -1,6 +1,12 @@
 <?php
 //Démarre la session
 session_start();
+if($_SESSION['serveur']){
+    require("connexionServeur.php");
+}
+else{
+    require("connexionLocal.php");
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -15,7 +21,7 @@ session_start();
 
 <body>
     <header>
-        <nav class="navbar navbar-expand-lg bg-body-tertiary mb-5">
+        <nav class="navbar navbar-expand bg-body-tertiary mb-5">
             <div class="container-fluid ">
                 <div class="collapse navbar-collapse">
                     <ul class="navbar-nav mb-2 mb-lg-0  align-items-center w-100 justify-content-between px-5">
@@ -23,11 +29,6 @@ session_start();
                             <a href="index.php">
                                 <img src="img/CTR_Logo_BLANC.png" alt="Logo CégepTR">
                             </a>
-                        </li>
-                        <li class="nav-item ms-5">
-                            <form>
-                                <input id="barreRecherche " class="form-control me-2" type="search" placeholder="Rechercher" aria-label="Search">
-                            </form>
                         </li>
                         <li class="nav-item ms-5">
                             <a class="btn btn-outline-light" href="validation.php?destination=ajouter">Créer un évènement</a>
@@ -60,11 +61,6 @@ session_start();
             //La variable s'il y a une erreur
             $erreur = $erreurBD = false;
 
-            //Variables connexion
-            $servername = "localhost";
-            $username = "root";
-            $password = "root";
-            $dbname = "smileyface";
             //Creer connexion
             $conn = mysqli_connect($servername, $username, $password, $dbname);
             //Check connexion
@@ -73,13 +69,13 @@ session_start();
             }
 
             if (isset($_GET['id'])) {
-                $id = $_GET['id'];
+                $id = test_input($_GET['id']);
                 $sql = "SELECT * from utilisateur WHERE id=$id";
                 $result = $conn->query($sql);
                 $row = $result->fetch_assoc();
                 $nomUsager =  $row['usager'];
             } else if (isset($_POST['id'])) {
-                $id = $_POST['id'];
+                $id = test_input($_POST['id']);
                 $sql = "SELECT * from utilisateur WHERE id=$id";
                 $result = $conn->query($sql);
                 $row = $result->fetch_assoc();
@@ -165,6 +161,7 @@ session_start();
         <?php
             }
         } else {
+            $conn->close();
             header("Location: ./connexion.php");
         }
         function test_input($data)

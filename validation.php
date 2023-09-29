@@ -3,6 +3,7 @@ session_start();
 ?>
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,66 +11,61 @@ session_start();
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link rel="stylesheet" href="css/styles.css">
 </head>
+
 <body>
     <main>
-    <?php
-    if ($_SESSION['connexion'] == true) {
-        //variable vide
-        $destination = "";
-        $id = "";
-        //Variables d'erreurs vides
-        $nipVide = "";
-        $nipErreur = "";
-        //La variable qui permet de savoir s'il y a au moins une erreur dans le formulaire
-        $erreur = false;
+        <?php
+        if ($_SESSION['connexion'] == true) {
+            //variable vide
+            $destination = "";
+            $id = "";
+            //Variables d'erreurs vides
+            $nipVide = "";
+            $nipErreur = "";
+            //La variable qui permet de savoir s'il y a au moins une erreur dans le formulaire
+            $erreur = false;
 
-        if(isset($_GET['destination'])){
-            $destination = $_GET['destination'];
-        }
-        else if(isset($_POST['destination'])){
-            $destination = $_POST['destination'];
-        }
-
-        if(isset($_GET['id'])){
-            $id = $_GET['id'];
-        }
-        else if(isset($_POST['id'])){
-            $id = $_POST['id'];
-        }
-
-        if ($_SERVER["REQUEST_METHOD"] == "POST") {
-
-
-            if(empty($_POST['nip'])){
-                $nipVide = "Veuillez entrer un NIP";
-                $erreur = true;
+            if (isset($_GET['destination'])) {
+                $destination = test_input($_GET['destination']);
+            } else if (isset($_POST['destination'])) {
+                $destination = test_input($_POST['destination']);
             }
-            else{
-                $nip = $_POST['nip'];
-                if($id == ""){
-                    $URL = $destination . ".php";
-                }
-                else{
-                    $URL = $destination.".php?id=".$id;
-                }
 
-                if($nip == "1234"){
-                    echo $URL;
-                    header("Location: " . $URL);
-                }
-                else{
-                    $nipErreur = "Mauvais NIP";
+            if (isset($_GET['id'])) {
+                $id = test_input($_GET['id']);
+            } else if (isset($_POST['id'])) {
+                $id = test_input($_POST['id']);
+            }
+
+            if ($_SERVER["REQUEST_METHOD"] == "POST") {
+
+                if (empty($_POST['nip'])) {
+                    $nipVide = "Veuillez entrer un NIP";
                     $erreur = true;
+                } else {
+                    $nip = test_input($_POST['nip']);
+                    if ($id == "") {
+                        $URL = $destination . ".php";
+                    } else {
+                        $URL = $destination . ".php?id=" . $id;
+                    }
+
+                    if ($nip == "1234") {
+                        echo $URL;
+                        header("Location: " . $URL);
+                    } else {
+                        $nipErreur = "Mauvais NIP";
+                        $erreur = true;
+                    }
                 }
             }
-        }
 
         if ($_SERVER["REQUEST_METHOD"] != "POST" || $erreur == true) {
             if($destination != ""){
     ?>
     <div class="container-fluid vh-100 m-0 p-0">
         <header>
-            <nav class="navbar navbar-expand-lg bg-body-tertiary mb-5">
+            <nav class="navbar navbar-expand bg-body-tertiary mb-5">
                 <div class="container-fluid ">
                     <div class="collapse navbar-collapse">
                         <ul class="navbar-nav mb-2 mb-lg-0  align-items-center w-100 justify-content-between px-5">
@@ -77,11 +73,6 @@ session_start();
                                 <a href="index.php">
                                     <img src="img/CTR_Logo_BLANC.png" alt="Logo CégepTR">
                                 </a>
-                            </li>
-                            <li class="nav-item ms-5">
-                                <form>
-                                    <input id="barreRecherche " class="form-control me-2" type="search" placeholder="Rechercher" aria-label="Search">
-                                </form>
                             </li>
                             <li class="nav-item ms-5">
                                 <a class="btn btn-outline-light" href="validation.php?destination=ajouter">Créer un évènement</a>
@@ -97,57 +88,66 @@ session_start();
                             
                             </li>
 
-                        </ul>
-                    </div>
-                </div>
-            </nav>
-        </header>
-        <div class="container h-75">
-            <div class="row d-flex justify-content-center align-items-center h-100">
-                <div class="col-12 col-md-8 col-lg-6 col-xl-5">
-                    <div class="card bg-ctr-bleu radius-1rem text-white">
-                        <div class="card-body p-5 text-center">
-                            <div class="mt-md-4 pb-5">
-                                <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="POST">
-                                    <div class="col text-center mb-5">
-                                        <h1>Entrer le NIP</h1>
+                                        </ul>
                                     </div>
+                                </div>
+                            </nav>
+                        </header>
+                        <div class="container h-75">
+                            <div class="row d-flex justify-content-center align-items-center h-100">
+                                <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+                                    <div class="card bg-ctr-bleu radius-1rem text-white">
+                                        <div class="card-body p-5 text-center">
+                                            <div class="mt-md-4 pb-5">
+                                                <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="POST">
+                                                    <div class="col text-center mb-5">
+                                                        <h1>Entrer le NIP</h1>
+                                                    </div>
 
-                                    <!-- NIP -->
-                                    <div class="form-outline form-white mb-4">
-                                        <input id="nip" type="text" class="form-control text-center mb-4" name="nip" maxlength="4">
-                                        <span id="nipVide" class="text-danger"><?php echo $nipVide; ?></span>
-                                        <input id="destination" type="hidden" class="form-control" name="destination" value="<?php echo $destination ?>">
-                                        <input id="id" type="hidden" class="form-control" name="id" value="<?php echo $id ?>">
-                                    </div>
+                                                    <!-- NIP -->
+                                                    <div class="form-outline form-white mb-4">
+                                                        <input id="nip" type="text" class="form-control text-center mb-4" name="nip" maxlength="4">
+                                                        <span id="nipVide" class="text-danger"><?php echo $nipVide; ?></span>
+                                                        <input id="destination" type="hidden" class="form-control" name="destination" value="<?php echo $destination ?>">
+                                                        <input id="id" type="hidden" class="form-control" name="id" value="<?php echo $id ?>">
+                                                    </div>
 
-                                    <!-- Message erreur NIP invalide -->
-                                    <div>
-                                        <span class="text-danger">
-                                            <?php echo $nipErreur; ?>
-                                        </span>
+                                                    <!-- Message erreur NIP invalide -->
+                                                    <div>
+                                                        <span class="text-danger">
+                                                            <?php echo $nipErreur; ?>
+                                                        </span>
+                                                    </div>
+                                                    <!-- Se connecter submit et Créer un usager -->
+                                                    <input id="btnValide" class="btn btn-outline-light text-center mt-4 pt-1" type="submit" value="Valider">
+                                                </form>
+                                            </div>
+                                        </div>
                                     </div>
-                                    <!-- Se connecter submit et Créer un usager -->
-                                    <input id="btnValide" class="btn btn-outline-light text-center mt-4 pt-1" type="submit" value="Valider">
-                                </form>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-            </div>
-        </div>
-    </div>
         <?php
-                } else{
+                } else {
                     header("Location: ./index.php");
                 }
             }
         } else {
             header("Location: ./connexion.php");
         }
+
+        function test_input($data)
+        {
+            $data = trim($data);
+            $data = addslashes($data);
+            $data = htmlspecialchars($data);
+            return $data;
+        }
         ?>
 
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
         <script src="js/validation.js"></script>
 </body>
+
 </html>

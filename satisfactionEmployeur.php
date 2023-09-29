@@ -1,5 +1,11 @@
 <?php
 session_start();
+if($_SESSION['serveur']){
+    require("connexionServeur.php");
+}
+else{
+    require("connexionLocal.php");
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -33,13 +39,6 @@ session_start();
             }
             $valeur = test_input($_POST["valeur"]);
 
-
-            // Inserer dans la base de données
-            $servername = "localhost";
-            $username = "root";
-            $password = "root";
-            $dbname = "smileyface";
-
             // Create connection
             $conn = mysqli_connect($servername, $username, $password, $dbname);
 
@@ -66,6 +65,8 @@ session_start();
             $conn->close();
         }
         if ($_SERVER["REQUEST_METHOD"] != "POST" || $erreur == true) {
+            if ($id != "") {
+    ?>
             if ($id != "") {
     ?>
                 <div class="container d-flex flex-column justify-content-center align-items-center vh-100">
@@ -108,10 +109,12 @@ session_start();
                 </div>
     <?php
             } else {
+                $conn->close();
                 header("Location: ./index.php");
             }
         }
     } else {
+        $conn->close();
         header("Location: ./connexion.php");
     }
 

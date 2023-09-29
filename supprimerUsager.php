@@ -1,14 +1,15 @@
 <?php
 //Démarre la session
 session_start();
+if($_SESSION['serveur']){
+    require("connexionServeur.php");
+}
+else{
+    require("connexionLocal.php");
+}
 ?>
 
 <?php
-//Variables connexion
-$servername = "localhost";
-$username = "root";
-$password = "root";
-$dbname = "smileyface";
 
 //Récupère l'id
 // $id = $_GET['id'];
@@ -23,16 +24,25 @@ if (!$conn) {
 if (isset($_SESSION['connexion'])) {
 
     if (isset($_POST['suppUtil'])) {
-        $id = $_POST['supp_id'];
+        $id = test_input($_POST['supp_id']);
         $sql = "DELETE FROM utilisateur WHERE id='$id'";
         if ($conn->query($sql) === TRUE) {
             $conn->close();
-            header("Location: listeUsager.php?action=supprimer");
+            header("Location: listeUsager.php?action=supprimerUsager");
         } else {
             echo "Erreur";
         }
     }
 } else {
+    $conn->close();
     header("Location: ./connexion.php");
+}
+
+function test_input($data)
+{
+    $data = trim($data);
+    $data = addslashes($data);
+    $data = htmlspecialchars($data);
+    return $data;
 }
 ?>

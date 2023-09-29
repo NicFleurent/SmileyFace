@@ -1,5 +1,11 @@
 <?php
 session_start();
+if($_SESSION['serveur']){
+    require("connexionServeur.php");
+}
+else{
+    require("connexionLocal.php");
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -18,11 +24,6 @@ session_start();
         $id  = "";
         $idErreur = $erreurSQL = "";
         $erreur = false;
-
-        $servername = "localhost";
-        $username = "root";
-        $password = "root";
-        $dbname = "smileyface";
 
         $conn = mysqli_connect($servername, $username, $password, $dbname);
 
@@ -71,6 +72,7 @@ session_start();
 
                 $sql = "DELETE FROM evenement WHERE id=" . $id;
                 if ($conn->query($sql) === TRUE) {
+                    $conn->close();
                     header("Location: ./index.php?succes=supprimer");
                     die();
                 } else {
@@ -93,6 +95,7 @@ session_start();
             }
         }
     } else {
+        $conn->close();
         header("Location: ./connexion.php");
     }
 

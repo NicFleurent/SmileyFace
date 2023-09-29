@@ -19,66 +19,66 @@ document.addEventListener('DOMContentLoaded', function () {
             let offcanvasImage = document.querySelector('.offcanvas img');
             let offcanvasDate = document.querySelector('.offcanvas .card-text');
             let offcanvasDepartement = document.querySelector('.offcanvas .card-departement');
-            
+
             offcanvasTitre.textContent = nom;
             offcanvasImage.setAttribute('src', image);
             offcanvasDate.textContent = date;
 
             offcanvasDepartement.innerHTML = "";
-            for(let i=0 ; i<departements.length ; i++){
+            for (let i = 0; i < departements.length; i++) {
                 let departement = document.createElement("span");
                 departement.setAttribute("class", "rounded text-departement text-center p-2 m-2");
                 departement.innerHTML = departements[i].innerHTML;
                 offcanvasDepartement.append(departement);
             }
 
-            if(window.innerHeight >= 1330){
-                if(offcanvasDepartement.offsetHeight > 960){
-                    offcanvasImage.style.display="none";
-                    offcanvasCarte.setAttribute("class","card card-event");
+            if (window.innerHeight >= 1330) {
+                if (offcanvasDepartement.offsetHeight > 960) {
+                    offcanvasImage.style.display = "none";
+                    offcanvasCarte.setAttribute("class", "card card-event");
                 }
-                else if(offcanvasDepartement.offsetHeight > 790){
-                    offcanvasImage.style.display="none";
-                    offcanvasCarte.setAttribute("class","card h-100 card-event");
+                else if (offcanvasDepartement.offsetHeight > 790) {
+                    offcanvasImage.style.display = "none";
+                    offcanvasCarte.setAttribute("class", "card h-100 card-event");
                 }
-                else{
-                    offcanvasImage.style.display="block";
-                    offcanvasCarte.setAttribute("class","card h-100 card-event");
-                }
-            }
-            else if(window.innerHeight >= 960){
-                if(offcanvasDepartement.offsetHeight > 600){
-                    offcanvasImage.style.display="none";
-                    offcanvasCarte.setAttribute("class","card card-event");
-                }
-                else if(offcanvasDepartement.offsetHeight > 300){
-                    offcanvasImage.style.display="none";
-                    offcanvasCarte.setAttribute("class","card h-100 card-event");
-                }
-                else{
-                    offcanvasImage.style.display="block";
-                    offcanvasCarte.setAttribute("class","card h-100 card-event");
+                else {
+                    offcanvasImage.style.display = "block";
+                    offcanvasCarte.setAttribute("class", "card h-100 card-event");
                 }
             }
-            else if(window.innerHeight >= 800){
-                if(offcanvasDepartement.offsetHeight > 420){
-                    offcanvasImage.style.display="none";
-                    offcanvasCarte.setAttribute("class","card card-event");
+            else if (window.innerHeight >= 960) {
+                if (offcanvasDepartement.offsetHeight > 600) {
+                    offcanvasImage.style.display = "none";
+                    offcanvasCarte.setAttribute("class", "card card-event");
                 }
-                else if(offcanvasDepartement.offsetHeight > 180){
-                    offcanvasImage.style.display="none";
-                    offcanvasCarte.setAttribute("class","card h-100 card-event");
+                else if (offcanvasDepartement.offsetHeight > 300) {
+                    offcanvasImage.style.display = "none";
+                    offcanvasCarte.setAttribute("class", "card h-100 card-event");
                 }
-                else{
-                    offcanvasImage.style.display="block";
-                    offcanvasCarte.setAttribute("class","card h-100 card-event");
+                else {
+                    offcanvasImage.style.display = "block";
+                    offcanvasCarte.setAttribute("class", "card h-100 card-event");
                 }
             }
-            else{
-                offcanvasImage.style.display="none";
-                offcanvasCarte.setAttribute("class","card card-event");
+            else if (window.innerHeight >= 800) {
+                if (offcanvasDepartement.offsetHeight > 420) {
+                    offcanvasImage.style.display = "none";
+                    offcanvasCarte.setAttribute("class", "card card-event");
+                }
+                else if (offcanvasDepartement.offsetHeight > 180) {
+                    offcanvasImage.style.display = "none";
+                    offcanvasCarte.setAttribute("class", "card h-100 card-event");
+                }
+                else {
+                    offcanvasImage.style.display = "block";
+                    offcanvasCarte.setAttribute("class", "card h-100 card-event");
+                }
             }
-            
+            else {
+                offcanvasImage.style.display = "none";
+                offcanvasCarte.setAttribute("class", "card card-event");
+            }
+
 
             let id = bouton.getAttribute("id");
             let btnChoixSondage = document.getElementById("btnChoixSondage");
@@ -88,19 +88,17 @@ document.addEventListener('DOMContentLoaded', function () {
             let btnGerer = document.getElementById("btnGerer");
             btnGerer.setAttribute("href", "validation.php?destination=modifier&id=" + id);
 
-            let inputId = document.getElementById("inputId");
-            inputId.setAttribute("value", id);
 
             let btnWeb;
-            if(document.getElementById("btnWeb") !== null){
+            if (document.getElementById("btnWeb") !== null) {
                 btnWeb = document.getElementById("btnWeb");
             }
-            else{
+            else {
                 btnWeb = document.getElementById("btnWebDisable");
             }
-            
+
             btnWeb.setAttribute("target", "_blank");
-            if(lien == ""){
+            if (lien == "") {
                 btnWeb.classList.remove("radius-0");
                 btnWeb.classList.remove("btn");
                 btnWeb.classList.remove("btn-ctr-bleu");
@@ -108,7 +106,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 btnWeb.setAttribute("id", 'btnWebDisable');
                 btnWeb.removeAttribute("href");
             }
-            else{
+            else {
                 btnWeb.classList.add("radius-0");
                 btnWeb.classList.add("btn");
                 btnWeb.classList.add("btn-ctr-bleu");
@@ -117,27 +115,25 @@ document.addEventListener('DOMContentLoaded', function () {
                 btnWeb.setAttribute("href", lien);
                 btnWeb.setAttribute("target", "_blank");
             }
-            
+            //Fait apparaître un avis de suppression+
+            let btnSupp = document.querySelectorAll('.btn-supprimer');
+            let modalIdInput = document.getElementById('inputId');
+            btnSupp.forEach(btn => {
+                btn.addEventListener('click', function () {
+                    modalIdInput.value = id;
+                    let options = {
+                        backdrop: true,
+                        keyboard: true,
+                        show: true
+                    };
+
+                    new bootstrap.Modal(document.getElementById('modalSupp'), options).show();
+
+                });
+            });
         });
 
     });
-
-
-    // let eventLi = document.querySelectorAll('.row li')
-    // eventLi.forEach((event) => {
-    //     document.getElementById('barreRecherche').addEventListener('input', function () {
-    //         let champRecherche = getElementById('barreRecherche').value;
-    //         let nom = card.querySelector('.card-title').textContent;
-    //         if(champRecherche.includes(nom)){
-
-    //         }
-    //     });
-    // });
-
-
-
-
-
 
 });
 
