@@ -1,6 +1,12 @@
 <?php
 //Démarre la session
 session_start();
+if($_SESSION['serveur']){
+    require("connexionServeur.php");
+}
+else{
+    require("connexionLocal.php");
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -60,20 +66,15 @@ session_start();
             $mdpErreur = "";
             $confirmationMdpErreur = "";
 
-            //La variable s'il y a une erreur
-            $erreur = false;
-
-            //Variables connexion
-            $servername = "localhost";
-            $username = "root";
-            $password = "root";
-            $dbname = "smileyface";
-            //Create connection
-            $conn = mysqli_connect($servername, $username, $password, $dbname);
-            //Check connection
-            if (!$conn) {
-                die("Connectionfailed:" . mysqli_connect_error());
-            }
+        //La variable s'il y a une erreur
+        $erreur = false;
+        
+        //Create connection
+        $conn = mysqli_connect($servername, $username, $password, $dbname);
+        //Check connection
+        if (!$conn) {
+            die("Connectionfailed:" . mysqli_connect_error());
+        }
 
             if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 //Vérification du usager

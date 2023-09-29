@@ -1,6 +1,12 @@
 <?php
 //Démarre la session
 session_start();
+if($_SESSION['serveur']){
+    require("connexionServeur.php");
+}
+else{
+    require("connexionLocal.php");
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -66,11 +72,6 @@ session_start();
             //La variable s'il y a une erreur
             $erreur = $erreurBD = false;
 
-            //Variables connexion
-            $servername = "localhost";
-            $username = "root";
-            $password = "root";
-            $dbname = "smileyface";
             //Creer connexion
             $conn = mysqli_connect($servername, $username, $password, $dbname);
             //Check connexion

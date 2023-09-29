@@ -1,14 +1,15 @@
 <?php
 //Démarre la session
 session_start();
+if($_SESSION['serveur']){
+    require("connexionServeur.php");
+}
+else{
+    require("connexionLocal.php");
+}
 ?>
 
 <?php
-//Variables connexion
-$servername = "localhost";
-$username = "root";
-$password = "root";
-$dbname = "smileyface";
 
 //Récupère l'id
 // $id = $_GET['id'];

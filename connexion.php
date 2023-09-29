@@ -1,6 +1,8 @@
 <?php
 //Démarre la session
 session_start();
+//require("connexionServeur.php");
+require("connexionLocal.php");
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -25,8 +27,9 @@ session_start();
     <main>
 
         <?php
+        //Variables vides
         $user = "";
-        $password = "";
+        $mdp = "";
         //Variables d'erreurs vides
         $usagerErreur = "";
         $mdpErreur = "";
@@ -36,12 +39,6 @@ session_start();
 
 
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
-
-            //Variables connexion
-            $servername = "localhost";
-            $username = "root";
-            $password = "root";
-            $dbname = "smileyface";
             //Create connection
             $conn = mysqli_connect($servername, $username, $password, $dbname);
             //Check connection
@@ -59,18 +56,19 @@ session_start();
                 $mdpErreur = "Veuillez entrer votre mot de passe";
                 $erreur = true;
             } else
-                $password = test_input($_POST['mdp']);
+                $mdp = test_input($_POST['mdp']);
 
-            $password = sha1($password, false);
+            $mdp = sha1($mdp, false);
 
             //Vérification si les identifiants sont dans la base de données
-            $sql = "SELECT * from utilisateur where usager ='$user' AND mot_de_passe='$password'";
+            $sql = "SELECT * from utilisateur where usager ='$user' AND mot_de_passe='$mdp'";
             $result = $conn->query($sql);
 
             if (isset($result)) {
                 if ($result->num_rows > 0) {
                     $row = $result->fetch_assoc();
                     $_SESSION["connexion"] = true;
+                    $_SESSION["serveur"] = false;
                     header("Location: index.php");
                     echo "réussi";
                 } else if ($_POST['usager'] != null && $_POST['mdp'] != null) {

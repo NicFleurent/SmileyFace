@@ -1,5 +1,11 @@
 <?php
 session_start();
+if($_SESSION['local']){
+    require("connexionLocal.php");
+}
+else{
+    require("connexionServeur.php");
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -19,11 +25,7 @@ session_start();
         $nom = $date = $lien = $departement = $image = "";
         $nomErreur = $dateErreur = $lienErreur = $departementErreur = $imageErreur = $erreurSQL = "";
         $erreurChant = $erreurBD = false;
-
-        $servername = "localhost";
-        $username = "root";
-        $password = "root";
-        $dbname = "smileyface";
+        
         $conn = mysqli_connect($servername, $username, $password, $dbname);
         if (!$conn) {
             die("Connection failed: " . mysqli_connect_error());
