@@ -5,7 +5,7 @@
   
     //Fait apparaître un avis de suppression
     let btnSupp = document.querySelectorAll('.btn-supprimer');
-    let modalIdInput = document.getElementById('supp_id'); // Fix: Get the input element by its ID
+    let modalIdInput = document.getElementById('supp_id');
 
     btnSupp.forEach(btn => {
         btn.addEventListener('click', function () {

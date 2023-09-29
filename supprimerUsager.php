@@ -28,7 +28,7 @@ if (isset($_SESSION['connexion'])) {
         $sql = "DELETE FROM utilisateur WHERE id='$id'";
         if ($conn->query($sql) === TRUE) {
             $conn->close();
-            header("Location: listeUsager.php?action=supprimer");
+            header("Location: listeUsager.php?action=supprimerUsager");
         } else {
             echo "Erreur";
         }

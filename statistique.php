@@ -115,7 +115,7 @@ if ($_SESSION['serveur']) {
         <!-- Pour avoir un bon comportement responsive, il faut ajouter les styles ci-dessous
              dans le conteneur du "canvas" -->
 
-        <div class="d-flex justify-content-center mt-5 canvas-container ">
+        <div class="d-flex justify-content-center mt-5 ">
             <div class="me-5 text-center">
                 <h2 id="titre-etu"></h2>
                 <div class="position-relative">

@@ -1,6 +1,6 @@
 <?php
 session_start();
-if($_SESSION['local']){
+if($_SESSION['serveur']){
     require("connexionLocal.php");
 }
 else{

@@ -1,9 +1,8 @@
 <?php
 session_start();
-if($_SESSION['serveur']){
+if ($_SESSION['serveur']) {
     require("connexionServeur.php");
-}
-else{
+} else {
     require("connexionLocal.php");
 }
 ?>
@@ -56,12 +55,14 @@ else{
         <?php
         if (isset($_SESSION['connexion'])) {
 
-            //Createconnection
+            //Creer connexion
             $conn = new mysqli($servername, $username, $password, $dbname);
-            //Checkconnection
+            //Vérifie la connexion
             if ($conn->connect_error) {
                 die("Connectionfailed:" . $conn->connect_error);
             }
+
+            //Affiche des messages de confirmation pour modifications ou ajout utilisateur
             if (isset($_GET['action'])) {
                 if ($_GET['action'] === "ajouterUsager") {
         ?>
@@ -90,6 +91,16 @@ else{
                             <use xlink:href="#check-circle-fill" />
                         </svg>
                         Le nom d'utlisateur a bien été <strong>modifié!</strong>
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                <?php
+                } else if ($_GET['action'] === "supprimerUsager") {
+                ?>
+                    <div class="alert alert-success alert-dismissible fade show m-5 mt-2" role="alert">
+                        <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Success:">
+                            <use xlink:href="#check-circle-fill" />
+                        </svg>
+                        L'utlisateur a bien été <strong>supprimé!</strong>
                         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                     </div>
                 <?php
@@ -122,7 +133,7 @@ else{
                                 <td class="text-center"><a class="btn btn-outline-dark" href="modifierUsager.php?id=<?php echo $row['id'] ?>">Nom d'usager</a>
                                     <a class="btn btn-outline-dark" href="modifierMdp.php?id=<?php echo $row['id'] ?>">Mot de passe</a>
                                 </td>
-                                <td class="text-center"><button id="confirmSupp_<?php echo $row['id'] ?>" type="button" class="btn btn-danger btn-supprimer"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash3" viewBox="0 0 16 16">
+                                <td class="text-center"><button type="button" class="btn btn-danger btn-supprimer"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash3" viewBox="0 0 16 16">
                                             <path d="M6.5 1h3a.5.5 0 0 1 .5.5v1H6v-1a.5.5 0 0 1 .5-.5ZM11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3A1.5 1.5 0 0 0 5 1.5v1H2.506a.58.58 0 0 0-.01 0H1.5a.5.5 0 0 0 0 1h.538l.853 10.66A2 2 0 0 0 4.885 16h6.23a2 2 0 0 0 1.994-1.84l.853-10.66h.538a.5.5 0 0 0 0-1h-.995a.59.59 0 0 0-.01 0H11Zm1.958 1-.846 10.58a1 1 0 0 1-.997.92h-6.23a1 1 0 0 1-.997-.92L3.042 3.5h9.916Zm-7.487 1a.5.5 0 0 1 .528.47l.5 8.5a.5.5 0 0 1-.998.06L5 5.03a.5.5 0 0 1 .47-.53Zm5.058 0a.5.5 0 0 1 .47.53l-.5 8.5a.5.5 0 1 1-.998-.06l.5-8.5a.5.5 0 0 1 .528-.47ZM8 4.5a.5.5 0 0 1 .5.5v8.5a.5.5 0 0 1-1 0V5a.5.5 0 0 1 .5-.5Z" />
                                         </svg></button></td>
                             </tr>
@@ -157,8 +168,8 @@ else{
                                 <p>Voulez-vous vraiment supprimer l'utilisateur ?</p>
                             </div>
                             <div class="modal-footer">
-                                <button type="submit" name="suppUtil" class="btn btn-danger">Oui</button>
-                                <button type="button" class="btn bg-warning" data-bs-dismiss="modal">Annuler</button>
+                                <button type="submit" name="suppUtil" class="btn bg-ctr-bleu">Oui</button>
+                                <button type="button" class="btn bg-secondary text-white" data-bs-dismiss="modal">Annuler</button>
                             </div>
                         </form>
                     </div>
@@ -174,9 +185,12 @@ else{
 
     <footer class="text-center">
         <!-- Copyright -->
-        <p>
-            © 2023 Copyright: Nicolas Fleurent & Mirolie Théroux
-        </p>
+        <div class="d-flex">
+            <p>
+                © 2023 Copyright: Nicolas Fleurent & Mirolie Théroux
+            </p>
+            <img src="img/Logo_offic_2L_Techniques_informatique-01.png" alt="Logo tech">
+        </div>
     </footer>
     <!-- Bootstrap CSS et JS-->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
