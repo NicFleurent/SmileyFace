@@ -6,6 +6,9 @@ if($_SESSION['serveur']){
 else{
     require("connexionServeur.php");
 }
+else{
+    require("connexionLocal.php");
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -115,7 +118,7 @@ else{
         if ($_SERVER["REQUEST_METHOD"] != "POST" || $erreurChant == true || $erreurBD == true) {
     ?>
             <header>
-                <nav class="navbar navbar-expand-lg bg-body-tertiary mb-5">
+                <nav class="navbar navbar-expand bg-body-tertiary mb-5">
                     <div class="container-fluid ">
                         <div class="collapse navbar-collapse">
                             <ul class="navbar-nav mb-2 mb-lg-0  align-items-center w-100 justify-content-between px-5">
@@ -123,11 +126,6 @@ else{
                                     <a href="index.php">
                                         <img src="img/CTR_Logo_BLANC.png" alt="Logo CégepTR">
                                     </a>
-                                </li>
-                                <li class="nav-item ms-5">
-                                    <form>
-                                        <input id="barreRecherche " class="form-control me-2" type="search" placeholder="Rechercher" aria-label="Search">
-                                    </form>
                                 </li>
                                 <li class="nav-item ms-5">
                                     <a class="btn btn-outline-light" href="ajouter.php">Créer un évènement</a>

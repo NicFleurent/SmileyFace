@@ -17,15 +17,12 @@ else{
     <title>Création usager</title>
     <!-- Bootstrap CSS et JS-->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="css/styles.css">
-    <!-- Script personnalisé -->
-    <script src="js/modificationMdp.js"></script>
 </head>
 
 <body>
     <header>
-        <nav class="navbar navbar-expand-lg bg-body-tertiary mb-5">
+        <nav class="navbar navbar-expand bg-body-tertiary mb-5">
             <div class="container-fluid ">
                 <div class="collapse navbar-collapse">
                     <ul class="navbar-nav mb-2 mb-lg-0  align-items-center w-100 justify-content-between px-5">
@@ -33,11 +30,6 @@ else{
                             <a href="index.php">
                                 <img src="img/CTR_Logo_BLANC.png" alt="Logo CégepTR">
                             </a>
-                        </li>
-                        <li class="nav-item ms-5">
-                            <form>
-                                <input id="barreRecherche " class="form-control me-2" type="search" placeholder="Rechercher" aria-label="Search">
-                            </form>
                         </li>
                         <li class="nav-item ms-5">
                             <a class="btn btn-outline-light" href="validation.php?destination=ajouter">Créer un évènement</a>
@@ -165,6 +157,8 @@ else{
         ?>
     </main>
 
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <script src="js/modificationMdp.js"></script>
 </body>
 
 </html>
