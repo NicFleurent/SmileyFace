@@ -1,8 +1,8 @@
 <?php
 //Démarre la session
 session_start();
-//require("connexionServeur.php");
-require("connexionLocal.php");
+require("connexionServeur.php");
+//require("connexionLocal.php");
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -68,7 +68,7 @@ require("connexionLocal.php");
                 if ($result->num_rows > 0) {
                     $row = $result->fetch_assoc();
                     $_SESSION["connexion"] = true;
-                    $_SESSION["serveur"] = false;
+                    $_SESSION["serveur"] = true;
                     header("Location: index.php");
                     echo "réussi";
                 } else if ($_POST['usager'] != null && $_POST['mdp'] != null) {

@@ -21,7 +21,7 @@ else{
 
 <body>
     <header>
-        <nav class="navbar navbar-expand-lg bg-body-tertiary mb-5">
+        <nav class="navbar navbar-expand bg-body-tertiary mb-5">
             <div class="container-fluid ">
                 <div class="collapse navbar-collapse">
                     <ul class="navbar-nav mb-2 mb-lg-0  align-items-center w-100 justify-content-between px-5">
@@ -29,11 +29,6 @@ else{
                             <a href="index.php">
                                 <img src="img/CTR_Logo_BLANC.png" alt="Logo CégepTR">
                             </a>
-                        </li>
-                        <li class="nav-item ms-5">
-                            <form>
-                                <input id="barreRecherche " class="form-control me-2" type="search" placeholder="Rechercher" aria-label="Search">
-                            </form>
                         </li>
                         <li class="nav-item ms-5">
                             <a class="btn btn-outline-light" href="validation.php?destination=ajouter">Créer un évènement</a>
@@ -119,20 +114,22 @@ else{
         <!-- Pour avoir un bon comportement responsive, il faut ajouter les styles ci-dessous
              dans le conteneur du "canvas" -->
 
-        <div class="d-flex justify-content-center mt-5 canvas-container ">
-            <div class="me-5 text-center">
-                <h2 id="titre-etu"></h2>
-                <div class="position-relative">
-                    <canvas id="canvas-diagramme"></canvas>
+        <div class="canvas-container mt-5">
+            <div class="row">
+                <div class="col-lg-6 justify-content-center text-center">
+                    <h2 id="titre-etu"></h2>
+                    <div class="mx-auto" style="position: relative; height: 361px; width: 361px;">
+                        <canvas id="canvas-diagramme"></canvas>
+                    </div>
+                    <span  class="fs-4" id="totalVotesEt"></span>
                 </div>
-                <span  class="fs-4" id="totalVotesEt"></span>
-            </div>
-            <div class="ms-5 text-center">
-                <h2 id="titre-ent"></h2>
-                <div class="position-relative">
-                    <canvas id="canvas-diagramme2"></canvas>
+                <div class="col-lg-6 justify-content-center text-center">
+                    <h2 id="titre-ent"></h2>
+                    <div class="mx-auto" style="position: relative; height: 361px; width: 361px;">
+                        <canvas id="canvas-diagramme2"></canvas>
+                    </div>
+                    <span  class="fs-4" id="totalVotesEn"></span>
                 </div>
-                <span class="fs-4" id="totalVotesEn"></span>
             </div>
         </div>
     </main>
