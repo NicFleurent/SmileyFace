@@ -63,8 +63,9 @@ session_start();
             $mdpErreur = "";
             $confirmationMdpErreur = "";
 
-            //La variable s'il y a une erreur
+            //Les variables s'il y a une erreurs
             $erreur = false;
+            $erreur = $erreurBD = false;
 
             //Variables connexion
             $servername = "localhost";
@@ -103,14 +104,30 @@ session_start();
                     $confirmationMdp = sha1($password, false);
                 }
 
-                if ($erreur != true) {
 
-                    $sql = "UPDATE utilisateur SET mot_de_passe='$confirmationMdp' where id=$id";
-                    if (mysqli_query($conn, $sql)) {
-                        mysqli_close($conn);
-                        header("Location: listeUsager.php?action=modifierMdp");
-                    } else {
-                        echo "Error:" . $sql . "<br>" . mysqli_error($conn);
+                if (!$erreur) {
+                    $sql = "SELECT usager from utilisateur where usager = '$nomUsager'";
+                    $result = $conn->query($sql);
+
+                    //Regarder si le user est déjà dans la BD
+                    if (isset($result) && $result->num_rows > 0) {
+                        $nomUsagerErreur = "Ce nom d'usager est déjà utilisé";
+                        $erreurBD = true;
+                        $erreur = true;
+                    }
+
+                    if (!$erreurBD) {
+                        $sql = "SELECT * from utilisateur where id=$id AND mot_de_passe='$mdp'";
+                        $result = $conn->query($sql);
+
+                        if (isset($result) && $result->num_rows > 0) {
+                            $sql = "UPDATE utilisateur SET usager='$nomUsager' where id=$id AND mot_de_passe='$mdp'";
+                            $conn->query($sql);
+                            header("Location: listeUsager.php?action=modifierUsager");
+                        } else {
+                            $erreur = true;
+                            $mdpErreur = "Le mot de passe ne correspond pas";
+                        }
                     }
                 }
             }

@@ -1,7 +1,5 @@
 'use strict';
 
-/* global bootstrap */
-
 document.addEventListener('DOMContentLoaded', function () {
 
 
