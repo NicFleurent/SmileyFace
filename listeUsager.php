@@ -1,5 +1,11 @@
 <?php
 session_start();
+if($_SESSION['serveur']){
+    require("connexionServeur.php");
+}
+else{
+    require("connexionLocal.php");
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -50,10 +56,6 @@ session_start();
         <?php
         if (isset($_SESSION['connexion'])) {
 
-            $servername = "localhost";
-            $username = "root";
-            $password = "root";
-            $dbname = "smileyface";
             //Createconnection
             $conn = new mysqli($servername, $username, $password, $dbname);
             //Checkconnection

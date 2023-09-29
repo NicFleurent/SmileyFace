@@ -1,5 +1,11 @@
 <?php
 session_start();
+if($_SESSION['serveur']){
+    require("connexionServeur.php");
+}
+else{
+    require("connexionLocal.php");
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -33,13 +39,6 @@ session_start();
                 $erreur = true;
             }
             $valeur = test_input($_POST["valeur"]);
-
-
-            // Inserer dans la base de données
-            $servername = "localhost";
-            $username = "root";
-            $password = "root";
-            $dbname = "smileyface";
 
             // Create connection
             $conn = mysqli_connect($servername, $username, $password, $dbname);
