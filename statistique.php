@@ -1,10 +1,9 @@
 <?php
 //Démarre la session
 session_start();
-if($_SESSION['serveur']){
+if ($_SESSION['serveur']) {
     require("connexionServeur.php");
-}
-else{
+} else {
     require("connexionLocal.php");
 }
 ?>
@@ -60,11 +59,9 @@ else{
             if (!$conn) {
                 die("Connectionfailed:" . mysqli_connect_error());
             }
-            // Set session variables
-            $_SESSION["connexion"] = true;
 
             if (isset($_GET['id'])) {
-                $id = $_GET['id'];
+                $id = test_input($_GET['id']);
 
                 //string de requête
                 $sql = "SELECT nom,etudiantSatisfait,etudiantNeutre,etudiantInsatisfait FROM evenement where id=$id";
@@ -74,7 +71,6 @@ else{
                 $result = $conn->query($sql);
 
                 if ($result->num_rows > 0) {
-
                     while ($row = $result->fetch_assoc()) {
         ?>
                         <span id="titreE" class="visually-hidden"><?php echo $row['nom'] ?></span>
@@ -95,20 +91,20 @@ else{
 
                     while ($row = $result->fetch_assoc()) {
                     ?>
-
                         <span id="nbEntSatisf" class="visually-hidden"><?php echo $row['employeurSatisfait'] ?></span>
                         <span id="nbEntNeutre" class="visually-hidden"><?php echo $row['employeurNeutre'] ?></span>
                         <span id="nbEntInsatisf" class="visually-hidden"><?php echo $row['employeurInsatisfait'] ?></span>
         <?php
                     }
                 }
-            } else {
-                header("Location: ./index.php");
             }
         } else {
+            mysqli_close($conn);
             header("Location: ./connexion.php");
         }
         ?>
+
+
 
         <h1 class="text-center" id="titre-event"></h1>
         <!-- Pour avoir un bon comportement responsive, il faut ajouter les styles ci-dessous
@@ -133,7 +129,15 @@ else{
             </div>
         </div>
     </main>
-
+    <?php
+    function test_input($data)
+    {
+        $data = trim($data);
+        $data = addslashes($data);
+        $data = htmlspecialchars($data);
+        return $data;
+    }
+    ?>
 
     <footer class="text-center mt-5">
         <!-- Copyright -->
@@ -149,7 +153,7 @@ else{
     <!-- Chart.js -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
-    
+
     <link rel="stylesheet" href="css/styles.css">
     <link rel="stylesheet" href="css/index.css">
     <script src="js/statistique.js"></script>

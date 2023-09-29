@@ -132,7 +132,7 @@ else{
             <?php
 
             } else {
-                echo "0 results";
+                echo "Il n'y aucun utilisateur d'enregistré";
             }
             mysqli_close($conn);
 
@@ -161,6 +161,7 @@ else{
             </div>
         <?php
         } else {
+            mysqli_close($conn);
             header("Location: ./connexion.php");
         }
         ?>

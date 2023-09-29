@@ -72,13 +72,13 @@ else{
             }
 
             if (isset($_GET['id'])) {
-                $id = $_GET['id'];
+                $id = test_input($_GET['id']);
                 $sql = "SELECT * from utilisateur WHERE id=$id";
                 $result = $conn->query($sql);
                 $row = $result->fetch_assoc();
                 $nomUsager =  $row['usager'];
             } else if (isset($_POST['id'])) {
-                $id = $_POST['id'];
+                $id = test_input($_POST['id']);
                 $sql = "SELECT * from utilisateur WHERE id=$id";
                 $result = $conn->query($sql);
                 $row = $result->fetch_assoc();
@@ -164,6 +164,7 @@ else{
         <?php
             }
         } else {
+            $conn->close();
             header("Location: ./connexion.php");
         }
         function test_input($data)

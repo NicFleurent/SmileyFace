@@ -62,7 +62,7 @@ else{
                 $erreurChant = true;
             }
 
-            if(!$erreurChant){
+            if (!$erreurChant) {
                 $sql = "INSERT INTO evenement (nom, date, lien, image) 
                 VALUES ('" . $nom . "', '" . $date . "', '" . $lien . "', '" . $image . "')";
                 if (mysqli_query($conn, $sql)) {
@@ -79,10 +79,10 @@ else{
                 }
                 $idEvenement = $row["id"];
 
-                if(isset($_POST['departementLength'])){
+                if (isset($_POST['departementLength'])) {
                     $departementLength = test_input($_POST['departementLength']);
 
-                    for($i=0 ; $i<$departementLength ; $i++){
+                    for ($i = 0; $i < $departementLength; $i++) {
                         $departementTemp = "departement$i";
                         if (isset($_POST[$departementTemp])) {
                             $departement = test_input($_POST[$departementTemp]);
@@ -96,7 +96,7 @@ else{
                             $idDepartement = $row["id"];
 
                             $sql = "INSERT INTO evenement_departement (id_evenement, id_departement) 
-                            VALUES ('" . $idEvenement . "', '" . $idDepartement ."')";
+                            VALUES ('" . $idEvenement . "', '" . $idDepartement . "')";
 
                             if (mysqli_query($conn, $sql)) {
                                 echo "Succes : $idEvenement et $idDepartement<br>";
@@ -132,10 +132,10 @@ else{
                                 </li>
                                 <li class="nav-item ms-5">
                                     <a class="btn btn-outline-light" href="deconnexion.php">Déconnexion <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-box-arrow-right" viewBox="0 0 16 16">
-                                        <path fill-rule="evenodd" d="M10 12.5a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v2a.5.5 0 0 0 1 0v-2A1.5 1.5 0 0 0 9.5 2h-8A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-2a.5.5 0 0 0-1 0v2z" />
-                                        <path fill-rule="evenodd" d="M15.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 0 0-.708.708L14.293 7.5H5.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3z" />
-                                    </svg></a>
-                                
+                                            <path fill-rule="evenodd" d="M10 12.5a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v2a.5.5 0 0 0 1 0v-2A1.5 1.5 0 0 0 9.5 2h-8A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-2a.5.5 0 0 0-1 0v2z" />
+                                            <path fill-rule="evenodd" d="M15.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 0 0-.708.708L14.293 7.5H5.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3z" />
+                                        </svg></a>
+
                                 </li>
 
                             </ul>
@@ -239,20 +239,20 @@ else{
                                     <select class="form-select" aria-label="Default select example" name="departement0">
                                         <option selected>Aucun programme spécifique</option>
                                         <?php
-                                            $sql = "SELECT nom FROM departement WHERE nom!='Aucun programme spécifique' ORDER BY nom";
-                                            $result = $conn->query($sql);
-                                
-                                            while($row = $result->fetch_assoc()){
+                                        $sql = "SELECT nom FROM departement WHERE nom!='Aucun programme spécifique' ORDER BY nom";
+                                        $result = $conn->query($sql);
+
+                                        while ($row = $result->fetch_assoc()) {
                                         ?>
-                                                <option value="<?php echo $row['nom']; ?>"><?php echo $row['nom']; ?></option>
+                                            <option value="<?php echo $row['nom']; ?>"><?php echo $row['nom']; ?></option>
                                         <?php
-                                            }
+                                        }
                                         ?>
                                     </select>
                                 </div>
                                 <div class="col-sm-2 text-end d-flex justify-content-between">
-                                    <button type="button" class="btn btn-outline-light btn-ajouterDept fw-bold">+</button> 
-                                    <button type="button" class="btn btn-outline-light btn-supprimerDept fw-bold">-</button>   
+                                    <button type="button" class="btn btn-outline-light btn-ajouterDept fw-bold">+</button>
+                                    <button type="button" class="btn btn-outline-light btn-supprimerDept fw-bold">-</button>
                                 </div>
                             </div>
                         </div>
@@ -265,6 +265,7 @@ else{
     <?php
         }
     } else {
+        mysqli_close($conn);
         header("Location: ./connexion.php");
     }
 

@@ -24,7 +24,7 @@ if (!$conn) {
 if (isset($_SESSION['connexion'])) {
 
     if (isset($_POST['suppUtil'])) {
-        $id = $_POST['supp_id'];
+        $id = test_input($_POST['supp_id']);
         $sql = "DELETE FROM utilisateur WHERE id='$id'";
         if ($conn->query($sql) === TRUE) {
             $conn->close();
@@ -34,6 +34,15 @@ if (isset($_SESSION['connexion'])) {
         }
     }
 } else {
+    $conn->close();
     header("Location: ./connexion.php");
+}
+
+function test_input($data)
+{
+    $data = trim($data);
+    $data = addslashes($data);
+    $data = htmlspecialchars($data);
+    return $data;
 }
 ?>

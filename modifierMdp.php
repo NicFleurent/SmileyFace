@@ -73,9 +73,9 @@ else{
             }
 
             if (isset($_GET['id'])) {
-                $id = $_GET['id'];
+                $id = test_input($_GET['id']);
             } else if (isset($_POST['id'])) {
-                $id = $_POST['id'];
+                $id = test_input($_POST['id']);
             }
 
             if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -144,6 +144,7 @@ else{
         <?php
             }
         } else {
+            mysqli_close($conn);
             header("Location: ./connexion.php");
         }
         function test_input($data)

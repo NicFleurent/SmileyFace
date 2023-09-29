@@ -43,30 +43,29 @@ session_start();
                             
                             </li>
 
-                        </ul>
-                    </div>
-                </div>
-            </nav>
-        </header>
-        <div class="container d-flex flex-column justify-content-center align-items-center mt-5 h-75">
-            <div class="container-fluid bg-ctr-bleu radius-1rem text-white text-center p-5">
-                <div class="row mb-5">
-                    <div class="col">
-                        <h1>À qui donnerez-vous cette tablette?</h1>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col">
-                        <a href="satisfactionEtudiant.php?id=<?php echo $id; ?>" class="btn btn-outline-light fw-bold fs-3 m-4 pt-1">Étudiant</a>
-                        <a href="satisfactionEmployeur.php?id=<?php echo $id; ?>" class="btn btn-outline-light fw-bold fs-3 m-4 pt-1">Employeur</a>
+                                </ul>
+                            </div>
+                        </div>
+                    </nav>
+                </header>
+                <div class="container d-flex flex-column justify-content-center align-items-center mt-5 h-75">
+                    <div class="container-fluid bg-ctr-bleu radius-1rem text-white text-center p-5">
+                        <div class="row mb-5">
+                            <div class="col">
+                                <h1>À qui donnerez-vous cette tablette?</h1>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <a href="satisfactionEtudiant.php?id=<?php echo $id; ?>" class="btn btn-outline-light fw-bold fs-3 m-4 pt-1">Étudiant</a>
+                                <a href="satisfactionEmployeur.php?id=<?php echo $id; ?>" class="btn btn-outline-light fw-bold fs-3 m-4 pt-1">Employeur</a>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </div>
     <?php
-        }
-        else{
+        } else {
             header("Location: ./index.php");
         }
     } else {

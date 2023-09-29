@@ -76,7 +76,7 @@ require("connexionServeur.php");
                     $erreur = true;
                 }
             }
-            $conn->close();
+            mysqli_close($conn);
         }
 
         if ($_SERVER["REQUEST_METHOD"] != "POST" || $erreur == true) {
@@ -140,15 +140,7 @@ require("connexionServeur.php");
         </article> <!-- Fin toast -->
 
         <?php
-        if (!isset($_GET['action'])) {
-        } else if ($_GET['action'] == "creer") {
-        ?>
-            <script>
-                creerToastA()
-            </script>
-        <?php
-        }
-
+       
         function test_input($data)
         {
             $data = trim($data);
@@ -159,6 +151,7 @@ require("connexionServeur.php");
 
         ?>
     </main>
+
 </body>
 
 </html>

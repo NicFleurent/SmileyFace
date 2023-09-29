@@ -248,6 +248,7 @@ else{
                 </ul>
         <?php
         } else {
+            mysqli_close($conn);
             header("Location: ./connexion.php");
         }
         ?>
