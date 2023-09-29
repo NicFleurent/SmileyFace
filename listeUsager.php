@@ -18,7 +18,7 @@ if ($_SESSION['serveur']) {
 
 <body>
 <header>
-        <nav class="navbar navbar-expand bg-body-tertiary mb-5">
+        <nav class="navbar navbar-expand bg-body-tertiary mb-5 fixed-top">
             <div class="container-fluid ">
                 <a href="index.php">
                     <img src="img/CTR_Logo_BLANC.png" alt="Logo CégepTR">
@@ -133,9 +133,7 @@ if ($_SESSION['serveur']) {
                 </table>
                 <!-- Ajouter un utilisateur -->
                 <a class="btn btn-outline-dark" href="ajouterUsager.php">Ajouter un utilisateur</a>
-
             <?php
-
             } else {
                 echo "Il n'y aucun utilisateur d'enregistré";
             }
@@ -146,7 +144,6 @@ if ($_SESSION['serveur']) {
             <div class="modal fade" id="modalSupp" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog">
                     <div class="modal-content">
-
                         <form action="supprimerUsager.php" method="POST">
                             <div class="modal-header">
                                 <h1 class="modal-title fs-5" id="modalSuppLabel">Confirmer la suppression</h1>

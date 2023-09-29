@@ -21,13 +21,16 @@
     width: 40%;
 }
 
-
 /* NAVBAR */
+main {
+    margin-top: 175px;
+}
+
 nav img {
     height: 105px;
 }
 
-/* TOAST */
-
-
-    
+/* Footer */
+footer img {
+    width: 25%;
+}

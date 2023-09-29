@@ -97,7 +97,7 @@ require("connexionLocal.php");
 
         if ($_SERVER["REQUEST_METHOD"] != "POST" || $erreur == true) {
         ?>
-            <div class="container vh-100">
+            <div class="container">
                 <div class="row d-flex justify-content-center align-items-center h-100">
                     <div class="col-12 col-md-8 col-lg-6 col-xl-5">
                         <div class="card bg-ctr-bleu radius-1rem text-white">
@@ -139,23 +139,6 @@ require("connexionLocal.php");
 
         <?php
         } // Fin if !=Post || erreur == true
-
-        ?>
-        <!-- TOASTS -->
-        <!-- Contenu du toast modification -->
-        <article class="position-fixed bottom-0 start-50 translate-middle-x mb-3" style="z-index: 10">
-            <div id="toast-A" class="toast bg-primary text-white" role="alert" aria-live="assertive" aria-atomic="true">
-                <div class="toast-header">
-                    <p class="me-auto"> Confirmation</p>
-                    <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
-                </div>
-                <div class="toast-body">
-                    <p class="m-0">Votre utilisateur a été crée avec succès</p>
-                </div>
-            </div>
-        </article> <!-- Fin toast -->
-
-        <?php
 
         function test_input($data)
         {
