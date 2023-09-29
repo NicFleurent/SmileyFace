@@ -2,21 +2,22 @@
 
 /* global Chart */
 
-
-
 document.addEventListener('DOMContentLoaded', function () {
+    //Affiche le nom de l'event
+    document.getElementById('titre-event').textContent = document.getElementById('titreE').textContent
     //Graphique Étudiants
-
     const ctxEt = document.getElementById('canvas-diagramme').getContext('2d');
     //Récupération nombre de votes
     let nbEtudSatisf = parseInt(document.getElementById('nbEtudSatisf').textContent);
     let nbEtudNeutre = parseInt(document.getElementById('nbEtudNeutre').textContent);
     let nbEtudInsatisf = parseInt(document.getElementById('nbEtudInsatisf').textContent);
     //Obtention du pourcentage
-    let totalVotes = (nbEtudSatisf + nbEtudNeutre + nbEtudInsatisf)
+    let totalVotes = (nbEtudSatisf + nbEtudNeutre + nbEtudInsatisf);
     let pourcentageEtudSatisf = Math.round((nbEtudSatisf * 100) / totalVotes);
     let pourcentageEtudNeutre = Math.round((nbEtudNeutre) * 100 / totalVotes);
-    let pourcentageEtudInsatisf = Math.round((nbEtudInsatisf * 100) / totalVotes)
+    let pourcentageEtudInsatisf = Math.round((nbEtudInsatisf * 100) / totalVotes);
+    //Affichage nb votes
+    document.getElementById('totalVotesEt').textContent = 'Total de votes : ' + totalVotes;
     //Création de tableaux pour les données
     let tabStatsEt = [nbEtudSatisf, nbEtudNeutre, nbEtudInsatisf];
     let tabLabelEt = ['Étudiants satisfaits' + '(' + pourcentageEtudSatisf + '%' + ')',
@@ -66,14 +67,16 @@ document.addEventListener('DOMContentLoaded', function () {
     let nbEntreNeutre = parseInt(document.getElementById('nbEntNeutre').textContent);
     let nbEntreInsatisf = parseInt(document.getElementById('nbEntInsatisf').textContent);
     //Obtention en pourcentage
-    let totalVotesEnt = (nbEntreSatisf + nbEntreNeutre + nbEntreInsatisf)
+    let totalVotesEnt = (nbEntreSatisf + nbEntreNeutre + nbEntreInsatisf);
     let pourcentageEntreSatisf = Math.round((nbEntreSatisf * 100) / totalVotesEnt);
     let pourcentageEntreNeutre = Math.round((nbEntreNeutre) * 100 / totalVotesEnt);
-    let pourcentageEntreInsatisf = Math.round((nbEntreInsatisf * 100) / totalVotesEnt)
+    let pourcentageEntreInsatisf = Math.round((nbEntreInsatisf * 100) / totalVotesEnt);
     let tabStatsEn = [nbEntreSatisf, nbEntreNeutre, nbEntreInsatisf];
     let tabLabelEn = ['Entreprises satisfaites' + '(' + pourcentageEntreSatisf + '%' + ')',
     'Entreprises neutres' + '(' + pourcentageEntreNeutre + '%' + ')',
     'Entreprises insatisfaites' + '(' + pourcentageEntreInsatisf + '%' + ')'];
+    //Affichage total nb votes entreprises
+    document.getElementById('totalVotesEn').textContent = 'Total de votes : ' + totalVotesEnt;
     let titreGraphEn = document.getElementById('titre-ent');
 
     if (tabStatsEn[0] === 0 && tabStatsEn[1] === 0 && tabStatsEn[2]===0) {
