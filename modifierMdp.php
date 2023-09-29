@@ -101,11 +101,10 @@ session_start();
                     $erreur = true;
                 } else {
                     $confirmationMdp = test_input($_POST["confirmationMdp"]);
-                    $confirmationMdp = sha1($password, false);
+                    $confirmationMdp = sha1($mdp, false);
                 }
 
-
-                if ($erreur != true) {
+                if (!$erreur) {
 
                     $sql = "UPDATE utilisateur SET mot_de_passe='$confirmationMdp' where id=$id";
                     if (mysqli_query($conn, $sql)) {
