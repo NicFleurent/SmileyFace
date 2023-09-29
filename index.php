@@ -22,29 +22,24 @@ if ($_SESSION['serveur']) {
     <header>
         <nav class="navbar navbar-expand bg-body-tertiary mb-5">
             <div class="container-fluid ">
-                <div class="collapse navbar-collapse">
-                    <ul class="navbar-nav mb-2 mb-lg-0  align-items-center w-100 justify-content-between px-5">
-                        <li class="nav-item">
-                            <a href="index.php">
-                                <img src="img/CTR_Logo_BLANC.png" alt="Logo CégepTR">
-                            </a>
-                        </li>
-                        <li class="nav-item ms-5">
-                            <a class="btn btn-outline-light" href="validation.php?destination=ajouter">Créer un évènement</a>
-                        </li>
-                        <li class="nav-item ms-5">
-                            <a class="btn btn-outline-light" href="validation.php?destination=listeUsager">Utilisateurs</a>
-                        </li>
-                        <li class="nav-item ms-5">
-                            <a class="btn btn-outline-light" href="deconnexion.php">Déconnexion <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-box-arrow-right" viewBox="0 0 16 16">
-                                    <path fill-rule="evenodd" d="M10 12.5a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v2a.5.5 0 0 0 1 0v-2A1.5 1.5 0 0 0 9.5 2h-8A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-2a.5.5 0 0 0-1 0v2z" />
-                                    <path fill-rule="evenodd" d="M15.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 0 0-.708.708L14.293 7.5H5.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3z" />
-                                </svg></a>
+                <a href="index.php">
+                    <img src="img/CTR_Logo_BLANC.png" alt="Logo CégepTR">
+                </a>
+                <ul class="navbar-nav mb-2 mb-lg-0 align-items-center justify-content-end me-5">
+                    <li class="nav-item ms-5">
+                        <a class="btn btn-outline-light" href="validation.php?destination=ajouter">Créer un évènement</a>
+                    </li>
+                    <li class="nav-item ms-5">
+                        <a class="btn btn-outline-light" href="validation.php?destination=listeUsager">Utilisateurs</a>
+                    </li>
+                    <li class="nav-item ms-5">
+                        <a class="btn btn-outline-light" href="deconnexion.php">Déconnexion <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-box-arrow-right" viewBox="0 0 16 16">
+                                <path fill-rule="evenodd" d="M10 12.5a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v2a.5.5 0 0 0 1 0v-2A1.5 1.5 0 0 0 9.5 2h-8A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-2a.5.5 0 0 0-1 0v2z" />
+                                <path fill-rule="evenodd" d="M15.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 0 0-.708.708L14.293 7.5H5.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3z" />
+                            </svg></a>
+                    </li>
 
-                        </li>
-
-                    </ul>
-                </div>
+                </ul>
             </div>
         </nav>
     </header>
@@ -90,18 +85,17 @@ if ($_SESSION['serveur']) {
                         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                     </div>
                 <?php
+                } else if ($_GET['succes'] === "supprimer") {
+                ?>
+                    <div class="alert alert-success alert-dismissible fade show m-5 mt-2" role="alert">
+                        <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Success:">
+                            <use xlink:href="#check-circle-fill" />
+                        </svg>
+                        L'évènement' a bien été <strong>supprimé!</strong>
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                <?php
                 }
-                else if ($_GET['succes'] === "supprimer") {
-                    ?>
-                        <div class="alert alert-success alert-dismissible fade show m-5 mt-2" role="alert">
-                            <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Success:">
-                                <use xlink:href="#check-circle-fill" />
-                            </svg>
-                            L'évènement' a bien été <strong>supprimé!</strong>
-                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                        </div>
-                    <?php
-                    }
             }
             //  Afficher les évènements
             $evenementsId = [];
@@ -127,7 +121,6 @@ if ($_SESSION['serveur']) {
             <ul class="row g-3 m-0 w-100 justify-content-center">
                 <?php
                 for ($i = 0; $i < count($evenementsId); $i++) {
-
                 ?>
                     <li class="col-sm-6 col-md-4 col-xl-3 mb-3">
                         <div id="<?php echo $evenementsId[$i]; ?>" class="card h-100" data-bs-toggle="offcanvas" data-bs-target="#evenement-offcanvas" aria-controls="offcanvasRight">
@@ -336,7 +329,7 @@ if ($_SESSION['serveur']) {
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fermer"></button>
                         </div>
                         <div class="modal-body">
-                            <input id="inputId" type="hidden" name="id"  value="">
+                            <input id="inputId" type="hidden" name="id" value="">
                             <input id="destination" type="hidden" name="destination" value="supprimer">
                             <p>Voulez-vous vraiment supprimer l'utilisateur ?</p>
                         </div>
@@ -353,8 +346,6 @@ if ($_SESSION['serveur']) {
     <!-- Bootstrap-->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="css/styles.css">
-    <link rel="stylesheet" href="css/index.css">
     <link rel="stylesheet" href="css/styles.css">
     <link rel="stylesheet" href="css/index.css">
     <script src="js/index.js"></script>

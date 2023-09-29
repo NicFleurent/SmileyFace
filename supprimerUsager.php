@@ -11,9 +11,6 @@ else{
 
 <?php
 
-//Récupère l'id
-// $id = $_GET['id'];
-//Create connection
 $conn = mysqli_connect($servername, $username, $password, $dbname);
 //Check connection
 if (!$conn) {
