@@ -8,7 +8,7 @@ session_start();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Liste utilisateurs</title>
-  
+
 </head>
 
 <body>
@@ -60,7 +60,39 @@ session_start();
             if ($conn->connect_error) {
                 die("Connectionfailed:" . $conn->connect_error);
             }
-
+            if (isset($_GET['action'])) {
+                if ($_GET['action'] === "ajouterUsager") {
+        ?>
+                    <div class="alert alert-success alert-dismissible fade show m-5 mt-2" role="alert">
+                        <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Success:">
+                            <use xlink:href="#check-circle-fill" />
+                        </svg>
+                        L'utilisateur a bien été <strong>ajouté!</strong>
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                <?php
+                } else if ($_GET['action'] === "modifierMdp") {
+                ?>
+                    <div class="alert alert-success alert-dismissible fade show m-5 mt-2" role="alert">
+                        <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Success:">
+                            <use xlink:href="#check-circle-fill" />
+                        </svg>
+                        Le mot de passe a bien été <strong>modifié!</strong>
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                <?php
+                } else if ($_GET['action'] === "modifierUsager") {
+                ?>
+                    <div class="alert alert-success alert-dismissible fade show m-5 mt-2" role="alert">
+                        <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Success:">
+                            <use xlink:href="#check-circle-fill" />
+                        </svg>
+                        Le nom d'utlisateur a bien été <strong>modifié!</strong>
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                <?php
+                }
+            }
             //string de requête
             $sql = "SELECT * FROM utilisateur ";
             $conn->query('SET NAMES utf8');
@@ -69,7 +101,7 @@ session_start();
             $result = $conn->query($sql);
 
             if ($result->num_rows > 0) {
-        ?>
+                ?>
                 <table class="table align-middle">
                     <thead>
                         <tr>
@@ -106,69 +138,8 @@ session_start();
                 echo "0 results";
             }
             mysqli_close($conn);
+
             ?>
-
-            <!-- TOASTS -->
-            <!-- Contenu du toast ajouté -->
-            <article class="position-fixed top-50 start-50 translate-middle-x mb-3" style="z-index: 10">
-                <div id="toast-A" class="toast bg-success fs-5 text-white" role="alert" aria-live="assertive" aria-atomic="true">
-                    <div class="toast-body d-flex flex-row justify-content-between">
-                        <span class="m-0">L'utilisateur a été ajouté</span>
-                        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="toast" aria-label="Close"></button>
-                    </div>
-                </div>
-            </article><!-- Fin toast -->
-
-            <!-- TOASTS -->
-            <!-- Contenu du toast utilisateur modifié -->
-            <article class="position-fixed top-50 start-50 translate-middle-x mb-3" style="z-index: 10">
-                <div id="toast-M" class="toast bg-success fs-5 text-white" role="alert" aria-live="assertive" aria-atomic="true">
-                    <div class="toast-body d-flex flex-row justify-content-between">
-                        <span class="m-0">L'utilisateur a été modifié</span>
-                        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="toast" aria-label="Close"></button>
-                    </div>
-                </div>
-            </article>
-
-            <!-- TOASTS -->
-            <!-- Contenu du toast mdp modifié -->
-            <article class="position-fixed top-50 start-50 translate-middle-x mb-3" style="z-index: 10">
-                <div id="toast-Mdp" class="toast bg-success fs-5 text-white" role="alert" aria-live="assertive" aria-atomic="true">
-                    <div class="toast-body d-flex flex-row justify-content-between">
-                        <span class="m-0">Le mot de passe a été modifié</span>
-                        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="toast" aria-label="Close"></button>
-                    </div>
-                </div>
-            </article>
-
-            <?php
-
-            //Appelle des fonctions toasts
-            if (!isset($_GET['action'])) {
-            } elseif ($_GET['action'] == "ajouterUsager") {
-            ?>
-                <script>
-                    creerToastA()
-                </script>
-
-            <?php
-            } elseif ($_GET['action'] == "modifierUsager") {
-            ?>
-                <script>
-                    creerToastM()
-                </script>
-
-            <?php
-            } elseif ($_GET['action'] == "modifierMdp") {
-            ?>
-                <script>
-                    creerToastMdp()
-                </script>
-
-            <?php
-            }
-            ?>
-
             <!-- MODAL avertissement avant suppression -->
             <div class="modal fade" id="modalSupp" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog">
@@ -185,7 +156,7 @@ session_start();
                             </div>
                             <div class="modal-footer">
                                 <button type="submit" name="suppUtil" class="btn btn-danger">Oui</button>
-                                <button type="button" class="btn bg-warning" data-bs-dismiss="modal">Annuler</button>       
+                                <button type="button" class="btn bg-warning" data-bs-dismiss="modal">Annuler</button>
                             </div>
                         </form>
                     </div>
@@ -204,14 +175,14 @@ session_start();
             © 2023 Copyright: Nicolas Fleurent & Mirolie Théroux
         </p>
     </footer>
- <!-- Bootstrap CSS et JS-->
- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <!-- Bootstrap CSS et JS-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="css/styles.css">
     <link rel="stylesheet" href="css/index.css">
     <script src="js/listeUsager.js"></script>
 
- 
+
 </body>
 
 </html>
