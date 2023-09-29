@@ -22,7 +22,7 @@ if ($_SESSION['serveur']) {
     <header>
         <nav class="navbar navbar-expand bg-body-tertiary fixed-top">
             <div class="container-fluid ">
-                <a  class="ms-5" href="index.php">
+                <a class="ms-5" href="index.php">
                     <img src="img/CTR_Logo_BLANC.png" alt="Logo CégepTR">
                 </a>
                 <ul class="navbar-nav mb-2 mb-lg-0 align-items-center justify-content-end me-5">
@@ -97,7 +97,7 @@ if ($_SESSION['serveur']) {
                 <?php
                 }
             }
-            //  Afficher les évènements
+            //  Afficher les évènements aujourd'hui
             $evenementsId = [];
             $evenementsNom = [];
             $evenementsDate = [];
@@ -114,41 +114,53 @@ if ($_SESSION['serveur']) {
                     $i++;
                 }
                 ?>
-                <h1>Vos évènements aujourd'hui</h1>
+
             <?php
             }
             ?>
-            <ul class="row g-3 m-0 w-100 justify-content-center">
-                <?php
-                for ($i = 0; $i < count($evenementsId); $i++) {
-                ?>
-                    <li class="col-sm-6 col-md-4 col-xl-3 mb-3">
-                        <div id="<?php echo $evenementsId[$i]; ?>" class="card h-100" data-bs-toggle="offcanvas" data-bs-target="#evenement-offcanvas" aria-controls="offcanvasRight">
-                            <div class="card-header text-center">
-                                <h2 class="titreEvenement"><?php echo $evenementsNom[$i]; ?></h2>
-                                <span class="card-text fs-5"><?php echo $evenementsDate[$i]; ?></span>
-                            </div>
-                            <div class="card-body d-flex flex-column justify-content-center p-0">
-                                <img class="card-img-bottom object-fit img-fluid" src="<?php echo $evenementsImage[$i]; ?>" alt="Image de l'évènement">
-                            </div>
-                            <span class="card-lien d-none"><?php echo $evenementsLien[$i]; ?></span>
+            <div class="accordion" id="accordeon-events">
+                <section class="accordion-item">
+                    <h1 class="accordion-header" id="titre-auj">
+                        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#event-auj" aria-expanded="true">
+                            Vos évènements aujourd'hui
+                        </button>
+                    </h1>
+                    <div class="accordio-collapse collapse show" id="event-auj"
+                    data-bs-parent="#accordeon-events">
+                        <ul class="accordion-body row g-3 m-0 w-100 justify-content-center">
                             <?php
-                            $evenementsIdTemp = $evenementsId[$i];
-                            $sql = "SELECT d.nom FROM evenement_departement ed INNER JOIN departement d ON d.id = ed.id_departement WHERE ed.id_evenement=$evenementsIdTemp";
-                            $resultProgramme = $conn->query($sql);
-
-                            while ($rowProgramme = $resultProgramme->fetch_assoc()) {
+                            for ($i = 0; $i < count($evenementsId); $i++) {
                             ?>
-                                <span class="card-departement d-none"><?php echo $rowProgramme['nom']; ?></span>
+                                <li class="col-sm-6 col-md-4 col-xl-3 mb-3">
+                                    <div id="<?php echo $evenementsId[$i]; ?>" class="card h-100" data-bs-toggle="offcanvas" data-bs-target="#evenement-offcanvas" aria-controls="offcanvasRight">
+                                        <div class="card-header text-center">
+                                            <h2 class="titreEvenement"><?php echo $evenementsNom[$i]; ?></h2>
+                                            <span class="card-text fs-5"><?php echo $evenementsDate[$i]; ?></span>
+                                        </div>
+                                        <div class="card-body d-flex flex-column justify-content-center p-0">
+                                            <img class="card-img-bottom object-fit img-fluid" src="<?php echo $evenementsImage[$i]; ?>" alt="Image de l'évènement">
+                                        </div>
+                                        <span class="card-lien d-none"><?php echo $evenementsLien[$i]; ?></span>
+                                        <?php
+                                        $evenementsIdTemp = $evenementsId[$i];
+                                        $sql = "SELECT d.nom FROM evenement_departement ed INNER JOIN departement d ON d.id = ed.id_departement WHERE ed.id_evenement=$evenementsIdTemp";
+                                        $resultProgramme = $conn->query($sql);
+
+                                        while ($rowProgramme = $resultProgramme->fetch_assoc()) {
+                                        ?>
+                                            <span class="card-departement d-none"><?php echo $rowProgramme['nom']; ?></span>
+                                        <?php
+                                        }
+                                        ?>
+                                    </div>
+                                </li>
                             <?php
                             }
                             ?>
-                        </div>
-                    </li>
-                <?php
-                }
-                ?>
-            </ul>
+                        </ul>
+                    </div>
+                </section>
+            </div>
             <?php
             //string de requête
             $sql = "SELECT * FROM evenement WHERE date>current_date() order by date";
@@ -157,7 +169,7 @@ if ($_SESSION['serveur']) {
             //L'action la query est ici
             $result = $conn->query($sql);
 
-            //  Afficher les évènements
+            //  Afficher les évènements à venir
             $evenementsId = [];
             $evenementsNom = [];
             $evenementsDate = [];
@@ -219,7 +231,7 @@ if ($_SESSION['serveur']) {
             //L'action la query est ici
             $result = $conn->query($sql);
 
-            //  Afficher les évènements
+            //  Afficher les évènements passés
             $evenementsId = [];
             $evenementsNom = [];
             $evenementsDate = [];
