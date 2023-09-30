@@ -174,8 +174,23 @@ if ($_SESSION['serveur']) {
                 </div>
         <?php
             }
+        ?>
+    </main>
+
+    <footer class="mt-5">
+        <!-- Copyright -->
+        <div class="d-flex w-100 justify-content-center">
+            <div class="d-flex flex-column justify-content-center text-end me-5">
+                <p class="mb-2">© 2023 Copyright:</p>
+                <p class="mb-0">Nicolas Fleurent</p>
+                <p class="mb-0">Mirolie Théroux</p>
+            </div>
+            
+            <img src="img/Logo_offic_2L_Techniques_informatique-01.png" alt="Logo tech">
+        </div>
+    </footer>
+    <?php
         } else {
-            mysqli_close($conn);
             header("Location: ./connexion.php");
         }
         function test_input($data)
@@ -185,8 +200,7 @@ if ($_SESSION['serveur']) {
             $data = htmlspecialchars($data);
             return $data;
         }
-        ?>
-    </main>
+    ?>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
     <!-- Script personnalisé -->
     <script src="js/ajouterUsager.js"></script>

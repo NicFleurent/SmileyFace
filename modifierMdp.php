@@ -21,6 +21,9 @@ else{
 </head>
 
 <body>
+    <?php
+        if (isset($_SESSION['connexion'])) {
+    ?>
 <header>
         <nav class="navbar navbar-expand bg-body-tertiary mb-5">
             <div class="container-fluid ">
@@ -47,8 +50,6 @@ else{
     </header>
     <main class="container">
         <?php
-        if (isset($_SESSION['connexion'])) {
-
             //Variables du formulaire vide
             $mdp = "";
             $confirmationMdp = "";
@@ -138,7 +139,6 @@ else{
         <?php
             }
         } else {
-            mysqli_close($conn);
             header("Location: ./connexion.php");
         }
         function test_input($data)

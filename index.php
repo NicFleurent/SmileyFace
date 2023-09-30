@@ -24,6 +24,9 @@ if ($_SESSION['serveur']) {
 </head>
 
 <body>
+    <?php
+        if ($_SESSION['connexion'] == true) {
+    ?>
     <header>
         <nav class="navbar navbar-expand bg-body-tertiary fixed-top">
             <div class="container-fluid ">
@@ -51,7 +54,6 @@ if ($_SESSION['serveur']) {
     <main class="container">
 
         <?php
-        if ($_SESSION['connexion'] == true) {
             //Create connection
             $conn = mysqli_connect($servername, $username, $password, $dbname);
             //Check connection
@@ -289,11 +291,6 @@ if ($_SESSION['serveur']) {
                 }
                 ?>
             </ul>
-        <?php
-        } else {
-            header("Location: ./connexion.php");
-        }
-        ?>
 
         <!-- OFF canvas-->
         <div class="offcanvas offcanvas-end w-50" tabindex="-1" id="evenement-offcanvas" aria-labelledby="offcanvasRightLabel">
@@ -358,6 +355,11 @@ if ($_SESSION['serveur']) {
             </div>
         </div>
     </main>
+        <?php
+        } else {
+            header("Location: ./connexion.php");
+        }
+        ?>
 
     <!-- Bootstrap-->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>

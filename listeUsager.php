@@ -175,12 +175,15 @@ if ($_SESSION['serveur']) {
         ?>
         </main>
 
-        <footer class="text-center">
+        <footer class="mt-5">
             <!-- Copyright -->
-            <div class="d-flex">
-                <p>
-                    © 2023 Copyright: Nicolas Fleurent & Mirolie Théroux
-                </p>
+            <div class="d-flex w-100 justify-content-center">
+                <div class="d-flex flex-column justify-content-center text-end me-5">
+                    <p class="mb-2">© 2023 Copyright:</p>
+                    <p class="mb-0">Nicolas Fleurent</p>
+                    <p class="mb-0">Mirolie Théroux</p>
+                </div>
+                
                 <img src="img/Logo_offic_2L_Techniques_informatique-01.png" alt="Logo tech">
             </div>
         </footer>

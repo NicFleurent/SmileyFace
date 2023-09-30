@@ -69,8 +69,6 @@ else{
         if ($_SERVER["REQUEST_METHOD"] != "POST" || $erreur == true) {
             if ($id != "") {
     ?>
-            if ($id != "") {
-    ?>
                 <div class="container d-flex flex-column justify-content-center align-items-center vh-100">
                     <div class="row">
                         <div class="col text-white mb-5">
@@ -116,7 +114,6 @@ else{
             }
         }
     } else {
-        $conn->close();
         header("Location: ./connexion.php");
     }
 

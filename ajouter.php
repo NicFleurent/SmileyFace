@@ -20,6 +20,9 @@ if ($_SESSION['serveur']) {
 </head>
 
 <body>
+    <?php
+    if ($_SESSION['connexion'] == true) {
+    ?>
     <header>
         <nav class="navbar navbar-expand bg-body-tertiary mb-5">
             <div class="container-fluid ">
@@ -45,7 +48,6 @@ if ($_SESSION['serveur']) {
         </nav>
     </header>
     <?php
-    if ($_SESSION['connexion'] == true) {
         $nom = $date = $lien = $departement = $image = "";
         $nomErreur = $dateErreur = $lienErreur = $departementErreur = $imageErreur = $erreurSQL = "";
         $erreurChant = $erreurBD = false;
@@ -257,6 +259,19 @@ if ($_SESSION['serveur']) {
                     </form>
                 </div>
             </div>
+
+        <footer class="mt-5">
+            <!-- Copyright -->
+            <div class="d-flex w-100 justify-content-center">
+                <div class="d-flex flex-column justify-content-center text-end me-5">
+                    <p class="mb-2">© 2023 Copyright:</p>
+                    <p class="mb-0">Nicolas Fleurent</p>
+                    <p class="mb-0">Mirolie Théroux</p>
+                </div>
+                
+                <img src="img/Logo_offic_2L_Techniques_informatique-01.png" alt="Logo tech">
+            </div>
+        </footer>
     <?php
         }
     } else {

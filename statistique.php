@@ -121,7 +121,6 @@ if ($_SESSION['serveur']) {
             </main>
     <?php
     } else {
-        mysqli_close($conn);
         header("Location: ./connexion.php");
     }
     function test_input($data)

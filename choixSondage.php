@@ -8,6 +8,8 @@ session_start();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Choix Sondage</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/styles.css">
     <link rel="icon" href="img_cegep_tr_logo.ico">
 </head>
 
@@ -17,6 +19,7 @@ session_start();
         if (isset($_GET['id'])) {
             $id = test_input($_GET['id']);
     ?>
+    <div class="container-fluid vh-100 p-0">
         <header>
             <nav class="navbar navbar-expand bg-body-tertiary mb-5">
                 <div class="container-fluid ">
@@ -40,7 +43,7 @@ session_start();
                 </div>
             </nav>
         </header>
-        <div class="container-fluid vh-100 m-0 p-0">
+        <div class="container-fluid h-75 m-0 p-0">
             <div class="container d-flex flex-column justify-content-center align-items-center mt-5 h-75">
                 <div class="container-fluid bg-ctr-bleu radius-1rem text-white text-center p-5">
                     <div class="row mb-5">
@@ -56,7 +59,21 @@ session_start();
                     </div>
                 </div>
             </div>
+
+<footer class="mt-5">
+    <!-- Copyright -->
+    <div class="d-flex w-100 justify-content-center">
+        <div class="d-flex flex-column justify-content-center text-end me-5">
+            <p class="mb-2">© 2023 Copyright:</p>
+            <p class="mb-0">Nicolas Fleurent</p>
+            <p class="mb-0">Mirolie Théroux</p>
         </div>
+        
+        <img src="img/Logo_offic_2L_Techniques_informatique-01.png" alt="Logo tech">
+    </div>
+</footer>
+        </div>
+    </div>
     <?php
         } else {
             header("Location: ./index.php");
@@ -73,9 +90,7 @@ session_start();
         return $data;
     }
     ?>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="css/styles.css">
 </body>
 
 </html>
