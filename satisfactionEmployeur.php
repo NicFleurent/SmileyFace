@@ -15,6 +15,8 @@ else{
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sondage | Employeur</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/satisfactionEmployeur.css">
     <link rel="icon" href="img_cegep_tr_logo.ico">
 </head>
 
@@ -80,7 +82,7 @@ else{
                             <form class="d-flex justify-content-center align-items-center" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
                                 <input type="hidden" name="id" value="<?php echo $id ?>">
                                 <input type="hidden" name="valeur" value="employeurSatisfait">
-                                <button type="submit" class="btn" id="btnSatisfait">
+                                <button type="submit" class="btn p-0" id="btnSatisfait">
                                     <img class="img-fluid" src="img/voteSatisfait.png">
                                 </button>
                             </form>
@@ -90,7 +92,7 @@ else{
                             <form class="d-flex justify-content-center align-items-center" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
                                 <input type="hidden" name="id" value="<?php echo $id ?>">
                                 <input type="hidden" name="valeur" value="employeurNeutre">
-                                <button type="submit" class="btn" id="btnNeutre">
+                                <button type="submit" class="btn p-0" id="btnNeutre">
                                     <img class="img-fluid" src="img/voteNeutre.png">
                                 </button>
                             </form>
@@ -100,7 +102,7 @@ else{
                             <form class="d-flex justify-content-center align-items-center" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
                                 <input type="hidden" name="id" value="<?php echo $id ?>">
                                 <input type="hidden" name="valeur" value="employeurInsatisfait">
-                                <button type="submit" class="btn" id="btnInsatisfait">
+                                <button type="submit" class="btn p-0" id="btnInsatisfait">
                                     <img class="img-fluid" src="img/voteInsatisfait.png">
                                 </button>
                             </form>
@@ -126,9 +128,7 @@ else{
         return $data;
     }
     ?>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="css/satisfactionEmployeur.css">
 </body>
 
 </html>

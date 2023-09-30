@@ -95,7 +95,6 @@ else{
             }
         }
     } else {
-        $conn->close();
         header("Location: ./connexion.php");
     }
 
