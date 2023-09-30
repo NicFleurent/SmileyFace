@@ -24,7 +24,7 @@ else{
     <?php
         if (isset($_SESSION['connexion'])) {
     ?>
-<header>
+    <header>
         <nav class="navbar navbar-expand bg-body-tertiary mb-5">
             <div class="container-fluid ">
                 <a  class="ms-5" href="index.php">

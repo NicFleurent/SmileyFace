@@ -52,24 +52,7 @@ if ($_SESSION['serveur']) {
         </nav>
     </header>
     <main class="container">
-
         <?php
-            //Create connection
-            $conn = mysqli_connect($servername, $username, $password, $dbname);
-            //Check connection
-            if (!$conn) {
-                die("Connectionfailed:" . mysqli_connect_error());
-            }
-            // Set session variables
-            $_SESSION["connexion"] = true;
-
-            //string de requête
-            $sql = "SELECT * FROM evenement WHERE date=current_date()";
-            $conn->query('SET NAMES utf8');
-
-            //L'action la query est ici
-            $result = $conn->query($sql);
-
             //Affiche des messages de confirmation pour modifications ou ajout évènement
             if (isset($_GET['succes'])) {
                 if ($_GET['succes'] === "ajouter") {
@@ -104,6 +87,20 @@ if ($_SESSION['serveur']) {
                 <?php
                 }
             }
+            //Create connection
+            $conn = mysqli_connect($servername, $username, $password, $dbname);
+            //Check connection
+            if (!$conn) {
+                die("Connectionfailed:" . mysqli_connect_error());
+            }
+
+            //string de requête
+            $sql = "SELECT * FROM evenement WHERE date=current_date()";
+            $conn->query('SET NAMES utf8');
+
+            //L'action la query est ici
+            $result = $conn->query($sql);
+
             //  Afficher les évènements aujourd'hui
             $evenementsId = [];
             $evenementsNom = [];
@@ -111,6 +108,7 @@ if ($_SESSION['serveur']) {
             $evenementsImage = [];
             $evenementsLien = [];
             $i = 0;
+            $affichage = false;
             if ($result->num_rows > 0) {
                 while ($row = $result->fetch_assoc()) {
                     $evenementsId[$i] = $row['id'];
@@ -120,10 +118,9 @@ if ($_SESSION['serveur']) {
                     $evenementsLien[$i] = $row['lien'];
                     $i++;
                 }
-                ?>
-
-            <?php
+                $affichage = true;
             }
+            if($affichage){
             ?>
             <div class="accordion" id="accordeon-events">
                 <section class="accordion-item">
@@ -169,6 +166,8 @@ if ($_SESSION['serveur']) {
                 </section>
             </div>
             <?php
+            }
+
             //string de requête
             $sql = "SELECT * FROM evenement WHERE date>current_date() order by date";
             $conn->query('SET NAMES utf8');
@@ -183,6 +182,7 @@ if ($_SESSION['serveur']) {
             $evenementsImage = [];
             $evenementsLien = [];
             $i = 0;
+            $affichage = false;
             if ($result->num_rows > 0) {
                 while ($row = $result->fetch_assoc()) {
                     $evenementsId[$i] = $row['id'];
@@ -192,11 +192,11 @@ if ($_SESSION['serveur']) {
                     $evenementsLien[$i] = $row['lien'];
                     $i++;
                 }
-            ?>
-                <h1>Vos évènements à venir</h1>
-            <?php
+                $affichage = true;
             }
+            if($affichage){
             ?>
+            <h1>Vos évènements à venir</h1>
             <ul class="row g-3 m-0 w-100 justify-content-center">
                 <?php
                 for ($i = 0; $i < count($evenementsId); $i++) {
@@ -229,8 +229,9 @@ if ($_SESSION['serveur']) {
                 }
                 ?>
             </ul>
-
             <?php
+            }
+
             //string de requête
             $sql = "SELECT * FROM evenement WHERE date<current_date() order by date desc";
             $conn->query('SET NAMES utf8');
@@ -245,6 +246,7 @@ if ($_SESSION['serveur']) {
             $evenementsImage = [];
             $evenementsLien = [];
             $i = 0;
+            $affichage = false;
             if ($result->num_rows > 0) {
                 while ($row = $result->fetch_assoc()) {
                     $evenementsId[$i] = $row['id'];
@@ -253,12 +255,12 @@ if ($_SESSION['serveur']) {
                     $evenementsImage[$i] = $row['image'];
                     $evenementsLien[$i] = $row['lien'];
                     $i++;
+                    $affichage = true;
                 }
-            ?>
-                <h1>Vos évènements passés</h1>
-            <?php
             }
+            if($affichage){
             ?>
+            <h1>Vos évènements passés</h1>
             <ul class="row g-3 m-0 w-100 justify-content-center">
                 <?php
                 for ($i = 0; $i < count($evenementsId); $i++) {
@@ -291,6 +293,9 @@ if ($_SESSION['serveur']) {
                 }
                 ?>
             </ul>
+            <?php
+            }
+            ?>
 
         <!-- OFF canvas-->
         <div class="offcanvas offcanvas-end w-50" tabindex="-1" id="evenement-offcanvas" aria-labelledby="offcanvasRightLabel">

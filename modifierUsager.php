@@ -52,6 +52,7 @@ if ($_SESSION['serveur']) {
             //Variables du formulaire vide
             $nomUsager = "";
             $mdp = "";
+
             //Variables d'erreurs vides
             $nomUsagerErreur = "";
             $mdpErreur = "";
@@ -68,17 +69,8 @@ if ($_SESSION['serveur']) {
 
             if (isset($_GET['id'])) {
                 $id = test_input($_GET['id']);
-                $sql = "SELECT * from utilisateur WHERE id=$id";
-                $result = $conn->query($sql);
-                $row = $result->fetch_assoc();
-                $nomUsager =  $row['usager'];
             } else if (isset($_POST['id'])) {
                 $id = test_input($_POST['id']);
-                $sql = "SELECT * from utilisateur WHERE id=$id";
-                $result = $conn->query($sql);
-                $row = $result->fetch_assoc();
-                $nomUsager =  $row['usager'];
-                $mdp = $row['mot_de_passe'];
             }
 
             if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -139,7 +131,7 @@ if ($_SESSION['serveur']) {
                                             <input type="hidden" name="id" value="<?php echo $id; ?>">
                                             <!-- Usager -->
                                             <div class="form-outline form-white mb-4">
-                                                <input id="usagerCreer" type="text" class="form-control mb-4 " name="usager" placeholder="Usager" required>
+                                                <input id="usagerCreer" type="text" class="form-control mb-4 " name="usager" placeholder="Usager" value="<?php echo $nomUsager; ?>" required>
                                                 <span id="usagerCreerVide" class="text-danger"><?php echo $nomUsagerErreur; ?></span>
                                             </div>
 

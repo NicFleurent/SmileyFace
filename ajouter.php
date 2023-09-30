@@ -93,50 +93,50 @@ if ($_SESSION['serveur']) {
                 VALUES ('" . $nom . "', '" . $date . "', '" . $lien . "', '" . $image . "')";
                 if (mysqli_query($conn, $sql)) {
                     echo "Succes : Création de l'évènement dans la BD<br>";
-                } else {
-                    $erreurSQL = "Error: " . $sql . "<br>" . mysqli_error($conn);
-                    $erreurBD = true;
-                }
 
-                $sql = "SELECT id FROM evenement WHERE nom='$nom' AND date='$date'";
-                $result = $conn->query($sql);
-                if ($result->num_rows > 0) {
-                    $row = $result->fetch_assoc();
-                }
-                $idEvenement = $row["id"];
+                    $sql = "SELECT id FROM evenement WHERE nom='$nom' AND date='$date'";
+                    $result = $conn->query($sql);
+                    if ($result->num_rows > 0) {
+                        $row = $result->fetch_assoc();
+                    }
+                    $idEvenement = $row["id"];
 
-                if (isset($_POST['departementLength'])) {
-                    $departementLength = test_input($_POST['departementLength']);
+                    if (isset($_POST['departementLength'])) {
+                        $departementLength = test_input($_POST['departementLength']);
 
-                    for ($i = 0; $i < $departementLength; $i++) {
-                        $departementTemp = "departement$i";
-                        if (isset($_POST[$departementTemp])) {
-                            $departement = test_input($_POST[$departementTemp]);
+                        for ($i = 0; $i < $departementLength; $i++) {
+                            $departementTemp = "departement$i";
+                            if (isset($_POST[$departementTemp])) {
+                                $departement = test_input($_POST[$departementTemp]);
 
-                            $sql = "SELECT id FROM departement WHERE nom='$departement'";
-                            $result = $conn->query($sql);
+                                $sql = "SELECT id FROM departement WHERE nom='$departement'";
+                                $result = $conn->query($sql);
 
-                            if ($result->num_rows > 0) {
-                                $row = $result->fetch_assoc();
-                            }
-                            $idDepartement = $row["id"];
+                                if ($result->num_rows > 0) {
+                                    $row = $result->fetch_assoc();
+                                }
+                                $idDepartement = $row["id"];
 
-                            $sql = "INSERT INTO evenement_departement (id_evenement, id_departement) 
-                            VALUES ('" . $idEvenement . "', '" . $idDepartement . "')";
+                                $sql = "INSERT INTO evenement_departement (id_evenement, id_departement) 
+                                VALUES ('" . $idEvenement . "', '" . $idDepartement . "')";
 
-                            if (mysqli_query($conn, $sql)) {
-                                echo "Succes : $idEvenement et $idDepartement<br>";
-                            } else {
-                                $erreurSQL = "Error: " . $sql . "<br>" . mysqli_error($conn);
-                                $erreurBD = true;
+                                if (mysqli_query($conn, $sql)) {
+                                    echo "Succes : $idEvenement et $idDepartement<br>";
+                                } else {
+                                    $erreurSQL = "Error: " . $sql . "<br>" . mysqli_error($conn);
+                                    $erreurBD = true;
+                                }
                             }
                         }
                     }
-                }
-                if(!$erreurBD){
-                    mysqli_close($conn);
-                    header("Location: ./index.php?succes=ajouter");
-                    die();
+                    if(!$erreurBD){
+                        mysqli_close($conn);
+                        header("Location: ./index.php?succes=ajouter");
+                        die();
+                    }
+                } else {
+                    $erreurSQL = "Error: " . $sql . "<br>" . mysqli_error($conn);
+                    $erreurBD = true;
                 }
             }
         }

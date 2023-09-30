@@ -120,6 +120,7 @@ if ($_SESSION['serveur']) {
                 </div>
             </main>
     <?php
+        $conn->close();
     } else {
         header("Location: ./connexion.php");
     }

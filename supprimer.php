@@ -44,13 +44,13 @@ else{
 
             $sql = "DELETE FROM evenement WHERE id=" . $id;
             if ($conn->query($sql) === TRUE) {
+                $conn->close();
                 header("Location: ./index.php?succes=supprimer");
                 die();
             } else {
                 $erreurSQL = "Error: " . $sql . "<br>" . mysqli_error($conn);
                 $erreur = true;
             }
-            $conn->close();
         }
 
         if ($_SERVER["REQUEST_METHOD"] == "POST") {

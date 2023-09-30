@@ -60,13 +60,13 @@ else{
 
             $sql = "UPDATE evenement SET $valeur='$nbrVote' WHERE id=$id";
             if ($conn->query($sql) === TRUE) {
+                $conn->close();
                 header("Location: ./merci.php?provenance=etudiant&id=$id");
                 die();
             } else {
                 $erreurSQL = "Error: $sql<br>" . mysqli_error($conn);
                 $erreur = true;
             }
-            $conn->close();
         }
         if ($_SERVER["REQUEST_METHOD"] != "POST" || $erreur == true) {
             if ($id != "") {
