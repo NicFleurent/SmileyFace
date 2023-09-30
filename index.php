@@ -344,10 +344,10 @@ if ($_SESSION['serveur']) {
                         <div class="modal-body">
                             <input id="inputId" type="hidden" name="id" value="">
                             <input id="destination" type="hidden" name="destination" value="supprimer">
-                            <p>Voulez-vous vraiment supprimer l'utilisateur ?</p>
+                            <p>Voulez-vous vraiment supprimer l'évènement?</p>
                         </div>
                         <div class="modal-footer">
-                            <button type="submit" name="suppUtil" class="btn bg-ctr-bleu">Oui</button>
+                            <button type="submit" name="suppUtil" class="btn bg-ctr-bleu text-white">Oui</button>
                             <button type="button" class="btn bg-secondary text-white" data-bs-dismiss="modal">Annuler</button>
                         </div>
                     </form>

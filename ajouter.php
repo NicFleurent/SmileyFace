@@ -1,9 +1,9 @@
 <?php
 session_start();
 if ($_SESSION['serveur']) {
-    require("connexionLocal.php");
-} else {
     require("connexionServeur.php");
+} else {
+    require("connexionLocal.php");
 }
 ?>
 <!DOCTYPE html>
@@ -133,9 +133,11 @@ if ($_SESSION['serveur']) {
                         }
                     }
                 }
-                mysqli_close($conn);
-                header("Location: ./index.php?succes=ajouter");
-                die();
+                if(!$erreurBD){
+                    mysqli_close($conn);
+                    header("Location: ./index.php?succes=ajouter");
+                    die();
+                }
             }
         }
         if ($_SERVER["REQUEST_METHOD"] != "POST" || $erreurChant == true || $erreurBD == true) {
