@@ -16,6 +16,7 @@ session_start();
     <?php
     if ($_SESSION['connexion'] == true) {
     ?>
+    <div class="container-fluid d-flex flex-column justify-content-between vh-100 p-0">
         <header>
             <nav class="navbar navbar-expand bg-body-tertiary mb-5">
                 <div class="container-fluid ">
@@ -39,7 +40,6 @@ session_start();
                 </div>
             </nav>
         </header>
-        <main>
             <?php
             //variable vide
             $destination = "";
@@ -124,6 +124,20 @@ session_start();
                             </div>
                         </div>
                     </div>
+
+                    <footer class="mt-5">
+                        <!-- Copyright -->
+                        <div class="d-flex w-100 justify-content-center">
+                            <div class="d-flex flex-column justify-content-center text-end me-5">
+                                <p class="mb-2">© 2023 Copyright:</p>
+                                <p class="mb-0">Nicolas Fleurent</p>
+                                <p class="mb-0">Mirolie Théroux</p>
+                            </div>
+                            
+                            <img src="img/Logo_offic_2L_Techniques_informatique-01.png" alt="Logo tech">
+                        </div>
+                    </footer>
+        </div>
         <?php
                 } else {
                     header("Location: ./index.php");

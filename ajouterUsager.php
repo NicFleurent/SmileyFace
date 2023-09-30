@@ -48,7 +48,6 @@ if ($_SESSION['serveur']) {
             </div>
         </nav>
     </header>
-    <main class="container">
         <?php
         if (isset($_SESSION['connexion'])) {
             //Variables du formulaire vide
@@ -175,7 +174,6 @@ if ($_SESSION['serveur']) {
         <?php
             }
         ?>
-    </main>
 
     <footer class="mt-5">
         <!-- Copyright -->

@@ -16,6 +16,8 @@ else{
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sondage | Employeur</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/satisfaction.css">
     <link rel="stylesheet" href="css/satisfactionEmployeur.css">
     <link rel="icon" href="img_cegep_tr_logo.ico">
 </head>
@@ -69,44 +71,58 @@ else{
         if ($_SERVER["REQUEST_METHOD"] != "POST" || $erreur == true) {
             if ($id != "") {
     ?>
-                <div class="container d-flex flex-column justify-content-center align-items-center vh-100">
+                <div class="container-fluid d-flex flex-column justify-content-between align-items-center vh-100 p-0">
                     <div class="row">
-                        <div class="col text-white mb-5">
+                        <div class="col text-white mt-5">
                             <h1>Êtes-vous satisfait de cet évènement?</h1>
                         </div>
                     </div>
-                    <div class="row">
-                        <div class="col-4">
+                    <div class="row mx-5">
+                        <div class="col-lg-4">
                             <form class="d-flex justify-content-center align-items-center" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
                                 <input type="hidden" name="id" value="<?php echo $id ?>">
                                 <input type="hidden" name="valeur" value="employeurSatisfait">
-                                <button type="submit" class="btn p-0" id="btnSatisfait">
-                                    <img class="img-fluid" src="img/voteSatisfait.png">
+                                <button type="submit" class="btn p-0 m-3" id="btnSatisfait">
+                                    <img class="img-fluid" src="img/voteSatisfaitLeger.png">
                                 </button>
                             </form>
                         </div>
 
-                        <div class="col-4">
+                        <div class="col-lg-4">
                             <form class="d-flex justify-content-center align-items-center" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
                                 <input type="hidden" name="id" value="<?php echo $id ?>">
                                 <input type="hidden" name="valeur" value="employeurNeutre">
-                                <button type="submit" class="btn p-0" id="btnNeutre">
-                                    <img class="img-fluid" src="img/voteNeutre.png">
+                                <button type="submit" class="btn p-0 m-3" id="btnNeutre">
+                                    <img class="img-fluid" src="img/voteNeutreLeger.png">
                                 </button>
                             </form>
                         </div>
 
-                        <div class="col-4">
+                        <div class="col-lg-4">
                             <form class="d-flex justify-content-center align-items-center" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
                                 <input type="hidden" name="id" value="<?php echo $id ?>">
                                 <input type="hidden" name="valeur" value="employeurInsatisfait">
-                                <button type="submit" class="btn p-0" id="btnInsatisfait">
-                                    <img class="img-fluid" src="img/voteInsatisfait.png">
+                                <button type="submit" class="btn p-0 m-3" id="btnInsatisfait">
+                                    <img class="img-fluid" src="img/voteInsatisfaitLeger.png">
                                 </button>
                             </form>
                         </div>
                     </div>
+
+                    <footer class="mt-5">
+                        <!-- Copyright -->
+                        <div class="d-flex w-100 justify-content-center">
+                            <div class="d-flex flex-column justify-content-center text-end me-5">
+                                <p class="mb-2">© 2023 Copyright:</p>
+                                <p class="mb-0">Nicolas Fleurent</p>
+                                <p class="mb-0">Mirolie Théroux</p>
+                            </div>
+                            
+                            <img src="img/Logo_offic_2L_Techniques_informatique-01.png" alt="Logo tech">
+                        </div>
+                    </footer>
                 </div>
+                
     <?php
             } else {
                 $conn->close();

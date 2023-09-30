@@ -1,0 +1,5 @@
+@media screen and (max-width: 805px) {
+    .img-fluid {
+      width: 55%;
+    }
+  }

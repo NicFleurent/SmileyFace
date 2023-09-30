@@ -191,7 +191,7 @@ if ($_SESSION['serveur']) {
                     </div>
                 </div>
                 <div class="container d-flex flex-column justify-content-center align-items-center">
-                    <div class="container-fluid bg-ctr-bleu radius-1rem text-white p-5 mb-5">
+                    <div class="container-fluid bg-ctr-bleu radius-1rem text-white p-5 mb-2">
                         <h1 class="text-center mb-5">Modifier les informations</h1>
                         <form id="form" class="g-3 needs-validation" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post" novalidate>
                             <input type="hidden" name="id" value="<?php echo $id ?>">
@@ -321,6 +321,19 @@ if ($_SESSION['serveur']) {
                         </form>
                     </div>
                 </div>
+
+                <footer>
+                    <!-- Copyright -->
+                    <div class="d-flex w-100 justify-content-center">
+                        <div class="d-flex flex-column justify-content-center text-end me-5">
+                            <p class="mb-2">© 2023 Copyright:</p>
+                            <p class="mb-0">Nicolas Fleurent</p>
+                            <p class="mb-0">Mirolie Théroux</p>
+                        </div>
+                        
+                        <img src="img/Logo_offic_2L_Techniques_informatique-01.png" alt="Logo tech">
+                    </div>
+                </footer>
     <?php
             } else {
                 mysqli_close($conn);
