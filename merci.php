@@ -1,5 +1,10 @@
 <?php
 session_start();
+if ($_SESSION['serveur']) {
+    require("connexionServeur.php");
+} else {
+    require("connexionLocal.php");
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -25,6 +30,21 @@ session_start();
         if (isset($_GET['provenance']) && isset($_GET['id'])) {
             $provenance = test_input($_GET['provenance']);
             $id = test_input($_GET['id']);
+
+            $conn = mysqli_connect($servername, $username, $password, $dbname);
+            if ($conn->connect_error) {
+                die("Connection failed: " . $conn->connect_error);
+            }
+            $conn->query('SET NAMES utf8');
+
+            $sql = "SELECT * FROM evenement WHERE id=$id";
+            $result = $conn->query($sql);
+
+            if (!($result->num_rows > 0)) {
+                mysqli_close($conn);
+                header("Location: ./index.php");
+            }
+            mysqli_close($conn);
 
             if ($provenance == "etudiant") {
     ?>

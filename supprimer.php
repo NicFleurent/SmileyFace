@@ -34,6 +34,14 @@ else{
         if (isset($_GET['id'])) {
             $id = test_input($_GET['id']);
 
+            $sql = "SELECT * FROM evenement WHERE id=$id";
+            $result = $conn->query($sql);
+
+            if (!($result->num_rows > 0)) {
+                mysqli_close($conn);
+                header("Location: ./index.php");
+            }
+
             $sql = "DELETE FROM evenement_departement WHERE id_evenement=" . $id;
             if ($conn->query($sql) === TRUE) {
                 echo "Succes : Supprimer de evenement_departement<br>";

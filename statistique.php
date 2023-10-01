@@ -61,6 +61,14 @@ if ($_SESSION['serveur']) {
         if (isset($_GET['id'])) {
             $id = test_input($_GET['id']);
 
+            $sql = "SELECT * FROM evenement WHERE id=$id";
+            $result = $conn->query($sql);
+
+            if (!($result->num_rows > 0)) {
+                mysqli_close($conn);
+                header("Location: ./index.php");
+            }
+
             //string de requête
             $sql = "SELECT nom,etudiantSatisfait,etudiantNeutre,etudiantInsatisfait FROM evenement where id=$id";
             $conn->query('SET NAMES utf8');

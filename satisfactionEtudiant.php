@@ -24,10 +24,22 @@ else{
 <body>
     <?php
     if ($_SESSION['connexion'] == true) {
+
         $erreur = false;
+
         if (isset($_GET['id'])) {
             $id = test_input($_GET['id']);
         }
+
+        // Create connection
+        $conn = mysqli_connect($servername, $username, $password, $dbname);
+
+        // Check connection
+        if ($conn->connect_error) {
+            die("Connection failed: " . $conn->connect_error);
+        }
+
+        $conn->query('SET NAMES utf8');
 
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
@@ -42,16 +54,6 @@ else{
                 $erreur = true;
             }
             $valeur = test_input($_POST["valeur"]);
-
-            // Create connection
-            $conn = mysqli_connect($servername, $username, $password, $dbname);
-
-            // Check connection
-            if ($conn->connect_error) {
-                die("Connection failed: " . $conn->connect_error);
-            }
-
-            $conn->query('SET NAMES utf8');
             $sql = "SELECT $valeur FROM evenement WHERE id=$id";
             $result = $conn->query($sql);
             $row = $result->fetch_assoc();
@@ -70,6 +72,14 @@ else{
         }
         if ($_SERVER["REQUEST_METHOD"] != "POST" || $erreur == true) {
             if ($id != "") {
+
+            $sql = "SELECT * FROM evenement WHERE id=$id";
+            $result = $conn->query($sql);
+
+            if (!($result->num_rows > 0)) {
+                mysqli_close($conn);
+                header("Location: ./index.php");
+            }
     ?>
                 <div class="container-fluid d-flex flex-column justify-content-between align-items-center vh-100">
                     <div class="row">

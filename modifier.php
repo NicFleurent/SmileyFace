@@ -173,6 +173,10 @@ if ($_SESSION['serveur']) {
                 if ($result->num_rows > 0) {
                     $row = $result->fetch_assoc();
                 }
+                else{
+                    mysqli_close($conn);
+                    header("Location: ./index.php");
+                }
 
                 $nom = $row["nom"];
                 $date = $row["date"];

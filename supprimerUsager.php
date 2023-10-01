@@ -30,6 +30,10 @@ if (isset($_SESSION['connexion'])) {
             echo "Erreur";
         }
     }
+    else{
+        $conn->close();
+        header("Location: ./index.php");
+    }
 } else {
     $conn->close();
     header("Location: ./connexion.php");
