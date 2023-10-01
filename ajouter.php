@@ -94,7 +94,7 @@ if ($_SESSION['serveur']) {
                 if (mysqli_query($conn, $sql)) {
                     echo "Succes : Création de l'évènement dans la BD<br>";
 
-                    $sql = "SELECT id FROM evenement WHERE nom='$nom' AND date='$date'";
+                    $sql = "SELECT id FROM evenement WHERE nom='$nom' AND date='$date' ORDER BY id DESC LIMIT 1";
                     $result = $conn->query($sql);
                     if ($result->num_rows > 0) {
                         $row = $result->fetch_assoc();

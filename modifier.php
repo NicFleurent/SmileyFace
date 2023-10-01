@@ -107,14 +107,14 @@ if ($_SESSION['serveur']) {
                     $erreurBD = true;
                 }
 
-                $sql = "SELECT id FROM evenement WHERE nom='$nom' AND date='$date'";
+                /*$sql = "SELECT id FROM evenement WHERE nom='$nom' AND date='$date'";
                 $result = $conn->query($sql);
                 if ($result->num_rows > 0) {
                     $row = $result->fetch_assoc();
                 }
-                $idEvenement = $row["id"];
+                $idEvenement = $row["id"];*/
 
-                $sql = "DELETE FROM evenement_departement WHERE id_evenement=" . $idEvenement;
+                $sql = "DELETE FROM evenement_departement WHERE id_evenement=" . $id;
                 if ($conn->query($sql) === TRUE) {
                     echo "Succes : Supression des lignes surperflux dans la BD<br>";
                 } else {
@@ -139,10 +139,10 @@ if ($_SESSION['serveur']) {
                             $idDepartement = $row["id"];
 
                             $sql = "INSERT INTO evenement_departement (id_evenement, id_departement) 
-                            VALUES ('" . $idEvenement . "', '" . $idDepartement .  "')";
+                            VALUES ('" . $id . "', '" . $idDepartement .  "')";
 
                             if (mysqli_query($conn, $sql)) {
-                                echo "Succes : $idEvenement et $idDepartement<br>";
+                                echo "Succes : $id et $idDepartement<br>";
                             } else {
                                 $erreurSQL = "Error: " . $sql . "<br>" . mysqli_error($conn);
                                 $erreurBD = true;
@@ -295,7 +295,7 @@ if ($_SESSION['serveur']) {
                                                 <option selected><?php echo $programmeChoisi; ?></option>
                                 
                                                 <?php
-                                                $sql = "SELECT nom FROM departement WHERE nom!='$programmeChoisi' ORDER BY nom";
+                                                $sql = "SELECT nom FROM departement WHERE nom!=\"$programmeChoisi\" ORDER BY nom";
                                                 $resultProgramme = $conn->query($sql);
 
                                                 while ($rowProgramme = $resultProgramme->fetch_assoc()) {
