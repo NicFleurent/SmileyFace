@@ -72,6 +72,9 @@ if ($_SESSION['serveur']) {
             } else if (isset($_POST['id'])) {
                 $id = test_input($_POST['id']);
             }
+            else{
+                $id = "";
+            }
 
             if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 //Vérification du usager
@@ -117,6 +120,13 @@ if ($_SESSION['serveur']) {
                 }
             }
             if ($_SERVER["REQUEST_METHOD"] != "POST" || $erreur == true) {
+                $sql = "SELECT * FROM utilisateur WHERE id=$id";
+                $result = $conn->query($sql);
+
+                if (!($result->num_rows > 0)) {
+                    mysqli_close($conn);
+                    header("Location: ./index.php");
+                }
             ?>
                 <div class="container">
                     <div class="row d-flex justify-content-center align-items-center h-100">

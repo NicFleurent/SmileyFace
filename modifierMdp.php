@@ -72,6 +72,9 @@ else{
             } else if (isset($_POST['id'])) {
                 $id = test_input($_POST['id']);
             }
+            else{
+                $id = "";
+            }
 
             if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 //Vérification si les champs mdp sont vides et si les 2 sont identiques
@@ -104,6 +107,13 @@ else{
             }
 
             if ($_SERVER["REQUEST_METHOD"] != "POST" || $erreur == true) {
+                $sql = "SELECT * FROM utilisateur WHERE id=$id";
+                $result = $conn->query($sql);
+
+                if (!($result->num_rows > 0)) {
+                    mysqli_close($conn);
+                    header("Location: ./index.php");
+                }
         ?>
                 <div class="container">
                     <div class="row d-flex justify-content-center align-items-center h-100">
