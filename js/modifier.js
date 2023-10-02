@@ -130,7 +130,6 @@ boutonAjouter.forEach(bouton => {
 });
 
 for(let i=0;i<boutonSupprimer.length;i++){
-    console.log(boutonSupprimer[i]);
     if(i === 0){
         boutonSupprimer[i].style.display = "none";
     }
@@ -171,7 +170,6 @@ function clonerRow(){
 
 function changeSelectName(){
     for(let i=0;i<selectDepartement.length;i++){
-        console.log(selectDepartement);
         let nomTemp = "departement" + i;
         selectDepartement[i].setAttribute("name", nomTemp);
     }
