@@ -27,7 +27,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
     if (tabStatsEt[0] === 0 && tabStatsEt[1] === 0 && tabStatsEt[2]===0) {
-        titreGraphEt.textContent = 'Aucune donnée n\'a été enregistré pour les étudiants';
+        titreGraphEt.textContent = 'Aucune donnée n\'a été enregistrée pour les étudiants';
     }
     else {
         titreGraphEt.textContent = 'Satisfaction des étudiants';
