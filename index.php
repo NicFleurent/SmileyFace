@@ -341,7 +341,7 @@ if ($_SESSION['serveur']) {
                             </div>
                             <div class="modal-footer">
                                 <button type="submit" name="suppUtil" class="btn bg-ctr-bleu text-white">Oui</button>
-                                <button type="button" class="btn bg-secondary text-white" data-bs-dismiss="modal">Annuler</button>
+                                <a href="index.php"><button type="button" class="btn bg-secondary text-white" data-bs-dismiss="modal">Annuler</button></a>
                             </div>
                         </form>
                     </div>

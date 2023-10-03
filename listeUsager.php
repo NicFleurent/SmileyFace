@@ -35,7 +35,7 @@ if ($_SESSION['serveur']) {
                                 <a class="btn btn-outline-light" href="validation.php?destination=ajouter">Créer un évènement</a>
                             </li>
                             <li class="nav-item ms-5">
-                                <a class="btn btn-outline-light" href="validation.php?destination=listeUsager">Utilisateurs</a>
+                                <a class="btn btn-outline-light" href="listeUsager.php">Utilisateurs</a>
                             </li>
                             <li class="nav-item ms-5">
                                 <a class="btn btn-outline-light" href="deconnexion.php">Déconnexion <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-box-arrow-right" viewBox="0 0 16 16">

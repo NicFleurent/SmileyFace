@@ -10,9 +10,10 @@ ul{
    object-fit: contain;
 }
 
-/* h1 {
+h1 {
     color: #092D74;
-} */
+}
+
 .offcanvas-body .card .card-body .card-img-bottom{
    max-height: 253px;
 }
