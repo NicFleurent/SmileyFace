@@ -66,3 +66,8 @@ li .card .card-body .card-img-bottom{
 
 }
 
+@media screen and (max-width: 805px) {
+   .offcanvas {
+     width: 100% !important;
+   }
+ }
