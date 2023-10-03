@@ -24,8 +24,9 @@ if ($_SESSION['serveur']) {
     <?php
     if ($_SESSION['connexion'] == true) {
     ?>
+    <div class="container-fluid vh-100 d-flex flex-column justify-content-between p-0">
             <header>
-            <nav class="navbar navbar-expand bg-body-tertiary mb-5 fixed-top">
+                <nav class="navbar navbar-expand bg-body-tertiary mb-5 fixed-top">
                     <div class="container-fluid ">
                         <a class="ms-5" href="index.php">
                             <img src="img/CTR_Logo_BLANC.png" alt="Logo CégepTR">
@@ -141,18 +142,19 @@ if ($_SESSION['serveur']) {
     }
     ?>
 
-    <footer class="mt-5">
-        <!-- Copyright -->
-        <div class="d-flex w-100 justify-content-center">
-            <div class="d-flex flex-column justify-content-center text-end me-5">
-                <p class="mb-2">© 2023 Copyright:</p>
-                <p class="mb-0">Nicolas Fleurent</p>
-                <p class="mb-0">Mirolie Théroux</p>
-            </div>
-            
-            <img src="img/Logo_offic_2L_Techniques_informatique-01.png" alt="Logo tech">
-        </div>
-    </footer>
+            <footer class="mt-5 w-100">
+                <!-- Copyright -->
+                <div class="d-flex w-100 justify-content-center">
+                    <div class="d-flex flex-column justify-content-center text-center me-5">
+                        <p class="mb-2">Réalisé par:</p>
+                        <p class="mb-0">Nicolas Fleurent</p>
+                        <p class="mb-0">Mirolie Théroux</p>
+                    </div>
+                    
+                    <img src="img/Logo_offic_2L_Techniques_informatique-01.png" alt="Logo tech">
+                </div>
+            </footer>
+    </div>
 
     <!-- Bootstrap-->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>

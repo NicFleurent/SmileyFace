@@ -23,32 +23,33 @@ if ($_SESSION['serveur']) {
     <?php
     if ($_SESSION['connexion'] == true) {
     ?>
-    <header>
-        <nav class="navbar navbar-expand bg-body-tertiary mb-5">
-            <div class="container-fluid ">
-                <a class="ms-5" href="index.php">
-                    <img src="img/CTR_Logo_BLANC.png" alt="Logo CégepTR">
-                </a>
-                <ul class="navbar-nav mb-2 mb-lg-0 align-items-center justify-content-end me-5">
-                    <li class="nav-item ms-5">
-                        <a class="btn btn-outline-light" href="validation.php?destination=ajouter">Créer un évènement</a>
-                    </li>
-                    <li class="nav-item ms-5">
-                        <a class="btn btn-outline-light" href="validation.php?destination=listeUsager">Utilisateurs</a>
-                    </li>
-                    <li class="nav-item ms-5">
-                        <a class="btn btn-outline-light" href="deconnexion.php">
-                            Déconnexion 
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-box-arrow-right" viewBox="0 0 16 16">
-                                <path fill-rule="evenodd" d="M10 12.5a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v2a.5.5 0 0 0 1 0v-2A1.5 1.5 0 0 0 9.5 2h-8A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-2a.5.5 0 0 0-1 0v2z" />
-                                <path fill-rule="evenodd" d="M15.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 0 0-.708.708L14.293 7.5H5.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3z" />
-                            </svg>
-                        </a>
-                    </li>
-                </ul>
-            </div>
-        </nav>
-    </header>
+    <div class="container-fluid vh-100 d-flex flex-column justify-content-between p-0">
+        <header>
+            <nav class="navbar navbar-expand bg-body-tertiary mb-5 fixed-top">
+                <div class="container-fluid ">
+                    <a class="ms-5" href="index.php">
+                        <img src="img/CTR_Logo_BLANC.png" alt="Logo CégepTR">
+                    </a>
+                    <ul class="navbar-nav mb-2 mb-lg-0 align-items-center justify-content-end me-5">
+                        <li class="nav-item ms-5">
+                            <a class="btn btn-outline-light" href="validation.php?destination=ajouter">Créer un évènement</a>
+                        </li>
+                        <li class="nav-item ms-5">
+                            <a class="btn btn-outline-light" href="validation.php?destination=listeUsager">Utilisateurs</a>
+                        </li>
+                        <li class="nav-item ms-5">
+                            <a class="btn btn-outline-light" href="deconnexion.php">
+                                Déconnexion 
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-box-arrow-right" viewBox="0 0 16 16">
+                                    <path fill-rule="evenodd" d="M10 12.5a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v2a.5.5 0 0 0 1 0v-2A1.5 1.5 0 0 0 9.5 2h-8A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-2a.5.5 0 0 0-1 0v2z" />
+                                    <path fill-rule="evenodd" d="M15.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 0 0-.708.708L14.293 7.5H5.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3z" />
+                                </svg>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </header>
     <?php
         $id = $nom = $date = $lien = $departement = "";
         $idErreur = $nomErreur = $dateErreur = $lienErreur = $imageErreur = $erreurSQL = "";
@@ -106,13 +107,6 @@ if ($_SESSION['serveur']) {
                     $erreurSQL = "Error: " . $sql . "<br>" . mysqli_error($conn);
                     $erreurBD = true;
                 }
-
-                /*$sql = "SELECT id FROM evenement WHERE nom='$nom' AND date='$date'";
-                $result = $conn->query($sql);
-                if ($result->num_rows > 0) {
-                    $row = $result->fetch_assoc();
-                }
-                $idEvenement = $row["id"];*/
 
                 $sql = "DELETE FROM evenement_departement WHERE id_evenement=" . $id;
                 if ($conn->query($sql) === TRUE) {
@@ -194,6 +188,7 @@ if ($_SESSION['serveur']) {
                         </div>
                     </div>
                 </div>
+            <main>
                 <div class="container d-flex flex-column justify-content-center align-items-center">
                     <div class="container-fluid bg-ctr-bleu radius-1rem text-white p-5 mb-2">
                         <h1 class="text-center mb-5">Modifier les informations</h1>
@@ -325,12 +320,12 @@ if ($_SESSION['serveur']) {
                         </form>
                     </div>
                 </div>
-
-                <footer>
+            </main>
+                <footer class="mt-5 w-100">
                     <!-- Copyright -->
                     <div class="d-flex w-100 justify-content-center">
-                        <div class="d-flex flex-column justify-content-center text-end me-5">
-                            <p class="mb-2">© 2023 Copyright:</p>
+                        <div class="d-flex flex-column justify-content-center text-center me-5">
+                            <p class="mb-2">Réalisé par:</p>
                             <p class="mb-0">Nicolas Fleurent</p>
                             <p class="mb-0">Mirolie Théroux</p>
                         </div>
@@ -338,6 +333,7 @@ if ($_SESSION['serveur']) {
                         <img src="img/Logo_offic_2L_Techniques_informatique-01.png" alt="Logo tech">
                     </div>
                 </footer>
+    </div>
     <?php
             } else {
                 mysqli_close($conn);

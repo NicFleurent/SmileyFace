@@ -23,8 +23,9 @@ if ($_SESSION['serveur']) {
     <?php
     if ($_SESSION['connexion'] == true) {
     ?>
+    <div class="container-fluid vh-100 d-flex flex-column justify-content-between p-0">
     <header>
-        <nav class="navbar navbar-expand bg-body-tertiary mb-5">
+        <nav class="navbar navbar-expand bg-body-tertiary mb-5 fixed-top">
             <div class="container-fluid ">
                 <a class="ms-5" href="index.php">
                     <img src="img/CTR_Logo_BLANC.png" alt="Logo CégepTR">
@@ -149,6 +150,7 @@ if ($_SESSION['serveur']) {
                     </div>
                 </div>
             </div>
+        <main>
             <div class="container d-flex flex-column justify-content-center align-items-center">
                 <div class="container-fluid bg-ctr-bleu radius-1rem text-white p-5">
                     <h1 class="text-center mb-5">Ajouter un évènement</h1>
@@ -261,12 +263,12 @@ if ($_SESSION['serveur']) {
                     </form>
                 </div>
             </div>
-
-        <footer class="mt-5">
+        </main>
+        <footer class="mt-5 w-100">
             <!-- Copyright -->
             <div class="d-flex w-100 justify-content-center">
-                <div class="d-flex flex-column justify-content-center text-end me-5">
-                    <p class="mb-2">© 2023 Copyright:</p>
+                <div class="d-flex flex-column justify-content-center text-center me-5">
+                    <p class="mb-2">Réalisé par:</p>
                     <p class="mb-0">Nicolas Fleurent</p>
                     <p class="mb-0">Mirolie Théroux</p>
                 </div>
@@ -274,6 +276,7 @@ if ($_SESSION['serveur']) {
                 <img src="img/Logo_offic_2L_Techniques_informatique-01.png" alt="Logo tech">
             </div>
         </footer>
+    </div>
     <?php
         }
     } else {
