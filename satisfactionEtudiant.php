@@ -119,11 +119,11 @@ else{
                         </div>
                     </div>
 
-                    <footer class="mt-5">
+                    <footer class="mt-5 w-100">
                         <!-- Copyright -->
                         <div class="d-flex w-100 justify-content-center">
-                            <div class="d-flex flex-column justify-content-center text-end me-5">
-                                <p class="mb-2">© 2023 Copyright:</p>
+                            <div class="d-flex flex-column justify-content-center text-center me-5">
+                                <p class="mb-2">Réalisé par:</p>
                                 <p class="mb-0">Nicolas Fleurent</p>
                                 <p class="mb-0">Mirolie Théroux</p>
                             </div>
