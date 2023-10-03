@@ -152,19 +152,19 @@ require("connexionServeur.php");
 
         ?>
 
-    <footer class="mt-5">
-        <!-- Copyright -->
-        <div class="d-flex w-100 justify-content-center">
-            <div class="d-flex flex-column justify-content-center text-end me-5">
-                <p class="mb-2">© 2023 Copyright:</p>
-                <p class="mb-0">Nicolas Fleurent</p>
-                <p class="mb-0">Mirolie Théroux</p>
+        <footer class="mt-5 w-100">
+            <!-- Copyright -->
+            <div class="d-flex w-100 justify-content-center">
+                <div class="d-flex flex-column justify-content-center text-center me-5">
+                    <p class="mb-2">Réalisé par:</p>
+                    <p class="mb-0">Nicolas Fleurent</p>
+                    <p class="mb-0">Mirolie Théroux</p>
+                </div>
+                
+                <img src="img/Logo_offic_2L_Techniques_informatique-01.png" alt="Logo tech">
             </div>
-            
-            <img src="img/Logo_offic_2L_Techniques_informatique-01.png" alt="Logo tech">
-        </div>
-    </footer>
-</div>
+        </footer>
+    </div>
     
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
     <script src="js/connexion.js"></script>

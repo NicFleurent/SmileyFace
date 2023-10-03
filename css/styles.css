@@ -30,6 +30,10 @@ nav img {
     height: 105px;
 }
 
+nav{
+    border-bottom: solid white 1px;
+}
+
 /* Footer */
 footer img {
     width: 25%;
