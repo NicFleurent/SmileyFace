@@ -70,7 +70,7 @@ if ($_SESSION['serveur']) {
                         <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Success:">
                             <use xlink:href="#check-circle-fill" />
                         </svg>
-                        L'évènement' a bien été <strong>modifié!</strong>
+                        L'évènement a bien été <strong>modifié!</strong>
                         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                     </div>
                 <?php
@@ -80,7 +80,7 @@ if ($_SESSION['serveur']) {
                         <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Success:">
                             <use xlink:href="#check-circle-fill" />
                         </svg>
-                        L'évènement' a bien été <strong>supprimé!</strong>
+                        L'évènement a bien été <strong>supprimé!</strong>
                         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                     </div>
                 <?php
@@ -287,7 +287,7 @@ if ($_SESSION['serveur']) {
             <!-- OFF canvas-->
             <div class="offcanvas offcanvas-end w-50 " tabindex="-1" id="evenement-offcanvas" aria-labelledby="offcanvasRightLabel">
                 <div class="offcanvas-header">
-                    <h2>Votre évenement</h2>
+                    <h2>Votre évènement</h2>
                     <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
                 </div>
                 <div class="offcanvas-body">

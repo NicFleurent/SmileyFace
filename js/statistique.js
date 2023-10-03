@@ -80,7 +80,7 @@ document.addEventListener('DOMContentLoaded', function () {
     let titreGraphEn = document.getElementById('titre-ent');
 
     if (tabStatsEn[0] === 0 && tabStatsEn[1] === 0 && tabStatsEn[2]===0) {
-        titreGraphEn.textContent = 'Aucune donnée n\'a été enregistré pour les entreprises';
+        titreGraphEn.textContent = 'Aucune donnée n\'a été enregistrée pour les entreprises';
     }
     else {
         titreGraphEn.textContent = 'Satisfaction des entreprises';

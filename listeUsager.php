@@ -84,7 +84,7 @@ if ($_SESSION['serveur']) {
                             <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Success:">
                                 <use xlink:href="#check-circle-fill" />
                             </svg>
-                            Le nom d'utlisateur a bien été <strong>modifié!</strong>
+                            Le nom d'utilisateur a bien été <strong>modifié!</strong>
                             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                         </div>
                     <?php
@@ -94,7 +94,7 @@ if ($_SESSION['serveur']) {
                             <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Success:">
                                 <use xlink:href="#check-circle-fill" />
                             </svg>
-                            L'utlisateur a bien été <strong>supprimé!</strong>
+                            L'utilisateur a bien été <strong>supprimé!</strong>
                             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                         </div>
                     <?php
@@ -112,7 +112,7 @@ if ($_SESSION['serveur']) {
                     <table class="table align-middle">
                         <thead>
                             <tr>
-                                <th scope="col">Nom d'usager</th>
+                                <th scope="col">Nom d'utilisateur</th>
                                 <th scope="col" class="text-center">Modifications</th>
                                 <th scope="col" class="text-center">Supprimer</th>
                             </tr>
@@ -124,7 +124,7 @@ if ($_SESSION['serveur']) {
                                 <tr>
                                     <td class="d-none"><?php echo $row['id'] ?></td>
                                     <td><?php echo $row['usager'] ?></td>
-                                    <td class="text-center"><a class="btn btn-outline-dark" href="modifierUsager.php?id=<?php echo $row['id'] ?>">Nom d'usager</a>
+                                    <td class="text-center"><a class="btn btn-outline-dark" href="modifierUsager.php?id=<?php echo $row['id'] ?>">Nom d'utilisateur</a>
                                         <a class="btn btn-outline-dark" href="modifierMdp.php?id=<?php echo $row['id'] ?>">Mot de passe</a>
                                     </td>
                                     <td class="text-center">

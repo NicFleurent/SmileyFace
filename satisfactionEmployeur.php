@@ -83,7 +83,7 @@ else{
                 <div class="container-fluid d-flex flex-column justify-content-between align-items-center vh-100 p-0">
                     <div class="row">
                         <div class="col text-white mt-5">
-                            <h1>Êtes-vous satisfait de cet évènement?</h1>
+                            <h1>Êtes-vous satisfait(e) de cet évènement?</h1>
                         </div>
                     </div>
                     <div class="row mx-5">
