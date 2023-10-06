@@ -80,7 +80,7 @@ if ($_SESSION['serveur']) {
             if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 //Vérification du usager
                 if (empty($_POST['usager'])) {
-                    $nomUsagerErreur = "Veuillez entrer votre usager";
+                    $nomUsagerErreur = "Veuillez entrer votre nom d'utilisateur";
                     $erreur = true;
                 } else
                     $nomUsager = test_input($_POST['usager']);
@@ -99,7 +99,7 @@ if ($_SESSION['serveur']) {
 
                     //Regarder si le user est déjà dans la BD
                     if (isset($result) && $result->num_rows > 0) {
-                        $nomUsagerErreur = "Ce nom d'usager est déjà utilisé";
+                        $nomUsagerErreur = "Ce nom d'utilisateur est déjà utilisé";
                         $erreurBD = true;
                         $erreur = true;
                     }
@@ -137,12 +137,12 @@ if ($_SESSION['serveur']) {
                                     <div class="md-5 mt-md-4 ">
                                         <form novalidate action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="POST">
                                             <div class="col text-center mb-5">
-                                                <h1>Modification de l'usager</h1>
+                                                <h1>Modification du nom d'utilisateur</h1>
                                             </div>
                                             <input type="hidden" name="id" value="<?php echo $id; ?>">
                                             <!-- Usager -->
                                             <div class="form-outline form-white mb-4">
-                                                <input id="usagerCreer" type="text" class="form-control mb-4 " name="usager" placeholder="Usager" value="<?php echo $nomUsager; ?>" required>
+                                                <input id="usagerCreer" type="text" class="form-control mb-4 " name="usager" placeholder="Nom d'utilisateur" value="<?php echo $nomUsager; ?>" required>
                                                 <span id="usagerCreerVide" class="text-danger"><?php echo $nomUsagerErreur; ?></span>
                                             </div>
 

@@ -1,8 +1,8 @@
 <?php
 //Démarre la session
 session_start();
-require("connexionServeur.php");
-//require("connexionLocal.php");
+// require("connexionServeur.php");
+require("connexionLocal.php");
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -52,7 +52,7 @@ require("connexionServeur.php");
         $usagerErreur = "";
         $mdpErreur = "";
         $mauvaisIdentifiant = "";
-        //La variable qui permet de savoir s'il y a au moins une erreur dans le formulaire
+        //La variable qui permet de savoir s'il y a au moins une erreur 
         $erreur = false;
 
 
@@ -66,7 +66,7 @@ require("connexionServeur.php");
 
             //Vérication champs connexion 
             if (empty($_POST['usager'])) {
-                $usagerErreur = "Veuillez entrer votre usager";
+                $usagerErreur = "Veuillez entrer votre nom d'utilisateur";
                 $erreur = true;
             } else
                 $user = test_input($_POST['usager']);
@@ -86,11 +86,11 @@ require("connexionServeur.php");
                 if ($result->num_rows > 0) {
                     $row = $result->fetch_assoc();
                     $_SESSION["connexion"] = true;
-                    $_SESSION["serveur"] = true;
+                    $_SESSION["serveur"] = false;
                     mysqli_close($conn);
                     header("Location: index.php");
                 } else if ($_POST['usager'] != null && $_POST['mdp'] != null) {
-                    $mauvaisIdentifiant = "Votre usager ou votre mot de passe est incorect";
+                    $mauvaisIdentifiant = "Votre nom d'utilisateur ou votre mot de passe est incorrect";
                     $erreur = true;
                 }
             }
@@ -112,7 +112,7 @@ require("connexionServeur.php");
 
                                         <!-- Usager -->
                                         <div class="form-outline form-white mb-4">
-                                            <input id="usager1" type="text" class="form-control mb-4 " name="usager" placeholder="Usager" value="<?php echo $user; ?>">
+                                            <input id="usager1" type="text" class="form-control mb-4 " name="usager" placeholder="Nom d'utilisateur" value="<?php echo $user; ?>">
                                             <span id="usagerVide" class="text-danger"><?php echo $usagerErreur; ?></span>
                                         </div>
 
