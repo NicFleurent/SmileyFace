@@ -14,7 +14,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
         if (usager.value == '' || usager.value == null) {
-            usagerErreur.textContent = 'Veuillez entrer votre nom d\'usager';
+            usagerErreur.textContent = 'Veuillez entrer votre nom d\'utilisateur';
             usager.classList.add('is-invalid');
         }
         else {

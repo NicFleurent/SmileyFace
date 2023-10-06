@@ -4,7 +4,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     let usager = document.getElementById('usagerCreer');
     let usagerErreur = document.getElementById('usagerCreerVide');
-    
+
     let mdp = document.getElementById('mdpCreer');
     let mdpErreur = document.getElementById('mdpCreerVide');
     /**
@@ -12,7 +12,7 @@ document.addEventListener('DOMContentLoaded', function () {
      */
     function validationVideUsager() {
         if (usager.value == '' || usager.value == null) {
-            usagerErreur.textContent = 'Veuillez entrer votre nom d\'usager';
+            usagerErreur.textContent = 'Veuillez entrer votre nom d\'utilisateur';
             mdp.classList.remove('is-valid');
             usager.classList.add('is-invalid');
         }
@@ -37,5 +37,5 @@ document.addEventListener('DOMContentLoaded', function () {
             mdp.classList.add('is-valid');
         }
     }
-   
+
 });

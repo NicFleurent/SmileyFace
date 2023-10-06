@@ -31,7 +31,7 @@ document.addEventListener('DOMContentLoaded', function () {
      */
     function validationConfirmVideMdp() {
         if (mdpConfirm.value == '' || mdpConfirm.value == null) {
-            mdpConfirmErreur.textContent = 'Veuillez entrer votre mot de passe';
+            mdpConfirmErreur.textContent = 'Veuillez confirmer votre mot de passe';
             mdpConfirm.classList.remove('is-valid');
             mdpConfirm.classList.add('is-invalid');
         }
