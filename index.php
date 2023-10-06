@@ -56,32 +56,32 @@ if ($_SESSION['serveur']) {
             if (isset($_GET['succes'])) {
                 if ($_GET['succes'] === "ajouter") {
             ?>
-                    <div class="alert alert-success alert-dismissible fade show m-5 mt-2" role="alert">
+                    <div class="alert alert-dismissible fade show m-5 mt-2 bg-ctr-bleu text-white" role="alert">
                         <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Success:">
                             <use xlink:href="#check-circle-fill" />
                         </svg>
                         L'évènement a bien été <strong>ajouté!</strong>
-                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="alert" aria-label="Close"></button>
                     </div>
                 <?php
                 } else if ($_GET['succes'] === "modifier") {
                 ?>
-                    <div class="alert alert-success alert-dismissible fade show m-5 mt-2" role="alert">
+                    <div class="alert alert-dismissible fade show m-5 mt-2 bg-ctr-bleu text-white" role="alert">
                         <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Success:">
                             <use xlink:href="#check-circle-fill" />
                         </svg>
                         L'évènement a bien été <strong>modifié!</strong>
-                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="alert" aria-label="Close"></button>
                     </div>
                 <?php
                 } else if ($_GET['succes'] === "supprimer") {
                 ?>
-                    <div class="alert alert-success alert-dismissible fade show m-5 mt-2" role="alert">
+                    <div class="alert alert-dismissible fade show m-5 mt-2 bg-ctr-bleu text-white" role="alert">
                         <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Success:">
                             <use xlink:href="#check-circle-fill" />
                         </svg>
                         L'évènement a bien été <strong>supprimé!</strong>
-                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="alert" aria-label="Close"></button>
                     </div>
                 <?php
                 }

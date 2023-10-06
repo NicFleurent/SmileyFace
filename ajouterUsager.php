@@ -14,7 +14,7 @@ if ($_SESSION['serveur']) {
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Création usager</title>
+    <title>Création Utilisateur</title>
 
     <!-- Bootstrap CSS et JS-->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
@@ -76,7 +76,7 @@ if ($_SESSION['serveur']) {
                 if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     //Vérification du usager
                     if (empty($_POST['usager'])) {
-                        $nomUsagerErreur = "Veuillez entrer votre usager";
+                        $nomUsagerErreur = "Veuillez entrer votre nom d'utilisateur";
                         $erreur = true;
                     } else
                         $nomUsager = test_input($_POST['usager']);
@@ -103,7 +103,7 @@ if ($_SESSION['serveur']) {
 
                         //Regarder si le user est déjà dans la BD
                         if (isset($result) && $result->num_rows > 0) {
-                            $nomUsagerErreur = "Ce nom d'usager est déjà utilisé";
+                            $nomUsagerErreur = "Ce nom d'utilisateur est déjà utilisé";
                             $erreur = true;
                         } else {
                             $sql = "INSERT INTO utilisateur  (usager,mot_de_passe) VALUES ('" . $nomUsager . "','" . $confirmationMdp . "')";
@@ -132,7 +132,7 @@ if ($_SESSION['serveur']) {
                                                 </div>
                                                 <!-- Usager -->
                                                 <div class="form-outline form-white mb-4">
-                                                    <input id="usagerCreer" type="text" class="form-control mb-4 " name="usager" placeholder="Usager" value="<?php echo $nomUsager; ?>" required>
+                                                    <input id="usagerCreer" type="text" class="form-control mb-4 " name="usager" placeholder="Nom d'utilisateur" value="<?php echo $nomUsager; ?>" required>
                                                     <span id="usagerCreerVide" class="text-danger"><?php echo $nomUsagerErreur; ?></span>
                                                 </div>
 
