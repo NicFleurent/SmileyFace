@@ -123,7 +123,7 @@ if ($_SESSION['serveur']) {
             ?>
 
 
-            <ul class="accordion-body row g-3 m-0 w-100 justify-content-center">
+            <ul class="row g-3 m-0 w-100 justify-content-center">
                 <?php
                 for ($i = 0; $i < count($evenementsId); $i++) {
                 ?>
