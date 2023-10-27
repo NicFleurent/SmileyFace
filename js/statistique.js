@@ -4,7 +4,7 @@
 
 document.addEventListener('DOMContentLoaded', function () {
     //Affiche le nom de l'event
-    document.getElementById('titre-event').textContent = document.getElementById('titreE').textContent
+    document.getElementById('titre-event').textContent = document.getElementById('titreE').textContent;
     //Graphique Étudiants
     const ctxEt = document.getElementById('canvas-diagramme').getContext('2d');
     //Récupération nombre de votes
@@ -38,9 +38,9 @@ document.addEventListener('DOMContentLoaded', function () {
                     label: 'Votes',
                     data: tabStatsEt,
                     backgroundColor: [
-                        'rgba(57, 166, 227, 1)',
-                        'rgba(255, 190, 18, 1)',
-                        'rgba(241, 60, 25, 1)'
+                        'rgba(140, 253, 29, 1)',
+                        'rgba(254, 242, 0, 1)',
+                        'rgba(254, 76, 53, 1)'
                     ],
                     borderColor: 'rgb(100, 100, 100)',
                 },
@@ -91,9 +91,9 @@ document.addEventListener('DOMContentLoaded', function () {
                     label: 'Votes',
                     data: tabStatsEn,
                     backgroundColor: [
-                        'rgba(57, 166, 227, 1)',
-                        'rgba(255, 190, 18, 1)',
-                        'rgba(241, 60, 25, 1)'
+                        'rgba(140, 253, 29, 1)',
+                        'rgba(254, 242, 0, 1)',
+                        'rgba(254, 76, 53, 1)'
                     ],
                     borderColor: 'rgb(100, 100, 100)',
                 },
