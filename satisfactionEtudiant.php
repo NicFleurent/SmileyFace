@@ -93,7 +93,7 @@ else{
                                 <input type="hidden" name="id" value="<?php echo $id ?>">
                                 <input type="hidden" name="valeur" value="etudiantSatisfait">
                                 <button type="submit" class="btn p-0 m-3" id="btnSatisfait">
-                                    <img class="img-fluid" src="img/satisfait-vote.png"
+                                    <img class="img-fluid" src="img/voteSatisfaitFondBlanc.jpg"
                                 </button>
                             </form>
                         </div>
@@ -103,7 +103,7 @@ else{
                                 <input type="hidden" name="id" value="<?php echo $id ?>">
                                 <input type="hidden" name="valeur" value="etudiantNeutre">
                                 <button type="submit" class="btn p-0 m-3" id="btnNeutre">
-                                    <img class="img-fluid" src="img/neutre-vote2.png">
+                                    <img class="img-fluid" src="img/voteNeutreFondBlanc.jpg">
                                 </button>
                             </form>
                         </div>
@@ -113,7 +113,7 @@ else{
                                 <input type="hidden" name="id" value="<?php echo $id ?>">
                                 <input type="hidden" name="valeur" value="etudiantInsatisfait">
                                 <button type="submit" class="btn p-0 m-3" id="btnInsatisfait">
-                                    <img class="img-fluid" src="img/insatisfait-vote.png">
+                                    <img class="img-fluid" src="img/voteInsatisfaitFondBLanc.jpg">
                                 </button>
                             </form>
                         </div>
