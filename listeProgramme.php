@@ -101,6 +101,7 @@ if ($_SESSION['serveur']) {
                     ?>
                     <!-- Ajouter un utilisateur -->
                     <a class="btn btn-outline-dark mb-3" href="ajouterProgramme.php">Ajouter un programme</a>
+                    
                     <table class="table align-middle">
                         <thead>
                             <tr>
