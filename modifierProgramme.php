@@ -14,7 +14,7 @@ if ($_SESSION['serveur']) {
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Modification Usager</title>
+    <title>Modification Programme</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link rel="stylesheet" href="css/styles.css">
     <link rel="icon" href="img_cegep_tr_logo.ico">
@@ -36,7 +36,7 @@ if ($_SESSION['serveur']) {
                             <a class="btn btn-outline-light" href="validation.php?destination=ajouter">Créer un évènement</a>
                         </li>
                         <li class="nav-item ms-5">
-                            <a class="btn btn-outline-light" href="listeUsager.php">Utilisateurs</a>
+                            <a class="btn btn-outline-light" href="validation.php?destination=listeUsager">Utilisateurs</a>
                         </li>
                         <li class="nav-item ms-5">
                             <a class="btn btn-outline-light" href="deconnexion.php">Déconnexion <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-box-arrow-right" viewBox="0 0 16 16">
@@ -51,12 +51,10 @@ if ($_SESSION['serveur']) {
         </header>
             <?php
             //Variables du formulaire vide
-            $nomUsager = "";
-            $mdp = "";
+            $nomProgramme = "";
 
             //Variables d'erreurs vides
-            $nomUsagerErreur = "";
-            $mdpErreur = "";
+            $nomProgrammeErreur = "";
 
             //La variable s'il y a une erreur
             $erreur = $erreurBD = false;
@@ -67,6 +65,7 @@ if ($_SESSION['serveur']) {
             if (!$conn) {
                 die("Connectionfailed:" . mysqli_connect_error());
             }
+            $conn->query('SET NAMES utf8');
 
             if (isset($_GET['id'])) {
                 $id = test_input($_GET['id']);
@@ -78,55 +77,45 @@ if ($_SESSION['serveur']) {
             }
 
             if ($_SERVER["REQUEST_METHOD"] == "POST") {
-                //Vérification du usager
-                if (empty($_POST['usager'])) {
-                    $nomUsagerErreur = "Veuillez entrer votre nom d'utilisateur";
+                //Vérification du programme
+                if (empty($_POST['programme'])) {
+                    $nomProgrammeErreur = "Veuillez entrer le nom du programme";
                     $erreur = true;
                 } else
-                    $nomUsager = test_input($_POST['usager']);
-                //Vérification si mdp vide 
-                if (empty($_POST['mdp'])) {
-                    $mdpErreur = "Veuillez entrer votre mot de passe";
-                    $erreur = true;
-                } else {
-                    $mdp = test_input($_POST['mdp']);
-                    $mdp = sha1($mdp, false);
-                }
+                    $nomProgramme = test_input($_POST['programme']);
 
                 if (!$erreur) {
-                    $sql = "SELECT usager from utilisateur where usager = '$nomUsager'";
+                    $sql = "SELECT * from departement where nom = '$nomProgramme'";
                     $result = $conn->query($sql);
 
                     //Regarder si le user est déjà dans la BD
                     if (isset($result) && $result->num_rows > 0) {
-                        $nomUsagerErreur = "Ce nom d'utilisateur est déjà utilisé";
+                        $nomProgrammeErreur = "Ce programme existe déjà";
                         $erreurBD = true;
                         $erreur = true;
                     }
-
-                    if (!$erreurBD) {
-                        $sql = "SELECT * from utilisateur where id=$id AND mot_de_passe='$mdp'";
-                        $result = $conn->query($sql);
-
-                        if (isset($result) && $result->num_rows > 0) {
-                            $sql = "UPDATE utilisateur SET usager='$nomUsager' where id=$id AND mot_de_passe='$mdp'";
-                            $conn->query($sql);
+                    else{
+                        $sql = "UPDATE departement SET nom='$nomProgramme' where id=$id";
+                        if (mysqli_query($conn, $sql)) {
                             mysqli_close($conn);
-                            header("Location: listeUsager.php?action=modifierUsager");
+                            header("Location: listeProgramme.php?action=modifierProgramme");
                         } else {
-                            $erreur = true;
-                            $mdpErreur = "Le mot de passe ne correspond pas";
+                            echo "Error:" . $sql . "<br>" . mysqli_error($conn);
                         }
                     }
                 }
             }
             if ($_SERVER["REQUEST_METHOD"] != "POST" || $erreur == true) {
-                $sql = "SELECT * FROM utilisateur WHERE id=$id";
+                $sql = "SELECT * FROM departement WHERE id=$id";
                 $result = $conn->query($sql);
 
                 if (!($result->num_rows > 0)) {
                     mysqli_close($conn);
                     header("Location: ./index.php");
+                }
+                else{
+                    $row = $result->fetch_assoc();
+                    $nomProgramme = test_input($row['nom']);
                 }
             ?>
                 <div class="container">
@@ -137,22 +126,18 @@ if ($_SESSION['serveur']) {
                                     <div class="md-5 mt-md-4 ">
                                         <form novalidate action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="POST">
                                             <div class="col text-center mb-5">
-                                                <h1>Modification du nom d'utilisateur</h1>
+                                                <h1>Modification du programme</h1>
                                             </div>
                                             <input type="hidden" name="id" value="<?php echo $id; ?>">
-                                            <!-- Usager -->
+                                            <!-- Programme -->
                                             <div class="form-outline form-white mb-4">
-                                                <input id="usagerCreer" type="text" class="form-control mb-4 " name="usager" placeholder="Nom d'utilisateur" value="<?php echo $nomUsager; ?>" required>
-                                                <span id="usagerCreerVide" class="text-danger"><?php echo $nomUsagerErreur; ?></span>
+                                                <input id="programmeCreer" type="text" class="form-control mb-4 " name="programme" placeholder="Nom du programme" value="<?php echo $nomProgramme; ?>" required>
+                                                <span id="programmeCreerVide" class="text-danger"><?php echo $nomProgrammeErreur; ?></span>
                                             </div>
 
-                                            <!-- mdp -->
-                                            <div class="form-outline form-white mb-4">
-                                                <input id="mdpCreer" type="password" class="form-control mb-4" name="mdp" placeholder="Mot de passe">
-                                                <span id="mdpCreerVide" class="text-danger"><?php echo $mdpErreur; ?></span>
-                                            </div>
                                             <!-- Modifer-->
-                                            <input class="btn btn-outline-light  text-center mt-4 pt-1" type="submit" value="Modifier">
+                                            <input class="btn btn-outline-light  text-center mt-4 pt-1" type="submit" value="Modifier"><br>
+                                            <a class="btn btn-outline-light  text-center mt-4 pt-1" href="listeProgramme.php">Retour à la liste</a>
                                     </div>
                                 </div>
                             </div>

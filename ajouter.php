@@ -263,7 +263,12 @@ if ($_SESSION['serveur']) {
                     </form>
                 </div>
             </div>
-        </main>
+
+            <!-- Accès à la liste des programmes -->
+            <div class="text-center mt-3">
+                <a class="btn btn-outline-dark mb-3 fs-4" href="listeProgramme.php">Modifier la liste des programmes</a>
+            </div>
+        </main>        
         <footer class="mt-5 w-100">
             <!-- Copyright -->
             <div class="d-flex w-100 justify-content-center">
