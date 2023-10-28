@@ -92,7 +92,9 @@ else{
                                 <input type="hidden" name="id" value="<?php echo $id ?>">
                                 <input type="hidden" name="valeur" value="employeurSatisfait">
                                 <button type="submit" class="btn p-0 m-3" id="btnSatisfait">
-                                    <img class="img-fluid" src="img/satisfait-vote.png">
+                                    <div class="p-3 rounded-circle bg-white">
+                                        <img class="img-fluid rounded-circle" src="img/content.png">
+                                    </div>
                                 </button>
                             </form>
                         </div>
@@ -102,7 +104,9 @@ else{
                                 <input type="hidden" name="id" value="<?php echo $id ?>">
                                 <input type="hidden" name="valeur" value="employeurNeutre">
                                 <button type="submit" class="btn p-0 m-3" id="btnNeutre">
-                                    <img class="img-fluid" src="img/neutre.png">
+                                    <div class="p-3 rounded-circle bg-white">
+                                            <img class="img-fluid rounded-circle" src="img/neutre.png">
+                                    </div>
                                 </button>
                             </form>
                         </div>
@@ -112,7 +116,9 @@ else{
                                 <input type="hidden" name="id" value="<?php echo $id ?>">
                                 <input type="hidden" name="valeur" value="employeurInsatisfait">
                                 <button type="submit" class="btn p-0 m-3" id="btnInsatisfait">
-                                    <img class="img-fluid" src="img/insatisfait.png">
+                                    <div class="p-3 rounded-circle bg-white">
+                                        <img class="img-fluid" src="img/insatisfait.png">
+                                    </div>
                                 </button>
                             </form>
                         </div>
