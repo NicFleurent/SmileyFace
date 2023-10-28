@@ -65,6 +65,7 @@ if ($_SESSION['serveur']) {
             if (!$conn) {
                 die("Connectionfailed:" . mysqli_connect_error());
             }
+            $conn->query('SET NAMES utf8');
 
             if (isset($_GET['id'])) {
                 $id = test_input($_GET['id']);
@@ -135,7 +136,8 @@ if ($_SESSION['serveur']) {
                                             </div>
 
                                             <!-- Modifer-->
-                                            <input class="btn btn-outline-light  text-center mt-4 pt-1" type="submit" value="Modifier">
+                                            <input class="btn btn-outline-light  text-center mt-4 pt-1" type="submit" value="Modifier"><br>
+                                            <a class="btn btn-outline-light  text-center mt-4 pt-1" href="listeProgramme.php">Retour à la liste</a>
                                     </div>
                                 </div>
                             </div>

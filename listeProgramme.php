@@ -55,6 +55,7 @@ if ($_SESSION['serveur']) {
                 if ($conn->connect_error) {
                     die("Connectionfailed:" . $conn->connect_error);
                 }
+                $conn->query('SET NAMES utf8');
 
                 //Affiche des messages de confirmation pour modifications ou ajout utilisateur
                 if (isset($_GET['action'])) {
@@ -101,11 +102,11 @@ if ($_SESSION['serveur']) {
                     ?>
                     <!-- Ajouter un utilisateur -->
                     <a class="btn btn-outline-dark mb-3" href="ajouterProgramme.php">Ajouter un programme</a>
-                    
+
                     <table class="table align-middle">
                         <thead>
                             <tr>
-                                <th scope="col">Nom d'utilisateur</th>
+                                <th scope="col">Nom du programme</th>
                                 <th scope="col" class="text-center">Modifications</th>
                                 <th scope="col" class="text-center">Supprimer</th>
                             </tr>

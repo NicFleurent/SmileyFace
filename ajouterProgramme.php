@@ -68,6 +68,7 @@ if ($_SESSION['serveur']) {
                 if (!$conn) {
                     die("Connectionfailed:" . mysqli_connect_error());
                 }
+                $conn->query('SET NAMES utf8');
 
                 if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     //Vérification du usager
