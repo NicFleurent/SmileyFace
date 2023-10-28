@@ -107,7 +107,7 @@ if ($_SESSION['serveur']) {
                         <thead>
                             <tr>
                                 <th scope="col">Nom du programme</th>
-                                <th scope="col" class="text-center">Modifications</th>
+                                <th scope="col" class="text-center">Modification</th>
                                 <th scope="col" class="text-center">Supprimer</th>
                             </tr>
                         </thead>

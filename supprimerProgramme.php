@@ -79,7 +79,7 @@ if (isset($_SESSION['connexion'])) {
                         <div class="container bg-danger rounded p-5 mb-5 w-100">
                             <h3 class="m-3">Erreur - Vous ne pouvez pas supprimer un programme utilisé dans un évènement.</h1>
                             <h3 class="m-3">Vous devez retirer le programme de l'évènement ou supprimmer celui-ci.</h1>
-                            <h3 class="m-3 mt-5">Voici la liste des évenements contenant ce programme : </h1>
+                            <h3 class="m-3 mt-5">Voici la liste des évènements contenant ce programme : </h1>
                             
                         <?php
                         foreach($evenementsId as $event){
