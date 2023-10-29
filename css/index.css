@@ -72,3 +72,16 @@ li .card .card-body .card-img-bottom{
      width: 100% !important;
    }
  }
+
+  /* petite écran (hamburger menu) */
+@media (max-width: 993px) {
+   .nav-item {
+       margin-bottom: 10px; /* Add spacing for hamburger menu */
+   }
+ }
+
+ .navbar-toggler:focus {
+   box-shadow: none; 
+   border-radius: 0.25rem;
+   border-color: #f8f9fa;
+}

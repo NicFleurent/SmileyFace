@@ -38,18 +38,18 @@ document.addEventListener('DOMContentLoaded', function () {
                     label: 'Votes',
                     data: tabStatsEt,
                     backgroundColor: [
-                        'rgba(140, 253, 29, 1)',
-                        'rgba(254, 242, 0, 1)',
-                        'rgba(254, 76, 53, 1)'
+                        'rgba(70, 190, 40, 1)',
+                        'rgba(255, 220, 40, 1)',
+                        'rgba(220, 10, 11, 1)'
                     ],
-                    borderColor: 'rgb(100, 100, 100)',
+                    borderColor: 'rgba(255, 255, 255, 1)',
+                    borderWidth:4 ,
                 },
             ]
         };
 
         // Les options du diagramme.
         const optionsChartJs = {
-
         };
 
         // eslint-disable-next-line no-unused-vars  
@@ -91,18 +91,18 @@ document.addEventListener('DOMContentLoaded', function () {
                     label: 'Votes',
                     data: tabStatsEn,
                     backgroundColor: [
-                        'rgba(140, 253, 29, 1)',
-                        'rgba(254, 242, 0, 1)',
-                        'rgba(254, 76, 53, 1)'
+                        'rgba(70, 190, 40, 1)',
+                        'rgba(255, 220, 40, 1)',
+                        'rgba(220, 10, 11, 1)'
                     ],
-                    borderColor: 'rgb(100, 100, 100)',
+                    borderColor: 'rgba(255, 255, 255, 1)',
+                    borderWidth:4 ,
                 },
             ]
         };
 
         // Les options du diagramme.
         const optionsChartJsEn = {
-
         };
 
         // eslint-disable-next-line no-unused-vars  
