@@ -118,7 +118,8 @@ if ($_SESSION['serveur']) {
                                                 </div>
 
                                                 <!--Ajouter -->
-                                                <input class="btn btn-outline-light  text-center mt-4 pt-1" type="submit" value="Ajouter">
+                                                <input class="btn btn-outline-light  text-center mt-4 pt-1" type="submit" value="Ajouter"><br>
+                                            <a class="btn btn-outline-light  text-center mt-4 pt-1" href="listeProgramme.php">Retour à la liste</a>
                                         </div>
                                     </div>
                                 </div>
