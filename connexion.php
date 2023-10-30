@@ -20,7 +20,7 @@ require("connexionServeur.php");
 <body>
 <div class="container-fluid d-flex flex-column justify-content-between vh-100 p-0">
 <header>
-            <nav class="navbar navbar-expand-lg fixed-top">
+            <nav class="navbar navbar-expand-lg mb-5">
                 <div class="container-fluid ">
                     <a class="ms-5" href="index.php">
                         <img src="img/CTR_Logo_BLANC.png" alt="Logo CégepTR">

@@ -23,7 +23,7 @@ if ($_SESSION['serveur']) {
     if (isset($_SESSION['connexion'])) {
     ?>
     <div class="container-fluid vh-100 d-flex flex-column justify-content-between p-0">
-        <div class="container-fluid">
+        <div class="container-fluid p-0">
         <header>
             <nav class="navbar navbar-expand-lg fixed-top">
                 <div class="container-fluid ">
@@ -46,7 +46,7 @@ if ($_SESSION['serveur']) {
                                 <a class="btn btn-outline-light" href="validation.php?destination=listeProgramme">Programmes</a>
                             </li>
                             <li class="nav-item ms-5">
-                                <a class="btn btn-outline-light" href="validation.php?destination=listeUsager">Utilisateurs</a>
+                                <a class="btn btn-outline-light" href="listeUsager.php">Utilisateurs</a>
                             </li>
                             <li class="nav-item ms-5">
                             <a class="btn btn-outline-light" href="deconnexion.php">Déconnexion <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-box-arrow-right" viewBox="0 0 16 16">

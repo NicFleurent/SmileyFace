@@ -47,7 +47,7 @@ if ($_SESSION['serveur']) {
                                     <a class="btn btn-outline-light" href="validation.php?destination=ajouter">Créer un évènement</a>
                                 </li>
                                 <li class="nav-item ms-5">
-                                    <a class="btn btn-outline-light" href="validation.php?destination=listeProgramme">Programmes</a>
+                                    <a class="btn btn-outline-light" href="listeProgramme.php">Programmes</a>
                                 </li>
                                 <li class="nav-item ms-5">
                                     <a class="btn btn-outline-light" href="validation.php?destination=listeUsager">Utilisateurs</a>
