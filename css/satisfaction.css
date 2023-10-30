@@ -1,11 +1,7 @@
-.r-img{
-  width: 250px;
-  }
-
 @media screen and (max-width: 805px) {
-    .img-fluid {
-      width: 55%;
-    }
+  .largeur-portrait{
+    width: 40%;
   }
+}
 
  

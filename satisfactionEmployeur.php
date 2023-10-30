@@ -91,7 +91,7 @@ else{
                             <form class="d-flex justify-content-center align-items-center" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
                                 <input type="hidden" name="id" value="<?php echo $id ?>">
                                 <input type="hidden" name="valeur" value="employeurSatisfait">
-                                <button type="submit" class="btn p-0 m-3" id="btnSatisfait">
+                                <button type="submit" class="largeur-portrait btn p-0 m-3" id="btnSatisfait">
                                     <div class="p-3 rounded-circle bg-white">
                                         <img class="img-fluid rounded-circle" src="img/content.png">
                                     </div>
@@ -103,7 +103,7 @@ else{
                             <form class="d-flex justify-content-center align-items-center" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
                                 <input type="hidden" name="id" value="<?php echo $id ?>">
                                 <input type="hidden" name="valeur" value="employeurNeutre">
-                                <button type="submit" class="btn p-0 m-3" id="btnNeutre">
+                                <button type="submit" class="largeur-portrait btn p-0 m-3" id="btnNeutre">
                                     <div class="p-3 rounded-circle bg-white">
                                             <img class="img-fluid rounded-circle" src="img/neutre.png">
                                     </div>
@@ -115,7 +115,7 @@ else{
                             <form class="d-flex justify-content-center align-items-center" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
                                 <input type="hidden" name="id" value="<?php echo $id ?>">
                                 <input type="hidden" name="valeur" value="employeurInsatisfait">
-                                <button type="submit" class="btn p-0 m-3" id="btnInsatisfait">
+                                <button type="submit" class="largeur-portrait btn p-0 m-3" id="btnInsatisfait">
                                     <div class="p-3 rounded-circle bg-white">
                                         <img class="img-fluid" src="img/insatisfait.png">
                                     </div>

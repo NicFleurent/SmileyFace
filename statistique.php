@@ -61,7 +61,7 @@ if ($_SESSION['serveur']) {
                     </div>
                 </nav>
             </header>
-            <main class="container">
+            <div class="container">
 
                 <?php
 
@@ -140,7 +140,7 @@ if ($_SESSION['serveur']) {
                         <span class="fs-4" id="totalVotesEn"></span>
                     </div>
                 </div>
-            </main>
+            </div>
         <?php
         $conn->close();
     } else {

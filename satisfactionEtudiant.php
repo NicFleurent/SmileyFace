@@ -16,6 +16,7 @@ else{
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sondage | Étudiant</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/index.css">
     <link rel="stylesheet" href="css/styles.css">
     <link rel="stylesheet" href="css/satisfaction.css">
     <link rel="icon" href="img_cegep_tr_logo.ico">
@@ -92,10 +93,8 @@ else{
                             <form class="d-flex justify-content-center align-items-center" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
                                 <input type="hidden" name="id" value="<?php echo $id ?>">
                                 <input type="hidden" name="valeur" value="etudiantSatisfait">
-                                <button type="submit" class="btn p-0 m-3" id="btnSatisfait">
-                                    <img class="img-fluid r-img" src="img/content.png">
-                                   
-
+                                <button type="submit" class="largeur-portrait btn p-0 m-3" id="btnSatisfait">
+                                    <img class="img-fluid" src="img/content.png">
                                 </button>
                             </form>
                         </div>
@@ -104,8 +103,8 @@ else{
                             <form class="d-flex justify-content-center align-items-center" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
                                 <input type="hidden" name="id" value="<?php echo $id ?>">
                                 <input type="hidden" name="valeur" value="etudiantNeutre">
-                                <button type="submit" class="btn p-0 m-3" id="btnNeutre">
-                                    <img class="img-fluid r-img" src="img/neutre.png">
+                                <button type="submit" class="largeur-portrait btn p-0 m-3" id="btnNeutre">
+                                    <img class="img-fluid" src="img/neutre.png">
                                 </button>
                             </form>
                         </div>
@@ -114,8 +113,8 @@ else{
                             <form class="d-flex justify-content-center align-items-center" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
                                 <input type="hidden" name="id" value="<?php echo $id ?>">
                                 <input type="hidden" name="valeur" value="etudiantInsatisfait">
-                                <button type="submit" class="btn p-0 m-3" id="btnInsatisfait">
-                                    <img class="img-fluid r-img" src="img/insatisfait.png">
+                                <button type="submit" class="largeur-portrait btn p-0 m-3" id="btnInsatisfait">
+                                    <img class="img-fluid" src="img/insatisfait.png">
                                 </button>
                             </form>
                         </div>
