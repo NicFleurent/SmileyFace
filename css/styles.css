@@ -43,3 +43,17 @@ footer{
     color: #092D74;
     font-weight: 700;
 }
+
+  /* petite écran (hamburger menu) */
+  @media (max-width: 993px) {
+    .nav-item {
+        margin-bottom: 10px; 
+    }
+  }
+
+  .navbar-toggler:focus {
+    box-shadow: none; 
+    border-radius: 0.25rem;
+    border-color: #f8f9fa;
+ }
+ 

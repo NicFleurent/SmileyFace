@@ -76,7 +76,7 @@ li .card .card-body .card-img-bottom{
   /* petite écran (hamburger menu) */
 @media (max-width: 993px) {
    .nav-item {
-       margin-bottom: 10px; /* Add spacing for hamburger menu */
+       margin-bottom: 10px; 
    }
  }
 
